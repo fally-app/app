@@ -3,5 +3,18 @@
 
 #### Tech stack
 - Next.js Typescript
-- Meterial ui
+- Material ui
 - Sqlite3
+
+
+### features
+
+- Push notifications
+- Daily Devotions
+- Calendar/events
+- the bible
+- Attandance
+- blog
+- Poll
+- Surveys
+- RSVPS

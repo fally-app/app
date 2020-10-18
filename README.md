@@ -4,7 +4,7 @@
 #### Tech stack
 - Next.js Typescript
 - Material ui
-- Sqlite3
+- MongoDB
 
 
 ### features

@@ -1,0 +1,35 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
+import Family from '../../../models/Family'
+import connectDB from '../../../utils/connectDB'
+
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse
+): Promise<void> {
+    const { method } = req
+    await connectDB()
+
+    switch (method) {
+        case 'GET':
+            try {
+                const families = await Family.find()
+                res.status(200).json({ success: true, data: families })
+            } catch (error) {
+                res.status(400).json({ success: false })
+            }
+            break
+        case 'POST':
+            try {
+                const family = new Family(req.body)
+                await family.save()
+                res.status(201).json({ success: true, data: family })
+            } catch (error) {
+                res.status(400).json({ success: false })
+            }
+            break
+        default:
+            res.status(400).json({ success: true })
+            break
+    }
+}

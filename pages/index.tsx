@@ -1,11 +1,7 @@
-import Button from '@material-ui/core/Button'
+import NavBar from '../components/NavBar'
 
 const App: React.FC = (): React.ReactElement => {
-    return (
-        <Button variant="contained" color="primary">
-            Hello world material
-        </Button>
-    )
+    return <NavBar />
 }
 
 export default App

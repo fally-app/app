@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@reduxjs/toolkit": "^1.4.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mongoose": "^5.7.36",

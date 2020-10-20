@@ -1082,7 +1082,7 @@
   "resolved" "https://registry.npmjs.org/@hapi/hoek/-/hoek-9.1.0.tgz"
   "version" "9.1.0"
 
-"@material-ui/core@^4.11.0":
+"@material-ui/core@^4.0.0", "@material-ui/core@^4.11.0":
   "integrity" "sha512-bYo9uIub8wGhZySHqLQ833zi4ZML+XCBE1XwJ8EuUVSpTWWG57Pm+YugQToJNFsEyiKFhPh8DPD0bgupz8n01g=="
   "resolved" "https://registry.npmjs.org/@material-ui/core/-/core-4.11.0.tgz"
   "version" "4.11.0"
@@ -1099,6 +1099,13 @@
     "prop-types" "^15.7.2"
     "react-is" "^16.8.0"
     "react-transition-group" "^4.4.0"
+
+"@material-ui/icons@^4.9.1":
+  "integrity" "sha512-GBitL3oBWO0hzBhvA9KxqcowRUsA0qzwKkURyC8nppnC3fw54KPKZ+d4V1Eeg/UnDRSzDaI9nGCdel/eh9AQMg=="
+  "resolved" "https://registry.npmjs.org/@material-ui/icons/-/icons-4.9.1.tgz"
+  "version" "4.9.1"
+  dependencies:
+    "@babel/runtime" "^7.4.4"
 
 "@material-ui/styles@^4.10.0":
   "integrity" "sha512-XPwiVTpd3rlnbfrgtEJ1eJJdFCXZkHxy8TrdieaTvwxNYj42VnnCyFzxYeNW9Lhj4V1oD8YtQ6S5Gie7bZDf7Q=="

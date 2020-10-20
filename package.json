@@ -21,6 +21,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@reduxjs/toolkit": "^1.4.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongoose": "^5.7.36",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "bcrypt": "^5.0.0",
@@ -29,7 +32,7 @@
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^10.4.0",
     "mongoose": "^5.10.9",
-    "next": "9.5.5",
+    "next": "^9.5.5",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },

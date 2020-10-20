@@ -21,6 +21,7 @@ export default async function handler(
             try {
                 const attendance = new Attendance(req.body)
                 attendance.save()
+                res.status(200).json({ success: true, data: attendance })
             } catch (error) {
                 res.status(200).json({ error, success: false })
             }

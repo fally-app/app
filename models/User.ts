@@ -17,9 +17,10 @@ export interface IUser extends Document {
     lastname: string
     gender?: Gender
     email: string
+    class: string
     joined_at: Date
     family_id: IFamily['_id']
-    status: IUser
+    status: IStatus
 }
 
 const userSchema: Schema = new Schema({
@@ -48,6 +49,10 @@ const userSchema: Schema = new Schema({
     family_id: {
         type: Schema.Types.ObjectId,
         ref: 'Family',
+        required: true,
+    },
+    class: {
+        type: String,
         required: true,
     },
     joined_at: {

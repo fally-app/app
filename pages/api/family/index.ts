@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import Family from '../../../models/Family'
 import connectDB from '../../../utils/connectDB'
+import { codeGenerator } from '../../../utils/Helpers'
 
 export default async function handler(
     req: NextApiRequest,
@@ -21,11 +22,28 @@ export default async function handler(
             break
         case 'POST':
             try {
-                const family = new Family(req.body)
+                const { name, password } = req.body
+                const checkExists = await Family.findOne({ name })
+
+                if (checkExists)
+                    return res
+                        .status(404)
+                        .json({ success: false, error: 'Family arledy exists' })
+
+                const newFam = {
+                    name,
+                    password,
+                    code: '',
+                }
+
+                newFam.code = codeGenerator('family')
+
+                const family = new Family(newFam)
                 await family.save()
+
                 res.status(201).json({ success: true, data: family })
             } catch (error) {
-                res.status(400).json({ success: false })
+                res.status(400).json({ success: false, error })
             }
             break
         default:

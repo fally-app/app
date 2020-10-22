@@ -34,7 +34,7 @@ export const NavBar = (): React.ReactElement => {
                     <Typography variant="h6" className={classes.title}>
                         App
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit">Account</Button>
                 </Toolbar>
             </AppBar>
         </div>

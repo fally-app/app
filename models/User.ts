@@ -14,10 +14,10 @@ export enum IStatus {
 
 export interface IUser extends Document {
     firstName: string
-    lastname: string
+    lastName: string
     gender?: Gender
-    email: string
-    class: string
+    email?: string
+    class_level: string
     joined_at: Date
     family_id: IFamily['_id']
     status: IStatus
@@ -26,13 +26,12 @@ export interface IUser extends Document {
 const userSchema: Schema = new Schema({
     email: {
         type: String,
-        required: true,
     },
-    firstname: {
+    firstName: {
         required: true,
         type: String,
     },
-    lastname: {
+    lastName: {
         required: true,
         type: String,
     },
@@ -51,7 +50,7 @@ const userSchema: Schema = new Schema({
         ref: 'Family',
         required: true,
     },
-    class: {
+    class_level: {
         type: String,
         required: true,
     },

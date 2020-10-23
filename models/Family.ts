@@ -3,11 +3,17 @@ import mongoose, { Document, Schema } from 'mongoose'
 
 import { IStatus } from './User'
 
+enum IFamilyTypes {
+    ADMIN = 'ADMIN',
+    FAMILY = 'FAMILY',
+}
+
 export interface IFamily extends Document {
     code: string
     name: string
     password: string
     created_at: string
+    user_type: string
     status: IStatus
 }
 
@@ -28,6 +34,11 @@ const familySchema: Schema = new Schema({
         type: String,
         enum: Object.values(IStatus),
         default: IStatus.ACTIVE,
+    },
+    user_type: {
+        type: String,
+        enum: Object.values(IFamilyTypes),
+        default: IFamilyTypes.FAMILY,
     },
     created_at: {
         type: Date,

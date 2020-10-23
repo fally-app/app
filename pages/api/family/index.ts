@@ -22,7 +22,7 @@ export default async function handler(
             break
         case 'POST':
             try {
-                const { name, password } = req.body
+                const { name, password, user_type } = req.body
                 const checkExists = await Family.findOne({ name })
 
                 if (checkExists)
@@ -33,6 +33,7 @@ export default async function handler(
                 const newFam = {
                     name,
                     password,
+                    user_type,
                     code: '',
                 }
 

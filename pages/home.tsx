@@ -5,13 +5,42 @@ import useSWR from 'swr'
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import fetch from '../lib/fetch'
-import { IUser } from '../store/types/userTypes'
+import { Gender, IStatus } from '../models/User'
 
-export const home = ({ initialData }): React.ReactElement => {
-    const {
-        data: { data: IUser },
-        error,
-    } = useSWR('/api/users', fetch, { initialData })
+interface IuserResponse {
+    success: boolean
+    data: {
+        id: string
+        firstName: string
+        lastName: string
+        email?: string
+        family_id: string
+        gender: Gender
+        status: IStatus
+        class_level: string
+        joined_at: string
+    }
+}
+
+interface IerrorResponse {
+    success: boolean
+    error: string
+}
+
+export const home = ({
+    initialData,
+}: {
+    initialData: IuserResponse
+}): React.ReactElement => {
+    const { data, error } = useSWR<IuserResponse, IerrorResponse>(
+        '/api/users',
+        fetch,
+        {
+            initialData,
+        }
+    )
+
+    console.log('data', data)
 
     return (
         <>

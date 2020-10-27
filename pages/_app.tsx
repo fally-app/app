@@ -5,7 +5,7 @@ import Head from 'next/head'
 import React from 'react'
 import { Provider } from 'react-redux'
 
-import { store } from '../store'
+import store from '../store'
 import theme from '../theme'
 
 export default function MyApp(props: AppProps): React.ReactElement {
@@ -30,7 +30,6 @@ export default function MyApp(props: AppProps): React.ReactElement {
             </Head>
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
                     <Component {...pageProps} />
                 </ThemeProvider>

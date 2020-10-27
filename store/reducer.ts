@@ -2,8 +2,10 @@ import { combineReducers } from 'redux'
 
 import count from './slices/count'
 
-const reducers = combineReducers({
+const rootReducers = combineReducers({
     count,
 })
 
-export default reducers
+export type RootState = ReturnType<typeof rootReducers>
+
+export default rootReducers

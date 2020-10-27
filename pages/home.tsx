@@ -1,11 +1,13 @@
 import { GetServerSideProps } from 'next'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import useSWR from 'swr'
 
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
-import fetch from '../lib/fetch'
+import fetcher from '../lib/fetch'
 import { Gender, IStatus } from '../models/User'
+import { addusers, loadUser } from '../store/slices/users'
 
 interface IuserResponse {
     success: boolean
@@ -34,16 +36,19 @@ export const home = ({
 }: {
     initialData: IuserResponse
 }): React.ReactElement => {
-    const { data, error } = useSWR<IuserResponse, IerrorResponse>(
+    console.log(initialData)
+
+    const { data } = useSWR<IuserResponse, IerrorResponse>(
         '/api/users',
-        fetch,
+        fetcher,
         {
             initialData,
         }
     )
+    const dispatch = useDispatch()
+    dispatch(loadUser())
 
-    console.log('data', data)
-    console.log('error', error)
+    dispatch(addusers(data.data))
 
     return (
         <>
@@ -59,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     return {
         props: {
-            initialData: data,
+            initialData: JSON.parse(JSON.stringify(data)),
         },
     }
 }

@@ -38,7 +38,10 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: userInitialState,
     reducers: {
-        adduser: (state, { payload }: PayloadAction<IuserType[]>) => {
+        loadUser: state => {
+            state.isLoading = true
+        },
+        addusers: (state, { payload }: PayloadAction<IuserType[]>) => {
             state.error = ''
             state.isLoading = false
             state.users = payload
@@ -54,5 +57,5 @@ export const userSlice = createSlice({
     },
 })
 
-export const { adduser, edituser, deleteuser } = userSlice.actions
+export const { loadUser, addusers, edituser, deleteuser } = userSlice.actions
 export default userSlice.reducer

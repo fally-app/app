@@ -9,17 +9,19 @@ import { Gender, IStatus } from '../models/User'
 
 interface IuserResponse {
     success: boolean
-    data: {
-        id: string
-        firstName: string
-        lastName: string
-        email?: string
-        family_id: string
-        gender: Gender
-        status: IStatus
-        class_level: string
-        joined_at: string
-    }
+    data: [
+        {
+            id: string
+            firstName: string
+            lastName: string
+            email?: string
+            family_id: string
+            gender: Gender
+            status: IStatus
+            class_level: string
+            joined_at: string
+        }
+    ]
 }
 
 interface IerrorResponse {
@@ -41,6 +43,7 @@ export const home = ({
     )
 
     console.log('data', data)
+    console.log('error', error)
 
     return (
         <>

@@ -8,7 +8,7 @@ import {
     Typography,
 } from '@material-ui/core'
 import Head from 'next/head'
-import React from 'react'
+import React, { useState } from 'react'
 
 const useStyles = makeStyles({
     root: {
@@ -25,6 +25,16 @@ const useStyles = makeStyles({
 
 export const login = (): React.ReactElement => {
     const classes = useStyles()
+
+    const [code, setCode] = useState<string>()
+    const [password, setPassword] = useState<string>()
+
+    const handleLogin = () => {
+        if (!code || !password) {
+            console.log('something went wrong')
+        }
+    }
+
     return (
         <>
             <Head>
@@ -49,18 +59,23 @@ export const login = (): React.ReactElement => {
                                 label="code"
                                 fullWidth
                                 type="text"
+                                value={code}
+                                onChange={e => setCode(e.target.value)}
                                 className={classes.blocks}
                             />
                             <TextField
                                 label="passowrd"
                                 type="password"
                                 fullWidth
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
                                 className={classes.blocks}
                             />
                             <Button
                                 color="primary"
                                 variant="contained"
-                                fullWidth>
+                                fullWidth
+                                onClick={handleLogin}>
                                 Login here
                             </Button>
                         </form>

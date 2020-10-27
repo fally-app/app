@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-enum Gender {
-    Male = 'Male',
-    Female = 'Female',
+enum IFamilyTypes {
+    ADMIN = 'ADMIN',
+    FAMILY = 'FAMILY',
 }
 
 enum IStatus {
@@ -12,14 +12,12 @@ enum IStatus {
 
 export interface IuserType {
     id: string
-    firstName: string
-    lastName: string
-    email?: string
-    family_id: string
-    gender?: Gender
+    code: string
+    name: string
+    password: string
+    created_at: string
+    user_type: IFamilyTypes
     status: IStatus
-    class_level: string
-    joined_at: string
 }
 
 export interface IuserState {
@@ -35,13 +33,12 @@ const userInitialState: IuserState = {
     isLoading: true,
     user: {
         id: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        family_id: '',
+        code: '',
+        name: '',
+        password: '',
+        created_at: '',
         status: IStatus.DIACTIVE,
-        class_level: '',
-        joined_at: '',
+        user_type: IFamilyTypes.FAMILY,
     },
 }
 

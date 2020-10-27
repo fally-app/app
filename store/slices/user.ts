@@ -46,6 +46,9 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: userInitialState,
     reducers: {
+        loginStarted: state => {
+            state.isLoading = true
+        },
         loginSuccess: (state, { payload }: PayloadAction<IuserType>) => {
             state.error = ''
             state.isLoading = false
@@ -62,5 +65,11 @@ export const userSlice = createSlice({
     },
 })
 
-export const { loginSuccess, loginfailed, logout } = userSlice.actions
+export const {
+    loginStarted,
+    loginSuccess,
+    loginfailed,
+    logout,
+} = userSlice.actions
+
 export default userSlice.reducer

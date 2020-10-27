@@ -52,7 +52,6 @@ export const home = ({
         </>
     )
 }
-
 export default home
 
 export const getServerSideProps: GetServerSideProps = async () => {

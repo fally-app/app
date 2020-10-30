@@ -1,25 +1,25 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import useSWR from 'swr'
 
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import fetcher from '../lib/fetch'
 import { Gender, IStatus } from '../models/User'
-import { addusers, loadUser } from '../store/slices/users'
+// import { addusers, loadUser } from '../store/slices/users'
 
 interface IuserResponse {
     success: boolean
     data: [
         {
-            id: string
+            _id: string
             firstName: string
             lastName: string
             email?: string
             family_id: string
-            gender: Gender
+            gender?: Gender
             status: IStatus
             class_level: string
             joined_at: string
@@ -52,28 +52,23 @@ export const home = ({
 }: {
     initialData: IuserResponse
 }): React.ReactElement => {
-    // const { data } = useSWR<IuserResponse, IerrorResponse>(
-    //     '/api/users',
-    //     fetcher,
-    //     {
-    //         initialData,
-    //     }
-    // )
+    const { data } = useSWR<IuserResponse, IerrorResponse>(
+        '/api/users',
+        fetcher,
+        {
+            initialData,
+        }
+    )
 
     const classes = useStyles()
 
-    // const dispatch = useDispatch()
-    // dispatch(loadUser())
-
-    // console.log(data.data)
-
-    // dispatch(addusers(data.data))
+    console.log(data)
 
     return (
         <>
             <NavBar />
             <div className={classes.wrapper}>
-                <Users />
+                <Users users={data.data} />
             </div>
         </>
     )

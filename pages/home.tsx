@@ -1,3 +1,4 @@
+import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
 import React from 'react'
 import { useDispatch } from 'react-redux'
@@ -31,29 +32,49 @@ interface IerrorResponse {
     error: string
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexShrink: 0,
+            marginLeft: theme.spacing(2.5),
+        },
+        wrapper: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '90vh',
+        },
+    })
+)
+
 export const home = ({
     initialData,
 }: {
     initialData: IuserResponse
 }): React.ReactElement => {
-    console.log(initialData)
+    // const { data } = useSWR<IuserResponse, IerrorResponse>(
+    //     '/api/users',
+    //     fetcher,
+    //     {
+    //         initialData,
+    //     }
+    // )
 
-    const { data } = useSWR<IuserResponse, IerrorResponse>(
-        '/api/users',
-        fetcher,
-        {
-            initialData,
-        }
-    )
-    const dispatch = useDispatch()
-    dispatch(loadUser())
+    const classes = useStyles()
 
-    dispatch(addusers(data.data))
+    // const dispatch = useDispatch()
+    // dispatch(loadUser())
+
+    // console.log(data.data)
+
+    // dispatch(addusers(data.data))
 
     return (
         <>
             <NavBar />
-            <Users />
+            <div className={classes.wrapper}>
+                <Users />
+            </div>
         </>
     )
 }

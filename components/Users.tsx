@@ -19,6 +19,10 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
 import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { RootState } from '../store/reducer'
+import { IuserState } from '../store/slices/users'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -114,27 +118,31 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     )
 }
 
-function createData(name: string, calories: number, fat: number) {
-    return { name, calories, fat }
-}
+// function createData(name: string, calories: number, fat: number) {
+//     return { name, calories, fat }
+// }
 
-const rows = [
-    createData('Cupcake', 305, 3.7),
-    createData('Donut', 452, 25.0),
-    createData('Eclair', 262, 16.0),
-    createData('Frozen yoghurt', 159, 6.0),
-    createData('Gingerbread', 356, 16.0),
-    createData('Honeycomb', 408, 3.2),
-    createData('Ice cream sandwich', 237, 9.0),
-    createData('Jelly Bean', 375, 0.0),
-    createData('KitKat', 518, 26.0),
-    createData('Lollipop', 392, 0.2),
-    createData('Marshmallow', 318, 0),
-    createData('Nougat', 360, 19.0),
-    createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1))
+// const rows = [
+//     createData('Cupcake', 305, 3.7),
+//     createData('Donut', 452, 25.0),
+//     createData('Eclair', 262, 16.0),
+//     createData('Frozen yoghurt', 159, 6.0),
+//     createData('Gingerbread', 356, 16.0),
+//     createData('Honeycomb', 408, 3.2),
+//     createData('Ice cream sandwich', 237, 9.0),
+//     createData('Jelly Bean', 375, 0.0),
+//     createData('KitKat', 518, 26.0),
+//     createData('Lollipop', 392, 0.2),
+//     createData('Marshmallow', 318, 0),
+//     createData('Nougat', 360, 19.0),
+//     createData('Oreo', 437, 18.0),
+// ].sort((a, b) => (a.calories < b.calories ? -1 : 1))
 
 const useStyles2 = makeStyles({
+    root: {
+        width: '80%',
+        overflowY: 'auto',
+    },
     table: {
         minWidth: 500,
     },
@@ -145,8 +153,11 @@ export default function Users(): React.ReactElement {
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
+    const userState: IuserState = useSelector((state: RootState) => state.users)
+
     const emptyRows =
-        rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
+        rowsPerPage -
+        Math.min(rowsPerPage, userState.users.length - page * rowsPerPage)
 
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
@@ -162,68 +173,79 @@ export default function Users(): React.ReactElement {
         setPage(0)
     }
 
-    return (
-        <TableContainer component={Paper}>
-            <Table
-                className={classes.table}
-                aria-label="custom pagination table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>No</TableCell>
-                        <TableCell align="right">No</TableCell>
-                        <TableCell align="right">No</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {(rowsPerPage > 0
-                        ? rows.slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                          )
-                        : rows
-                    ).map(row => (
-                        <TableRow key={row.name}>
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {row.calories}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {row.fat}
-                            </TableCell>
+    if (userState.error) {
+        return <div>{userState.error}</div>
+    } else if (userState.isLoading) {
+        return <div>loading.....</div>
+    } else if (userState.users) {
+        return (
+            <TableContainer className={classes.root} component={Paper}>
+                <Table
+                    className={classes.table}
+                    aria-label="custom pagination table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Id</TableCell>
+                            <TableCell>First Name</TableCell>
+                            <TableCell>LastName</TableCell>
+                            <TableCell>Gender</TableCell>
+                            <TableCell>Family Name</TableCell>
+                            <TableCell>Class</TableCell>
                         </TableRow>
-                    ))}
-                    {emptyRows > 0 && (
-                        <TableRow style={{ height: 53 * emptyRows }}>
-                            <TableCell colSpan={6} />
+                    </TableHead>
+                    <TableBody>
+                        {(rowsPerPage > 0
+                            ? userState.users.slice(
+                                  page * rowsPerPage,
+                                  page * rowsPerPage + rowsPerPage
+                              )
+                            : userState.users
+                        ).map((user, index) => (
+                            <TableRow key={user._id}>
+                                <TableCell component="th" scope="row">
+                                    {index + 1}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {user.lastName}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {user.gender}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                        {emptyRows > 0 && (
+                            <TableRow style={{ height: 53 * emptyRows }}>
+                                <TableCell colSpan={6} />
+                            </TableRow>
+                        )}
+                    </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[
+                                    5,
+                                    10,
+                                    25,
+                                    { label: 'All', value: -1 },
+                                ]}
+                                colSpan={3}
+                                count={userState.users.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: false,
+                                }}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
                         </TableRow>
-                    )}
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[
-                                5,
-                                10,
-                                25,
-                                { label: 'All', value: -1 },
-                            ]}
-                            colSpan={3}
-                            count={rows.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            SelectProps={{
-                                inputProps: { 'aria-label': 'rows per page' },
-                                native: true,
-                            }}
-                            onChangePage={handleChangePage}
-                            onChangeRowsPerPage={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                        />
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </TableContainer>
-    )
+                    </TableFooter>
+                </Table>
+            </TableContainer>
+        )
+    }
 }

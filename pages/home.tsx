@@ -1,14 +1,12 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
 import React from 'react'
-// import { useDispatch } from 'react-redux'
 import useSWR from 'swr'
 
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import fetcher from '../lib/fetch'
 import { Gender, IStatus } from '../models/User'
-// import { addusers, loadUser } from '../store/slices/users'
 
 interface IuserResponse {
     success: boolean
@@ -61,8 +59,6 @@ export const home = ({
     )
 
     const classes = useStyles()
-
-    console.log(data)
 
     return (
         <>

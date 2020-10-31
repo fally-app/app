@@ -26,13 +26,14 @@ const useStyles = makeStyles({
 export const login = (): React.ReactElement => {
     const classes = useStyles()
 
-    const [code, setCode] = useState<string>()
-    const [password, setPassword] = useState<string>()
+    const [code, setCode] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
 
     const handleLogin = () => {
         if (!code || !password) {
             console.log('something went wrong')
         }
+        console.log(code, password)
     }
 
     return (

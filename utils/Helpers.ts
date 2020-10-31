@@ -21,9 +21,8 @@ export function codeGenerator(person: string): string {
     return code
 }
 
-export const createToken = ({ id }: { id: string }): string => {
-    return jwt.sign({ id }, process.env.JWT_SECRET)
-}
+export const createToken = ({ _id }: { _id: string }): string =>
+    jwt.sign({ _id }, process.env.JWT_SECRET)
 
 export const getUserFromToken = async (token: string): Promise<IUser> => {
     try {

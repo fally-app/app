@@ -7,6 +7,9 @@ import {
     TextField,
     Typography,
 } from '@material-ui/core'
+import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
+import axios from 'axios'
 import Head from 'next/head'
 import React, { useState } from 'react'
 
@@ -28,19 +31,51 @@ export const login = (): React.ReactElement => {
 
     const [code, setCode] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [errorMsg, setErrorMsg] = useState<string>('')
+    const [isSnackOpen, setisSnackOpen] = useState<boolean>(false)
 
-    const handleLogin = () => {
-        if (!code || !password) {
-            console.log('something went wrong')
+    function Alert(props: AlertProps) {
+        return <MuiAlert elevation={6} variant="filled" {...props} />
+    }
+
+    const handleLogin = async () => {
+        try {
+            const result = await axios.post('/api/family/login', {
+                code,
+                password,
+            })
+            console.log(result)
+            localStorage.setItem('auth-token', result.data.data)
+        } catch (error) {
+            if (error.response) {
+                setErrorMsg(error.response.data.error)
+            } else {
+                setErrorMsg('Some thing went wrong')
+            }
+            setisSnackOpen(true)
         }
-        console.log(code, password)
+    }
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return
+        }
+        setisSnackOpen(false)
     }
 
     return (
         <>
             <Head>
-                <title>LOGIN - SABBATH SCHOOL</title>
+                <title>Login - Sda</title>
             </Head>
+            <Snackbar
+                open={isSnackOpen}
+                autoHideDuration={6000}
+                onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error">
+                    {errorMsg}
+                </Alert>
+            </Snackbar>
             <Grid
                 container
                 direction="column"
@@ -55,6 +90,7 @@ export const login = (): React.ReactElement => {
                             className={classes.header}>
                             Login
                         </Typography>
+
                         <form>
                             <TextField
                                 label="code"
@@ -65,7 +101,7 @@ export const login = (): React.ReactElement => {
                                 className={classes.blocks}
                             />
                             <TextField
-                                label="passowrd"
+                                label="password"
                                 type="password"
                                 fullWidth
                                 value={password}

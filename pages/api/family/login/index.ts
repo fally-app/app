@@ -31,6 +31,7 @@ export default async function handler(
                     })
 
                 const findUser = await Family.findOne({ code })
+
                 if (!findUser)
                     return res.status(400).json({
                         success: false,
@@ -41,6 +42,7 @@ export default async function handler(
                     password,
                     findUser.password
                 )
+
                 if (!isPasswordValid)
                     return res.status(400).json({
                         success: false,

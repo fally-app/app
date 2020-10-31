@@ -15,11 +15,14 @@ import {
 } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
+import PresentToAllIcon from '@material-ui/icons/PresentToAll'
+import ReportIcon from '@material-ui/icons/Report'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -148,25 +151,29 @@ export default function NavBar(): React.ReactElement {
                 </div>
                 <Divider />
                 <List>
-                    {/* {['Home', 'Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                        (text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        )
-                    )} */}
                     <ListItem button>
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
                         <ListItemText primary="Home" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <PresentToAllIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Attendance" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <ReportIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Report" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AccountBoxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Account" />
                     </ListItem>
                 </List>
                 <Divider />

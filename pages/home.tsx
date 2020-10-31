@@ -1,5 +1,6 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 import React from 'react'
 import useSWR from 'swr'
 
@@ -62,6 +63,9 @@ export const home = ({
 
     return (
         <>
+            <Head>
+                <title>Welcome</title>
+            </Head>
             <NavBar />
             <div className={classes.wrapper}>
                 <Users users={data.data} />

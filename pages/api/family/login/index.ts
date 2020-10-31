@@ -47,8 +47,6 @@ export default async function handler(
                         error: 'Invalid email or password',
                     })
 
-                console.log(findUser)
-
                 res.status(201).json({
                     success: true,
                     data: createToken(findUser),

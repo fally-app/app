@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import Family from '../../../../models/Family'
-import connectDB from '../../../../utils/connectDB'
-import { createToken } from '../../../../utils/Helpers'
+import Family from '../../../models/Family'
+import connectDB from '../../../utils/connectDB'
+import { createToken } from '../../../utils/Helpers'
 
 export default async function handler(
     req: NextApiRequest,
@@ -13,13 +13,6 @@ export default async function handler(
     await connectDB()
 
     switch (method) {
-        case 'GET':
-            try {
-                return res.status(200).json({ done: 'done' })
-            } catch (error) {
-                res.status(400).json({ success: false, error })
-            }
-            break
         case 'POST':
             try {
                 const { code, password } = req.body

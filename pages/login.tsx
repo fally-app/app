@@ -13,6 +13,8 @@ import axios from 'axios'
 import Head from 'next/head'
 import React, { useState } from 'react'
 
+import useUser from '../lib/useUser'
+
 const useStyles = makeStyles({
     root: {
         width: '100vw',
@@ -33,6 +35,7 @@ export const login = (): React.ReactElement => {
     const [password, setPassword] = useState<string>('')
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [isSnackOpen, setisSnackOpen] = useState<boolean>(false)
+    const { setToken } = useUser()
 
     function Alert(props: AlertProps) {
         return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -44,8 +47,9 @@ export const login = (): React.ReactElement => {
                 code,
                 password,
             })
-            console.log(result)
-            localStorage.setItem('auth-token', result.data.data)
+            setToken(result.data.data)
+            // fetchUser()
+            // route()
         } catch (error) {
             if (error.response) {
                 setErrorMsg(error.response.data.error)

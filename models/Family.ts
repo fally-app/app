@@ -13,7 +13,7 @@ export interface IFamily extends Document {
     name: string
     password: string
     created_at: string
-    user_type: string
+    user_type: IFamilyTypes
     status: IStatus
 }
 

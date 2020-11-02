@@ -73,3 +73,11 @@ export const {
 } = userSlice.actions
 
 export default userSlice.reducer
+
+// export const login = ({ code, password }) => {
+//     try {
+//         const res = await
+//     } catch (error) {
+
+//     }
+// }

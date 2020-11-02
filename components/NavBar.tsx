@@ -26,7 +26,7 @@ import ReportIcon from '@material-ui/icons/Report'
 import clsx from 'clsx'
 import React from 'react'
 
-import useUser from '../lib/useUser'
+// import useUser from './useUser'
 
 const drawerWidth = 240
 
@@ -97,7 +97,7 @@ export default function NavBar(): React.ReactElement {
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
-    const { logout } = useUser()
+    // const { logout } = useUser()
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -181,7 +181,7 @@ export default function NavBar(): React.ReactElement {
                 </List>
                 <Divider />
                 <List>
-                    <ListItem button onClick={() => logout()}>
+                    <ListItem button>
                         <ListItemIcon>
                             <ExitToAppIcon />
                         </ListItemIcon>

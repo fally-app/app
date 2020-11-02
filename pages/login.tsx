@@ -9,10 +9,11 @@ import {
 } from '@material-ui/core'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
-import axios from 'axios'
 import Head from 'next/head'
-import React, { useState } from 'react'
+import Router from 'next/router'
+import React, { useEffect, useState } from 'react'
 
+import api from '../lib/api'
 import useUser from '../lib/useUser'
 
 const useStyles = makeStyles({
@@ -35,7 +36,17 @@ export const login = (): React.ReactElement => {
     const [password, setPassword] = useState<string>('')
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [isSnackOpen, setisSnackOpen] = useState<boolean>(false)
-    const { setToken } = useUser()
+    const { user, mutate } = useUser()
+
+    useEffect(() => {
+        if (user) {
+            if (user?.user_type === 'ADMIN') {
+                Router.replace('/admin')
+            } else if (user?.user_type === 'FAMILY') {
+                Router.replace('/home')
+            }
+        }
+    }, [user])
 
     function Alert(props: AlertProps) {
         return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -43,13 +54,12 @@ export const login = (): React.ReactElement => {
 
     const handleLogin = async () => {
         try {
-            const result = await axios.post('/api/family/login', {
+            const result = await api.post('/api/family/login', {
                 code,
                 password,
             })
-            setToken(result.data.data)
-            // fetchUser()
-            // route()
+            localStorage.setItem('auth-token', result.data.data)
+            mutate()
         } catch (error) {
             if (error.response) {
                 setErrorMsg(error.response.data.error)

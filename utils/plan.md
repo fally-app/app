@@ -1,11 +1,4 @@
-- Design redux store toolkit
-- Make login work
-- Admin dashboard crud of users and families
-- Family making attendance
-- Report Generation
-
-
-Redux store Planning
-
-- user(family or admin)
-- users
+- show current family members (both backend and frontend)
+- add option to family on frontend
+- Plan for the admin functionality
+- And attendace + report logic

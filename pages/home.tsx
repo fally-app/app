@@ -1,12 +1,15 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import Router from 'next/router'
 import React from 'react'
+import { useEffect } from 'react'
 import useSWR from 'swr'
 
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import fetcher from '../lib/fetch'
+import useUser from '../lib/useUser'
 import { Gender, IStatus } from '../models/User'
 
 interface IuserResponse {
@@ -60,6 +63,14 @@ export const home = ({
     )
 
     const classes = useStyles()
+
+    const { loggedOut } = useUser()
+
+    useEffect(() => {
+        if (loggedOut) {
+            Router.replace('/login')
+        }
+    }, [loggedOut])
 
     return (
         <>

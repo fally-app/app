@@ -24,9 +24,10 @@ import MenuIcon from '@material-ui/icons/Menu'
 import PresentToAllIcon from '@material-ui/icons/PresentToAll'
 import ReportIcon from '@material-ui/icons/Report'
 import clsx from 'clsx'
-import React from 'react'
+import Router from 'next/router'
+import { useState } from 'react'
 
-// import useUser from './useUser'
+import useUser from '../lib/useUser'
 
 const drawerWidth = 240
 
@@ -96,8 +97,8 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function NavBar(): React.ReactElement {
     const classes = useStyles()
     const theme = useTheme()
-    const [open, setOpen] = React.useState(false)
-    // const { logout } = useUser()
+    const [open, setOpen] = useState(false)
+    const { mutate, user } = useUser()
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -107,7 +108,7 @@ export default function NavBar(): React.ReactElement {
         setOpen(false)
     }
 
-    return (
+    return user ? (
         <div className={classes.root}>
             <CssBaseline />
             <AppBar
@@ -127,7 +128,7 @@ export default function NavBar(): React.ReactElement {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        application
+                        {user.name}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -181,7 +182,13 @@ export default function NavBar(): React.ReactElement {
                 </List>
                 <Divider />
                 <List>
-                    <ListItem button>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            localStorage.removeItem('auth-token')
+                            mutate(null)
+                            Router.push('/login')
+                        }}>
                         <ListItemIcon>
                             <ExitToAppIcon />
                         </ListItemIcon>
@@ -190,5 +197,5 @@ export default function NavBar(): React.ReactElement {
                 </List>
             </Drawer>
         </div>
-    )
+    ) : null
 }

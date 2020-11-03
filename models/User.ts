@@ -60,7 +60,6 @@ const userSchema: Schema = new Schema({
     },
 })
 
-console.log(mongoose.models['User'])
 
 export default mongoose.models['User'] ||
     mongoose.model<IUser>('User', userSchema)

@@ -6,7 +6,7 @@ export const attendance: React.FC = (): React.ReactElement => {
     return (
         <>
             <NavBar />
-            <div>Working on it</div>
+            <div>Hello</div>
         </>
     )
 }

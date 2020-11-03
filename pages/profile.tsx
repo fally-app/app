@@ -1,6 +1,12 @@
 import React from 'react'
 
+import NavBar from '../components/NavBar'
+
 export const profile: React.FC = (): React.ReactElement => {
-    return <div>Profile</div>
+    return (
+        <>
+            <NavBar />
+        </>
+    )
 }
 export default profile

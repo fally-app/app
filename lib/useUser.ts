@@ -6,7 +6,6 @@ export default function useUser() {
     if (typeof window != 'undefined') {
         token = localStorage.getItem('auth-token')
     }
-    console.log(token)
 
     const { data, mutate, error } = useRequest({
         url: '/api/family/me',

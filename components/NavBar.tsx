@@ -24,6 +24,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import PresentToAllIcon from '@material-ui/icons/PresentToAll'
 import ReportIcon from '@material-ui/icons/Report'
 import clsx from 'clsx'
+import Link from 'next/link'
 import Router from 'next/router'
 import { useState } from 'react'
 
@@ -155,30 +156,41 @@ export default function NavBar(): React.ReactElement {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Home" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <PresentToAllIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Attendance" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <ReportIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Report" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AccountBoxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Account" />
-                    </ListItem>
+                    <Link href="/home" passHref>
+                        <ListItem button component="a">
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Home" />
+                        </ListItem>
+                    </Link>
+
+                    <Link href="/attendance" passHref>
+                        <ListItem button component="a">
+                            <ListItemIcon>
+                                <PresentToAllIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Attendance" />
+                        </ListItem>
+                    </Link>
+
+                    <Link href="/report" passHref>
+                        <ListItem button component="a">
+                            <ListItemIcon>
+                                <ReportIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Report" />
+                        </ListItem>
+                    </Link>
+
+                    <Link href="/profile" passHref>
+                        <ListItem button component="a">
+                            <ListItemIcon>
+                                <AccountBoxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Account" />
+                        </ListItem>
+                    </Link>
                 </List>
                 <Divider />
                 <List>

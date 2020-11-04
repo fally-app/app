@@ -56,10 +56,12 @@ export const admin = ({
     const classes = useStyles()
 
     const { data } = useSWR<IuserResponse, IerrorResponse>(
-        '/api/family/current',
+        '/api/users',
         fetcher,
         { initialData }
     )
+
+    console.log(data)
 
     useEffect(() => {
         if (loggedOut) {

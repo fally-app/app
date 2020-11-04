@@ -7,6 +7,7 @@ import {
     Theme,
     useTheme,
 } from '@material-ui/core/styles'
+import Switch from '@material-ui/core/Switch/Switch'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -14,6 +15,8 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableFooter from '@material-ui/core/TableFooter'
 import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
+import EditIcon from '@material-ui/icons/Edit'
 import FirstPageIcon from '@material-ui/icons/FirstPage'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
@@ -131,9 +134,10 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 const useStyles2 = makeStyles({
     root: {
         width: '80%',
+        marginTop: '2rem',
     },
     container: {
-        maxHeight: 440,
+        maxHeight: 500,
     },
 })
 
@@ -179,6 +183,9 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                 <TableCell align="left">Gender</TableCell>
                                 <TableCell align="left">Family Name</TableCell>
                                 <TableCell align="left">Class</TableCell>
+                                <TableCell align="left">Status</TableCell>
+                                <TableCell align="left">Edit</TableCell>
+                                <TableCell align="left">Delete</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -208,6 +215,20 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                     <TableCell component="th" scope="row">
                                         {user.class_level}
                                     </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        <Switch
+                                            value="true"
+                                            inputProps={{
+                                                'aria-label': 'Switch A',
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell>
+                                        <EditIcon />
+                                    </TableCell>
+                                    <TableCell>
+                                        <DeleteOutlineIcon />
+                                    </TableCell>
                                 </TableRow>
                             ))}
                             {emptyRows > 0 && (
@@ -225,7 +246,7 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                         25,
                                         { label: 'All', value: -1 },
                                     ]}
-                                    colSpan={6}
+                                    colSpan={9}
                                     count={users.length}
                                     rowsPerPage={rowsPerPage}
                                     page={page}

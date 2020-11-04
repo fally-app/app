@@ -36,8 +36,6 @@ export const home = ({
 }: {
     initialData: IuserResponse
 }): React.ReactElement => {
-    console.log(initialData)
-
     const { data } = useSWR<IuserResponse, IerrorResponse>(
         '/api/users',
         fetcher,
@@ -45,6 +43,9 @@ export const home = ({
             initialData,
         }
     )
+
+    console.log(data)
+
     const dispatch = useDispatch()
     dispatch(loadUser())
 

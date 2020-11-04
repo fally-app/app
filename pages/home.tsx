@@ -1,24 +1,27 @@
+import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
+import Router from 'next/router'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 import useSWR from 'swr'
 
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import fetcher from '../lib/fetch'
+import useUser from '../lib/useUser'
 import { Gender, IStatus } from '../models/User'
-import { addusers, loadUser } from '../store/slices/users'
 
 interface IuserResponse {
     success: boolean
     data: [
         {
-            id: string
+            _id: string
             firstName: string
             lastName: string
             email?: string
             family_id: string
-            gender: Gender
+            gender?: Gender
             status: IStatus
             class_level: string
             joined_at: string
@@ -30,6 +33,21 @@ interface IerrorResponse {
     success: boolean
     error: string
 }
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexShrink: 0,
+            marginLeft: theme.spacing(2.5),
+        },
+        wrapper: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '90vh',
+        },
+    })
+)
 
 export const home = ({
     initialData,
@@ -44,24 +62,32 @@ export const home = ({
         }
     )
 
-    console.log(data)
+    const classes = useStyles()
 
-    const dispatch = useDispatch()
-    dispatch(loadUser())
+    const { loggedOut } = useUser()
 
-    dispatch(addusers(data.data))
+    useEffect(() => {
+        if (loggedOut) {
+            Router.replace('/login')
+        }
+    }, [loggedOut])
 
     return (
         <>
+            <Head>
+                <title>Welcome</title>
+            </Head>
             <NavBar />
-            <Users />
+            <div className={classes.wrapper}>
+                <Users users={data.data} />
+            </div>
         </>
     )
 }
 export default home
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const data = await fetch('http://localhost:3000/api/users')
+    const data = await fetcher('http://localhost:3000/api/users')
 
     return {
         props: {

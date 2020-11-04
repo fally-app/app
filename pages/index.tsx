@@ -1,11 +1,12 @@
-import { Button, Link } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 import Head from 'next/head'
+import Link from 'next/link'
 
 const App: React.FC = (): React.ReactElement => {
     return (
         <>
             <Head>
-                <title>SDA - SABBATH SCHOOL</title>
+                <title>SDA - Sabbath School</title>
             </Head>
             <div
                 style={{
@@ -16,14 +17,18 @@ const App: React.FC = (): React.ReactElement => {
                     backgroundSize: 'cover',
                     display: 'flex',
                     justifyContent: 'center',
+                    flexDirection: 'column',
                     alignItems: 'center',
                 }}>
-                <Link href="/login">
-                    <a>
-                        <Button variant="contained" color="primary">
-                            Login here
-                        </Button>
-                    </a>
+                <Typography
+                    variant="h2"
+                    style={{ marginBottom: '2rem', color: '#fff' }}>
+                    Welcome to the app
+                </Typography>
+                <Link href="/login" passHref>
+                    <Button variant="contained" color="primary">
+                        Login here
+                    </Button>
                 </Link>
             </div>
         </>

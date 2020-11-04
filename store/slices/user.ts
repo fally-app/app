@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+// import api from '../api'
+
 enum IFamilyTypes {
     ADMIN = 'ADMIN',
     FAMILY = 'FAMILY',
@@ -46,8 +48,9 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: userInitialState,
     reducers: {
-        loginStarted: state => {
-            state.isLoading = true
+        loginStarted: (state, { payload }: PayloadAction<string>) => {
+            state.isLoading = false
+            state.token = payload
         },
         loginSuccess: (state, { payload }: PayloadAction<IuserType>) => {
             state.error = ''
@@ -73,3 +76,19 @@ export const {
 } = userSlice.actions
 
 export default userSlice.reducer
+
+// export const login = ({
+//     code,
+//     password,
+// }: {
+//     code: string
+//     password: string
+// }) => async dispatch => {
+//     try {
+//         await api.post('/api/family/login', { code, password })
+//         const getCurrent = await api.get('/api/family/me')
+//         dispatch(loginStarted(getCurrent.data.data))
+//     } catch (error) {
+//         dispatch(loginfailed(error))
+//     }
+// }

@@ -1,14 +1,12 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
-import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Router from 'next/router'
 import React from 'react'
 import { useEffect } from 'react'
-import useSWR from 'swr'
 
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
-import fetcher from '../lib/fetch'
+import useRequest from '../lib/useRequest'
 import useUser from '../lib/useUser'
 import { Gender, IStatus } from '../models/User'
 
@@ -49,32 +47,18 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export const home = ({
-    initialData,
-}: {
-    initialData: IuserResponse
-}): React.ReactElement => {
+export const home = (): React.ReactElement => {
     let token
     if (typeof window !== 'undefined') {
         token = localStorage.getItem('auth-token')
     }
 
-    const { data } = useSWR<IuserResponse, IerrorResponse>(
-        [
-            '/api/family/current',
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            },
-        ],
-        fetcher,
-        {
-            initialData,
-        }
-    )
-
-    console.log(data)
+    const { data: users } = useRequest<IuserResponse, IerrorResponse>({
+        url: '/api/family/current',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
 
     const classes = useStyles()
 
@@ -92,24 +76,16 @@ export const home = ({
                 <title>Welcome</title>
             </Head>
             <NavBar />
-            {data ? (
-                <div className={classes.wrapper}>
-                    <Users users={data.data} />
-                </div>
-            ) : (
-                <div>Loading...</div>
-            )}
+            <div className={classes.wrapper}>
+                {!users ? (
+                    <div>loading</div>
+                ) : users.data.length <= 0 ? (
+                    <div>No user added yet in your family</div>
+                ) : (
+                    <Users users={users.data} />
+                )}
+            </div>
         </>
     )
 }
 export default home
-
-export const getServerSideProps: GetServerSideProps = async () => {
-    const data = await fetcher('http://localhost:3000/api/users')
-
-    return {
-        props: {
-            initialData: JSON.parse(JSON.stringify(data)),
-        },
-    }
-}

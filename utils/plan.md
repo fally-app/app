@@ -14,7 +14,7 @@
     - [ ] add a button for head or family to add a new family member in his family on the dashboard
     - [ ] add a button to update user's information
 - [ ] Admin should be able to to crud
-    - [ ] create an admin listing table
+    - [x] create an admin listing table
     - [ ] On that table add buttons to update
     - [ ] on that table add button to delete that user
 - [ ] Admin should be able to update user's family

@@ -54,13 +54,27 @@ export const home = ({
 }: {
     initialData: IuserResponse
 }): React.ReactElement => {
+    let token
+    if (typeof window !== 'undefined') {
+        token = localStorage.getItem('auth-token')
+    }
+
     const { data } = useSWR<IuserResponse, IerrorResponse>(
-        '/api/users',
+        [
+            '/api/family/current',
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            },
+        ],
         fetcher,
         {
             initialData,
         }
     )
+
+    console.log(data)
 
     const classes = useStyles()
 
@@ -78,9 +92,13 @@ export const home = ({
                 <title>Welcome</title>
             </Head>
             <NavBar />
-            <div className={classes.wrapper}>
-                <Users users={data.data} />
-            </div>
+            {data ? (
+                <div className={classes.wrapper}>
+                    <Users users={data.data} />
+                </div>
+            ) : (
+                <div>Loading...</div>
+            )}
         </>
     )
 }

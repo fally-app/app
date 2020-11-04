@@ -4,6 +4,7 @@ import Router from 'next/router'
 import React from 'react'
 import { useEffect } from 'react'
 
+import AddNewUser from '../components/AddnewUser'
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import useRequest from '../lib/useRequest'
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'center',
             alignItems: 'center',
             height: '90vh',
+            flexDirection: 'column',
         },
     })
 )
@@ -77,6 +79,7 @@ export const home = (): React.ReactElement => {
             </Head>
             <NavBar />
             <div className={classes.wrapper}>
+                <AddNewUser />
                 {!users ? (
                     <div>loading</div>
                 ) : users.data.length <= 0 ? (

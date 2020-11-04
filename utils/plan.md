@@ -9,7 +9,7 @@
 
 - [ ] Head of family should be able to get access to users in his/her family
     - [x] Create and api to get the current logged in family members
-    - [ ] If the family member logs in gets those members and are the ones to get used in the intire app
+    - [x] If the family member logs in gets those members and are the ones to get used in the intire app
 - [ ] Head of family must be able to add a new user only
     - [ ] add a button for head or family to add a new family member in his family on the dashboard
     - [ ] add a button to update user's information

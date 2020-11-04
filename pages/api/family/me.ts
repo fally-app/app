@@ -1,4 +1,3 @@
-// import { createToken } from '../../../../utils/Helpers'
 import jwt from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
 

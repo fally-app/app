@@ -46,6 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '90vh',
             flexDirection: 'column',
         },
+        devider: {
+            marginBottom: '2rem',
+            marginTop: '2%',
+        },
     })
 )
 
@@ -79,7 +83,9 @@ export const home = (): React.ReactElement => {
             </Head>
             <NavBar />
             <div className={classes.wrapper}>
-                <AddNewUser />
+                <div className={classes.devider}>
+                    <AddNewUser />
+                </div>
                 {!users ? (
                     <div>loading</div>
                 ) : users.data.length <= 0 ? (

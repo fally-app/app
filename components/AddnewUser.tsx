@@ -55,7 +55,9 @@ export default function FormDialog(): React.ReactElement {
                 open={openModal}
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Create user</DialogTitle>
+                <DialogTitle id="form-dialog-title">
+                    Create new user
+                </DialogTitle>
                 <DialogContent>
                     <TextField
                         margin="dense"

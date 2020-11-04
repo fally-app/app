@@ -2,11 +2,15 @@ import {
     Button,
     Card,
     CardContent,
+    CircularProgress,
+    createStyles,
     Grid,
     makeStyles,
     TextField,
+    Theme,
     Typography,
 } from '@material-ui/core'
+import { blue } from '@material-ui/core/colors'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import Head from 'next/head'
@@ -16,18 +20,33 @@ import React, { useEffect, useState } from 'react'
 import api from '../lib/api'
 import useUser from '../lib/useUser'
 
-const useStyles = makeStyles({
-    root: {
-        width: '100vw',
-        height: '100vh',
-    },
-    blocks: {
-        marginBottom: 25,
-    },
-    header: {
-        textAlign: 'center',
-    },
-})
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            width: '100vw',
+            height: '100vh',
+        },
+        blocks: {
+            marginBottom: 25,
+        },
+        header: {
+            textAlign: 'center',
+        },
+        buttonProgress: {
+            color: blue[500],
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            marginTop: -12,
+            marginLeft: -12,
+        },
+        wrapper: {
+            margin: theme.spacing(1),
+            position: 'relative',
+            width: '100%',
+        },
+    })
+)
 
 export const login = (): React.ReactElement => {
     const classes = useStyles()
@@ -36,6 +55,7 @@ export const login = (): React.ReactElement => {
     const [password, setPassword] = useState<string>('')
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [isSnackOpen, setisSnackOpen] = useState<boolean>(false)
+    const [loading, setloading] = useState<boolean>(false)
     const { user, mutate } = useUser()
 
     useEffect(() => {
@@ -53,6 +73,7 @@ export const login = (): React.ReactElement => {
     }
 
     const handleLogin = async () => {
+        setloading(true)
         try {
             const result = await api.post('/api/family/login', {
                 code,
@@ -60,12 +81,14 @@ export const login = (): React.ReactElement => {
             })
             localStorage.setItem('auth-token', result.data.data)
             mutate()
+            setloading(false)
         } catch (error) {
             if (error.response) {
                 setErrorMsg(error.response.data.error)
             } else {
                 setErrorMsg('Some thing went wrong')
             }
+            setloading(false)
             setisSnackOpen(true)
         }
     }
@@ -122,13 +145,22 @@ export const login = (): React.ReactElement => {
                                 onChange={e => setPassword(e.target.value)}
                                 className={classes.blocks}
                             />
-                            <Button
-                                color="primary"
-                                variant="contained"
-                                fullWidth
-                                onClick={handleLogin}>
-                                Login here
-                            </Button>
+                            <div className={classes.wrapper}>
+                                <Button
+                                    color="primary"
+                                    variant="contained"
+                                    fullWidth
+                                    disabled={loading}
+                                    onClick={handleLogin}>
+                                    Login here
+                                </Button>
+                                {loading && (
+                                    <CircularProgress
+                                        size={30}
+                                        className={classes.buttonProgress}
+                                    />
+                                )}
+                            </div>
                         </form>
                     </CardContent>
                 </Card>

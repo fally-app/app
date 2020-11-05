@@ -57,6 +57,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                     <Table aria-label="simple table">
                         <TableHead>
                             <TableRow>
+                                <TableCell>No</TableCell>
                                 <TableCell>Names</TableCell>
                                 <TableCell align="right">Yaje</TableCell>
                                 <TableCell align="right">Yarasuye</TableCell>
@@ -73,8 +74,11 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {users.map(row => (
+                            {users.map((row, index) => (
                                 <TableRow key={row._id}>
+                                    <TableCell component="th" scope="row">
+                                        {index + 1}
+                                    </TableCell>
                                     <TableCell component="th" scope="row">
                                         {row.firstName} {row.lastName}
                                     </TableCell>

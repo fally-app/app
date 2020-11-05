@@ -14,6 +14,7 @@ import {
     useTheme,
 } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
+import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
@@ -118,16 +119,18 @@ export default function NavBar(): React.ReactElement {
                     [classes.appBarShift]: open,
                 })}>
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, {
-                            [classes.hide]: open,
-                        })}>
-                        <MenuIcon />
-                    </IconButton>
+                    <Tooltip title="Home">
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            className={clsx(classes.menuButton, {
+                                [classes.hide]: open,
+                            })}>
+                            <MenuIcon />
+                        </IconButton>
+                    </Tooltip>
                     <Typography variant="h6" noWrap>
                         {user.name}
                     </Typography>

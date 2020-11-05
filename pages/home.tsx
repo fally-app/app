@@ -59,16 +59,12 @@ export const home = (): React.ReactElement => {
         token = localStorage.getItem('auth-token')
     }
 
-    console.log(token)
-
     const { data: users } = useRequest<IuserResponse, IerrorResponse>({
         url: '/api/family/current',
         headers: {
             Authorization: `Bearer ${token}`,
         },
     })
-
-    console.log(users)
 
     const classes = useStyles()
 

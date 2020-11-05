@@ -177,7 +177,7 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Id</TableCell>
+                                <TableCell>No</TableCell>
                                 <TableCell align="left">First Name</TableCell>
                                 <TableCell align="left">LastName</TableCell>
                                 <TableCell align="left">Gender</TableCell>

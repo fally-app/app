@@ -21,7 +21,7 @@ const familyReportSchema: Schema = new Schema({
         ref: 'Family',
         required: true,
     },
-    present: {
+    presents: {
         type: Number,
         default: 0,
     },
@@ -56,6 +56,18 @@ const familyReportSchema: Schema = new Schema({
     vistors: {
         type: Number,
         default: 0,
+    },
+    sabbath_week: {
+        type: Number,
+        required: true,
+    },
+    year: {
+        type: Number,
+        required: true,
+    },
+    created_at: {
+        type: Date,
+        default: Date.now(),
     },
 })
 

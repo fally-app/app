@@ -15,7 +15,7 @@ export default async function handler(
         case 'GET':
             try {
                 const Users = await User.find({ status: IStatus.ACTIVE }).sort({
-                    name: 1,
+                    firstName: 1,
                 })
                 res.status(200).json({ success: false, data: Users })
             } catch (error) {

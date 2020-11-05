@@ -1,13 +1,30 @@
 import { Button, Typography } from '@material-ui/core'
 import Head from 'next/head'
 import Link from 'next/link'
+import Router from 'next/router'
+import { useEffect } from 'react'
+
+import useUser from '../lib/useUser'
 
 const App: React.FC = (): React.ReactElement => {
+    const { user } = useUser()
+
+    useEffect(() => {
+        if (user) {
+            if (user?.user_type === 'ADMIN') {
+                Router.replace('/admin')
+            } else if (user?.user_type === 'FAMILY') {
+                Router.replace('/home')
+            }
+        }
+    }, [user])
+
     return (
         <>
             <Head>
                 <title>SDA - Sabbath School</title>
             </Head>
+
             <div
                 style={{
                     backgroundImage: `url('/bg.jpg')`,

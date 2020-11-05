@@ -56,6 +56,7 @@ export const login = (): React.ReactElement => {
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [isSnackOpen, setisSnackOpen] = useState<boolean>(false)
     const [loading, setloading] = useState<boolean>(false)
+
     const { user, mutate } = useUser()
 
     useEffect(() => {

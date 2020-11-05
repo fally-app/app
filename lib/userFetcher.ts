@@ -13,7 +13,6 @@ export default async () => {
             })
             return getUser
         } catch (error) {
-            console.log(error)
         }
     } else {
         const error = new Error('Not authorized!')

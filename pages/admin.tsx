@@ -61,8 +61,6 @@ export const admin = ({
         { initialData }
     )
 
-    console.log(data)
-
     useEffect(() => {
         if (loggedOut) {
             Router.replace('/login')

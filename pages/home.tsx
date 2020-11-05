@@ -11,7 +11,7 @@ import useRequest from '../lib/useRequest'
 import useUser from '../lib/useUser'
 import { Gender, IStatus } from '../models/User'
 
-interface IuserResponse {
+export interface IuserResponse {
     success: boolean
     data: [
         {
@@ -28,7 +28,7 @@ interface IuserResponse {
     ]
 }
 
-interface IerrorResponse {
+export interface IerrorResponse {
     success: boolean
     error: string
 }

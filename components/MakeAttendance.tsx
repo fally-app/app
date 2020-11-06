@@ -162,7 +162,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
         try {
             const token = localStorage.getItem('auth-token')
 
-            await axios.post('/api/family/makeAttendance', data, {
+            await axios.post('/api/family/attendance', data, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -180,7 +180,11 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setStartedSabbath([])
             setsaved('Saved successfully')
         } catch (error) {
-            setError(error.response.data.error)
+            setError(
+                error.response.data.error
+                    ? error.response.data.error
+                    : 'sometihng went wrong'
+            )
         }
     }
 

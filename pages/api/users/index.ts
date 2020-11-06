@@ -14,9 +14,11 @@ export default async function handler(
     switch (method) {
         case 'GET':
             try {
-                const Users = await User.find({ status: IStatus.ACTIVE }).sort({
-                    firstName: 1,
-                })
+                const Users = await User.find({ status: IStatus.ACTIVE })
+                    .sort({
+                        firstName: 1,
+                    })
+                    .populate('family_id')
                 res.status(200).json({ success: false, data: Users })
             } catch (error) {
                 res.status(400).json({ success: false, error })

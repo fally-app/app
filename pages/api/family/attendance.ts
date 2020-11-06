@@ -1,15 +1,14 @@
-// import { createToken } from '../../../../utils/Helpers'
 import jwt from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import Family from '../../../models/Family'
+import FamilyReport from '../../../models/FamilyReport'
 import connectDB from '../../../utils/connectDB'
+import { getCurrentWeekofTheYear } from '../../../utils/Helpers'
 
 interface TokenDecode {
     _id: string
     ait: string
 }
-
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -19,6 +18,17 @@ export default async function handler(
 
     switch (method) {
         case 'GET':
+            try {
+                const attendance = await FamilyReport.find({
+                    sabbath_week: getCurrentWeekofTheYear()[1],
+                    year: getCurrentWeekofTheYear()[0],
+                }).populate('family')
+                res.status(200).json({ success: true, data: attendance })
+            } catch (error) {
+                res.status(400).json({ success: true, error })
+            }
+            break
+        case 'POST':
             try {
                 let token
                 if (
@@ -35,9 +45,39 @@ export default async function handler(
                 }
 
                 const decoded = jwt.verify(token, process.env.JWT_SECRET)
-                const user = await Family.findById((decoded as TokenDecode)._id)
+                const family_id = (decoded as TokenDecode)._id
 
-                res.status(200).json({ success: true, data: user })
+                const checkIfSaved = await FamilyReport.findOne({
+                    family: family_id,
+                    sabbath_week: getCurrentWeekofTheYear()[1],
+                    year: getCurrentWeekofTheYear()[0],
+                })
+
+                if (checkIfSaved)
+                    return res.status(404).json({
+                        success: false,
+                        error: 'You are trying to submit too many times',
+                    })
+
+                const data = new FamilyReport({
+                    family: family_id,
+                    presents: req.body.presents,
+                    studied7times: req.body.studied7times,
+                    startedSabbath: req.body.startedSabbath,
+                    visited: req.body.visited,
+                    wereVisted: req.body.wereVisted,
+                    helped: req.body.helped,
+                    wereHelped: req.body.wereHelped,
+                    sick: req.body.sick,
+                    vistors: req.body.vistors,
+                    absent: req.body.absent,
+                    sabbath_week: getCurrentWeekofTheYear()[1],
+                    year: getCurrentWeekofTheYear()[0],
+                })
+
+                await data.save()
+
+                res.status(201).json({ success: true, data })
             } catch (error) {
                 res.status(400).json({ success: true, error })
             }

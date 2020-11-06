@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose'
 import { IFamily } from './Family'
 
 export interface IFamilyReport extends Document {
-    family_code: IFamily['_id']
+    family: IFamily['_id']
     present: number
     studied7times: number
     startedSabbath: number
@@ -16,7 +16,7 @@ export interface IFamilyReport extends Document {
 }
 
 const familyReportSchema: Schema = new Schema({
-    family_code: {
+    family: {
         type: Schema.Types.ObjectId,
         ref: 'Family',
         required: true,

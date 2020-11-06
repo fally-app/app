@@ -61,6 +61,10 @@ const familyReportSchema: Schema = new Schema({
         type: Number,
         required: true,
     },
+    absent: {
+        type: Number,
+        required: true,
+    },
     year: {
         type: Number,
         required: true,

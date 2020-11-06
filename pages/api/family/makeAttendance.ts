@@ -60,6 +60,7 @@ export default async function handler(
                     wereHelped: req.body.wereHelped,
                     sick: req.body.sick,
                     vistors: req.body.vistors,
+                    absent: req.body.absent,
                     sabbath_week: getCurrentWeekofTheYear()[1],
                     year: getCurrentWeekofTheYear()[0],
                 })

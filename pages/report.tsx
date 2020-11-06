@@ -6,6 +6,8 @@ import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import Axios from 'axios'
+import { GetServerSideProps } from 'next'
 import React from 'react'
 
 import NavBar from '../components/NavBar'
@@ -61,8 +63,37 @@ const invoiceSubtotal = subtotal(rows)
 const invoiceTaxes = TAX_RATE * invoiceSubtotal
 const invoiceTotal = invoiceTaxes + invoiceSubtotal
 
-export const report: React.FC = (): React.ReactElement => {
+interface ReportProps {
+    report: [
+        {
+            _id: string
+            absent: 0
+            created_at: string
+            family: {
+                _id: string
+                name: string
+            }
+            helped: number
+            presents: number
+            sabbath_week: number
+            sick: number
+            startedSabbath: number
+            studied7times: number
+            visited: number
+            vistors: number
+            wereHelped: number
+            wereVisted: number
+            year: number
+        }
+    ]
+}
+
+export const Report: React.FC<ReportProps> = ({
+    report,
+}): React.ReactElement => {
     const classes = useStyles()
+
+    console.log(report)
     return (
         <>
             <NavBar />
@@ -72,34 +103,79 @@ export const report: React.FC = (): React.ReactElement => {
                         <Table aria-label="spanning table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell align="center" colSpan={3}>
+                                    <TableCell align="center" colSpan={9}>
                                         Details
                                     </TableCell>
-                                    <TableCell align="right">Price</TableCell>
+                                    <TableCell align="right">%</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell>Desc</TableCell>
-                                    <TableCell align="right">Qty.</TableCell>
-                                    <TableCell align="right">Unit</TableCell>
-                                    <TableCell align="right">Sum</TableCell>
+                                    <TableCell>Family name</TableCell>
+                                    <TableCell align="right">Abaje</TableCell>
+
+                                    <TableCell align="right">
+                                        Abarwayi
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        Abafashije
+                                    </TableCell>
+
+                                    <TableCell align="right">
+                                        Abafashijwe
+                                    </TableCell>
+
+                                    <TableCell align="right">Abasuye</TableCell>
+
+                                    <TableCell align="right">Abasuwe</TableCell>
+
+                                    <TableCell align="right">Abize 7</TableCell>
+                                    <TableCell align="right">
+                                        Abatangiye isabato
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        Abasibye
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        Abashyitsi
+                                    </TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map(row => (
-                                    <TableRow key={row.desc}>
-                                        <TableCell>{row.desc}</TableCell>
+                                {report.map(row => (
+                                    <TableRow key={row._id}>
+                                        <TableCell>{row.family.name}</TableCell>
                                         <TableCell align="right">
-                                            {row.qty}
+                                            {row.presents}
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.unit}
+                                            {row.sick}
                                         </TableCell>
                                         <TableCell align="right">
-                                            {ccyFormat(row.price)}
+                                            {row.helped}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.wereHelped}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.visited}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.wereVisted}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.studied7times}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.startedSabbath}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.absent}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.vistors}
                                         </TableCell>
                                     </TableRow>
                                 ))}
-                                <TableRow>
+                                {/* <TableRow>
                                     <TableCell rowSpan={3} />
                                     <TableCell colSpan={2}>Subtotal</TableCell>
                                     <TableCell align="right">
@@ -120,7 +196,7 @@ export const report: React.FC = (): React.ReactElement => {
                                     <TableCell align="right">
                                         {ccyFormat(invoiceTotal)}
                                     </TableCell>
-                                </TableRow>
+                                </TableRow> */}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -129,4 +205,16 @@ export const report: React.FC = (): React.ReactElement => {
         </>
     )
 }
-export default report
+export default Report
+
+export const getServerSideProps: GetServerSideProps = async context => {
+    const result = await Axios.get(
+        process.env.SERVER_BASE_URL + '/api/family/attendance'
+    )
+
+    return {
+        props: {
+            report: result.data.data,
+        },
+    }
+}

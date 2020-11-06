@@ -18,7 +18,10 @@ interface IuserResponse {
             firstName: string
             lastName: string
             email?: string
-            family_id: string
+            family_id: {
+                _id: string
+                name: string
+            }
             gender?: Gender
             status: IStatus
             class_level: string

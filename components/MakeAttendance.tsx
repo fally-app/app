@@ -156,7 +156,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             sick: sick.length,
             studied7times: studied.length,
             startedSabbath: startedSabbath.length,
-            absent: users.length - presents.length - sick.length,
+            absent: users.length - presents.length + sick.length,
         }
 
         try {

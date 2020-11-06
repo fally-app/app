@@ -62,82 +62,98 @@ export const Report: React.FC<ReportProps> = ({
         <>
             <NavBar />
             <div className={classes.wrapper}>
-                <Paper className={classes.root}>
-                    <TableContainer component={Paper}>
-                        <Table aria-label="spanning table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Family name</TableCell>
-                                    <TableCell align="right">Abaje</TableCell>
+                {report.length > 0 ? (
+                    <Paper className={classes.root}>
+                        <TableContainer component={Paper}>
+                            <Table aria-label="spanning table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Family name</TableCell>
+                                        <TableCell align="right">
+                                            Abaje
+                                        </TableCell>
 
-                                    <TableCell align="right">
-                                        Abarwayi
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        Abafashije
-                                    </TableCell>
+                                        <TableCell align="right">
+                                            Abarwayi
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            Abafashije
+                                        </TableCell>
 
-                                    <TableCell align="right">
-                                        Abafashijwe
-                                    </TableCell>
-                                    <TableCell align="right">Abasuye</TableCell>
-                                    <TableCell align="right">Abasuwe</TableCell>
-                                    <TableCell align="right">Abize 7</TableCell>
-                                    <TableCell align="right">
-                                        Abatangiye isabato
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        Abasibye
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        Abashyitsi
-                                    </TableCell>
-                                    <TableCell align="right">Percent</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {report.map(row => (
-                                    <TableRow key={row._id}>
-                                        <TableCell>{row.family.name}</TableCell>
                                         <TableCell align="right">
-                                            {row.presents}
+                                            Abafashijwe
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.sick}
+                                            Abasuye
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.helped}
+                                            Abasuwe
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.wereHelped}
+                                            Abize 7
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.visited}
+                                            Abatangiye isabato
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.wereVisted}
+                                            Abasibye
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.studied7times}
+                                            Abashyitsi
                                         </TableCell>
                                         <TableCell align="right">
-                                            {row.startedSabbath}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.absent}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.vistors}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.percentage}%
+                                            Percent
                                         </TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Paper>
+                                </TableHead>
+                                <TableBody>
+                                    {report.map(row => (
+                                        <TableRow key={row._id}>
+                                            <TableCell>
+                                                {row.family.name}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.presents}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.sick}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.helped}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.wereHelped}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.visited}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.wereVisted}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.studied7times}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.startedSabbath}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.absent}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.vistors}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {row.percentage}%
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Paper>
+                ) : (
+                    <div>No report today</div>
+                )}
             </div>
         </>
     )

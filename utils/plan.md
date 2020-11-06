@@ -1,8 +1,8 @@
 # Plan and road map for this project
 
-- user's managment by admin and head of family(crud and activate)
-- attendance by head of family
-- auto-generated report for the current sabbath
+- [ ] user's managment by admin and head of family(crud and activate)
+- [ ] attendance by head of family
+- [x] auto-generated report for the current sabbath
 
 
 ### user's managment task
@@ -27,16 +27,16 @@
 
 ### attendance task
 
-- [ ] Head of family must be able to do attendance of his or her members plus number of vistors
+- [x] Head of family must be able to do attendance of his or her members plus number of vistors
    - [x] api to make attendance on family level
-   - [ ] api to make attendance on family level and on individual level
-   - [ ] user get current family members api to get get a list of family members in table view
-   - [ ] head of family members get check boxes and box to add number of different activity that need to get done
-   - [ ] Head of family saves to add send api
-- [ ] The system must be able to generate the report for that sabbath
-   - [ ] the system gets report according to the current date minus 7 days
-- [ ] The report should be beatifully presented plus ranking and comments
-   - [ ] an automatic table displaying results from report
+   - [x] api to make attendance on family level and on individual level
+   - [x] user get current family members api to get get a list of family members in table view
+   - [x] head of family members get check boxes and box to add number of different activity that need to get done
+   - [x] Head of family saves to add send api
+- [x] The system must be able to generate the report for that sabbath
+   - [x] the system gets report according to the current date minus 7 days
+- [x] The report should be beatifully presented plus ranking and comments
+   - [x] an automatic table displaying results from report
 
 
 > Dead line thursday 5th November 2020

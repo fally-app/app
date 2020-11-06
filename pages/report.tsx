@@ -1,3 +1,5 @@
+import Chip from '@material-ui/core/Chip'
+import { green } from '@material-ui/core/colors/green'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
@@ -143,7 +145,14 @@ export const Report: React.FC<ReportProps> = ({
                                                 {row.vistors}
                                             </TableCell>
                                             <TableCell align="right">
-                                                {row.percentage}%
+                                                <Chip
+                                                    color={
+                                                        row.percentage > 60
+                                                            ? 'primary'
+                                                            : 'secondary'
+                                                    }
+                                                    label={`${row.percentage}%`}
+                                                />
                                             </TableCell>
                                         </TableRow>
                                     ))}

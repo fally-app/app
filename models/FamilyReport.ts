@@ -73,6 +73,10 @@ const familyReportSchema: Schema = new Schema({
         type: Date,
         default: Date.now(),
     },
+    percentage: {
+        type: Number,
+        required: true,
+    },
 })
 
 export default mongoose.models['FamilyReport'] ||

@@ -22,7 +22,9 @@ export default async function handler(
                 const attendance = await FamilyReport.find({
                     sabbath_week: getCurrentWeekofTheYear()[1],
                     year: getCurrentWeekofTheYear()[0],
-                }).populate('family')
+                })
+                    .populate('family')
+                    .sort({ percentage: -1 })
                 res.status(200).json({ success: true, data: attendance })
             } catch (error) {
                 res.status(400).json({ success: true, error })
@@ -73,6 +75,20 @@ export default async function handler(
                     absent: req.body.absent,
                     sabbath_week: getCurrentWeekofTheYear()[1],
                     year: getCurrentWeekofTheYear()[0],
+                    percentage: `${Math.round(
+                        ((req.body.presents /
+                            (req.body.presents +
+                                req.body.absent +
+                                req.body.sick)) *
+                            100 +
+                            (req.body.studied7times / req.body.presents) * 100 +
+                            (req.body.startedSabbath /
+                                (req.body.presents +
+                                    req.body.absent +
+                                    req.body.sick)) *
+                                100) /
+                            3
+                    )}`,
                 })
 
                 await data.save()

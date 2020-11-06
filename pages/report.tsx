@@ -12,8 +12,6 @@ import React from 'react'
 
 import NavBar from '../components/NavBar'
 
-const TAX_RATE = 0.07
-
 const useStyles = makeStyles({
     wrapper: {
         display: 'flex',
@@ -22,46 +20,12 @@ const useStyles = makeStyles({
         height: '90vh',
     },
     root: {
-        width: '80%',
+        width: '85%',
     },
     container: {
         maxHeight: 440,
     },
 })
-
-function ccyFormat(num: number) {
-    return `${num.toFixed(2)}`
-}
-
-function priceRow(qty: number, unit: number) {
-    return qty * unit
-}
-
-function createRow(desc: string, qty: number, unit: number) {
-    const price = priceRow(qty, unit)
-    return { desc, qty, unit, price }
-}
-
-interface Row {
-    desc: string
-    qty: number
-    unit: number
-    price: number
-}
-
-function subtotal(items: Row[]) {
-    return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0)
-}
-
-const rows = [
-    createRow('Paperclips (Box)', 100, 1.15),
-    createRow('Paper (Case)', 10, 45.99),
-    createRow('Waste Basket', 2, 17.99),
-]
-
-const invoiceSubtotal = subtotal(rows)
-const invoiceTaxes = TAX_RATE * invoiceSubtotal
-const invoiceTotal = invoiceTaxes + invoiceSubtotal
 
 interface ReportProps {
     report: [
@@ -84,6 +48,7 @@ interface ReportProps {
             wereHelped: number
             wereVisted: number
             year: number
+            percentage: number
         }
     ]
 }
@@ -93,7 +58,6 @@ export const Report: React.FC<ReportProps> = ({
 }): React.ReactElement => {
     const classes = useStyles()
 
-    console.log(report)
     return (
         <>
             <NavBar />
@@ -102,12 +66,6 @@ export const Report: React.FC<ReportProps> = ({
                     <TableContainer component={Paper}>
                         <Table aria-label="spanning table">
                             <TableHead>
-                                <TableRow>
-                                    <TableCell align="center" colSpan={9}>
-                                        Details
-                                    </TableCell>
-                                    <TableCell align="right">%</TableCell>
-                                </TableRow>
                                 <TableRow>
                                     <TableCell>Family name</TableCell>
                                     <TableCell align="right">Abaje</TableCell>
@@ -122,11 +80,8 @@ export const Report: React.FC<ReportProps> = ({
                                     <TableCell align="right">
                                         Abafashijwe
                                     </TableCell>
-
                                     <TableCell align="right">Abasuye</TableCell>
-
                                     <TableCell align="right">Abasuwe</TableCell>
-
                                     <TableCell align="right">Abize 7</TableCell>
                                     <TableCell align="right">
                                         Abatangiye isabato
@@ -137,6 +92,7 @@ export const Report: React.FC<ReportProps> = ({
                                     <TableCell align="right">
                                         Abashyitsi
                                     </TableCell>
+                                    <TableCell align="right">Percent</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -173,30 +129,11 @@ export const Report: React.FC<ReportProps> = ({
                                         <TableCell align="right">
                                             {row.vistors}
                                         </TableCell>
+                                        <TableCell align="right">
+                                            {row.percentage}%
+                                        </TableCell>
                                     </TableRow>
                                 ))}
-                                {/* <TableRow>
-                                    <TableCell rowSpan={3} />
-                                    <TableCell colSpan={2}>Subtotal</TableCell>
-                                    <TableCell align="right">
-                                        {ccyFormat(invoiceSubtotal)}
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Tax</TableCell>
-                                    <TableCell align="right">{`${(
-                                        TAX_RATE * 100
-                                    ).toFixed(0)} %`}</TableCell>
-                                    <TableCell align="right">
-                                        {ccyFormat(invoiceTaxes)}
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell colSpan={2}>Total</TableCell>
-                                    <TableCell align="right">
-                                        {ccyFormat(invoiceTotal)}
-                                    </TableCell>
-                                </TableRow> */}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -207,7 +144,7 @@ export const Report: React.FC<ReportProps> = ({
 }
 export default Report
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const result = await Axios.get(
         process.env.SERVER_BASE_URL + '/api/family/attendance'
     )

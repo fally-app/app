@@ -1,4 +1,4 @@
-import { Button, TableContainer } from '@material-ui/core'
+import { Button, Checkbox, TableContainer } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         divider: {
             marginBottom: '1rem',
+        },
+        verticalDivider: {
+            borderRight: '1px solid #ccc',
         },
         formContent: {
             display: 'flex',
@@ -48,8 +51,13 @@ interface MakeAttendanceProps {
 export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
     users,
 }): React.ReactElement => {
-    console.log(users)
     const classes = useStyles()
+    // const [checked, setChecked] = React.useState(true)
+
+    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setChecked(event.target.checked)
+    // }
+
     return (
         <div className={classes.root}>
             <Paper className={classes.divider}>
@@ -79,21 +87,92 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                     <TableCell component="th" scope="row">
                                         {index + 1}
                                     </TableCell>
-                                    <TableCell component="th" scope="row">
+                                    <TableCell
+                                        component="th"
+                                        scope="row"
+                                        className={classes.verticalDivider}>
                                         {row.firstName} {row.lastName}
                                     </TableCell>
-                                    {/* <TableCell align="right">
-                                        {row.calories}
+                                    <TableCell align="right">
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
                                     </TableCell>
                                     <TableCell align="right">
-                                        {row.fat}
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
                                     </TableCell>
                                     <TableCell align="right">
-                                        {row.carbs}
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
                                     </TableCell>
                                     <TableCell align="right">
-                                        {row.protein}
-                                    </TableCell> */}
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
+                                    </TableCell>{' '}
+                                    <TableCell align="right">
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
+                                    </TableCell>{' '}
+                                    <TableCell align="right">
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Checkbox
+                                            defaultChecked
+                                            color="primary"
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -109,7 +188,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                     className={classes.divider}
                 />
                 <Button variant="contained" color="primary">
-                    Save
+                    Submit
                 </Button>
             </div>
         </div>

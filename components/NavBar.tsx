@@ -110,6 +110,8 @@ export default function NavBar(): React.ReactElement {
         setOpen(false)
     }
 
+    console.log()
+
     return user ? (
         <div className={classes.root}>
             <CssBaseline />
@@ -159,7 +161,9 @@ export default function NavBar(): React.ReactElement {
                 </div>
                 <Divider />
                 <List>
-                    <Link href="/home" passHref>
+                    <Link
+                        href={user.user_type === 'ADMIN' ? '/admin' : '/home'}
+                        passHref>
                         <ListItem button component="a">
                             <ListItemIcon>
                                 <HomeIcon />
@@ -168,14 +172,16 @@ export default function NavBar(): React.ReactElement {
                         </ListItem>
                     </Link>
 
-                    <Link href="/attendance" passHref>
-                        <ListItem button component="a">
-                            <ListItemIcon>
-                                <PresentToAllIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Attendance" />
-                        </ListItem>
-                    </Link>
+                    {user.user_type != 'ADMIN' && (
+                        <Link href="/attendance" passHref>
+                            <ListItem button component="a">
+                                <ListItemIcon>
+                                    <PresentToAllIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Attendance" />
+                            </ListItem>
+                        </Link>
+                    )}
 
                     <Link href="/report" passHref>
                         <ListItem button component="a">

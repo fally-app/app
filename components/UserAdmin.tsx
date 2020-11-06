@@ -30,7 +30,10 @@ interface IuserType {
     firstName: string
     lastName: string
     email?: string
-    family_id: string
+    family_id: {
+        _id: string
+        name: string
+    }
     gender?: Gender
     status: IStatus
     class_level: string
@@ -210,7 +213,7 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                         {user.gender}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {user.family_id}
+                                        {user.family_id?.name}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {user.class_level}

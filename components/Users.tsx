@@ -177,7 +177,6 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                 <TableCell align="left">First Name</TableCell>
                                 <TableCell align="left">LastName</TableCell>
                                 <TableCell align="left">Gender</TableCell>
-                                <TableCell align="left">Family Name</TableCell>
                                 <TableCell align="left">Class</TableCell>
                             </TableRow>
                         </TableHead>
@@ -201,9 +200,6 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {user.gender}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.family_id}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {user.class_level}

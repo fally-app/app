@@ -21,6 +21,7 @@ export default async function handler(
                     .populate('family_id')
                 res.status(200).json({ success: false, data: Users })
             } catch (error) {
+                console.log(error)
                 res.status(400).json({ success: false, error })
             }
             break

@@ -21,7 +21,9 @@ import FirstPageIcon from '@material-ui/icons/FirstPage'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
+import axios from 'axios'
 import React from 'react'
+import { mutate } from 'swr'
 
 import { Gender, IStatus } from '../models/User'
 
@@ -142,10 +144,17 @@ const useStyles2 = makeStyles({
     container: {
         maxHeight: 500,
     },
+    pointer: {
+        cursor: 'pointer',
+        outline: 'none',
+        backgroundColor: 'transparent',
+        border: 'none',
+    },
 })
 
 interface UsersProps {
     users: IuserType[]
+    mutate: () => void
 }
 
 export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
@@ -171,105 +180,135 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
         setPage(0)
     }
 
+    const handleDelete = async (id, name) => {
+        if (confirm(`Are you sure to delete ${name}?`)) {
+            await axios.delete(`/api/users/${id}`)
+            mutate('/api/users')
+        } else {
+            return
+        }
+    }
+
     if (!users) {
         return <div>Loading...</div>
+    } else if (users.length <= 0) {
+        return <h1>No user added yet</h1>
     } else {
         return (
-            <Paper className={classes.root}>
-                <TableContainer className={classes.container}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>No</TableCell>
-                                <TableCell align="left">First Name</TableCell>
-                                <TableCell align="left">LastName</TableCell>
-                                <TableCell align="left">Gender</TableCell>
-                                <TableCell align="left">Family Name</TableCell>
-                                <TableCell align="left">Class</TableCell>
-                                <TableCell align="left">Status</TableCell>
-                                <TableCell align="left">Edit</TableCell>
-                                <TableCell align="left">Delete</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {(rowsPerPage > 0
-                                ? users.slice(
-                                      page * rowsPerPage,
-                                      page * rowsPerPage + rowsPerPage
-                                  )
-                                : users
-                            ).map((user, index) => (
-                                <TableRow key={user._id}>
-                                    <TableCell component="th" scope="row">
-                                        {index + 1}
+            <>
+                <h1>List of all user</h1>
+                <Paper className={classes.root}>
+                    <TableContainer className={classes.container}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>No</TableCell>
+                                    <TableCell align="left">
+                                        First Name
                                     </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.firstName}
+                                    <TableCell align="left">LastName</TableCell>
+                                    <TableCell align="left">Gender</TableCell>
+                                    <TableCell align="left">
+                                        Family Name
                                     </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.lastName}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.gender}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.family_id?.name}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.class_level}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        <Switch
-                                            value="true"
-                                            inputProps={{
-                                                'aria-label': 'Switch A',
-                                            }}
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <EditIcon />
-                                    </TableCell>
-                                    <TableCell>
-                                        <DeleteOutlineIcon />
-                                    </TableCell>
+                                    <TableCell align="left">Class</TableCell>
+                                    <TableCell align="left">Status</TableCell>
+                                    <TableCell align="left">Edit</TableCell>
+                                    <TableCell align="left">Delete</TableCell>
                                 </TableRow>
-                            ))}
-                            {emptyRows > 0 && (
-                                <TableRow style={{ height: 53 * emptyRows }}>
-                                    <TableCell colSpan={6} />
+                            </TableHead>
+                            <TableBody>
+                                {(rowsPerPage > 0
+                                    ? users.slice(
+                                          page * rowsPerPage,
+                                          page * rowsPerPage + rowsPerPage
+                                      )
+                                    : users
+                                ).map((user, index) => (
+                                    <TableRow key={user._id}>
+                                        <TableCell component="th" scope="row">
+                                            {index + 1}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {user.firstName}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {user.lastName}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {user.gender}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {user.family_id?.name}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {user.class_level}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            <Switch
+                                                value="true"
+                                                inputProps={{
+                                                    'aria-label': 'Switch A',
+                                                }}
+                                            />
+                                        </TableCell>
+                                        <TableCell>
+                                            <EditIcon />
+                                        </TableCell>
+                                        <TableCell>
+                                            <button
+                                                className={classes.pointer}
+                                                onClick={() =>
+                                                    handleDelete(
+                                                        user._id,
+                                                        `${user.firstName} ${user.lastName}`
+                                                    )
+                                                }>
+                                                <DeleteOutlineIcon />
+                                            </button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                                {emptyRows > 0 && (
+                                    <TableRow
+                                        style={{ height: 53 * emptyRows }}>
+                                        <TableCell colSpan={6} />
+                                    </TableRow>
+                                )}
+                            </TableBody>
+                            <TableFooter>
+                                <TableRow>
+                                    <TablePagination
+                                        rowsPerPageOptions={[
+                                            5,
+                                            10,
+                                            25,
+                                            { label: 'All', value: -1 },
+                                        ]}
+                                        colSpan={9}
+                                        count={users.length}
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        SelectProps={{
+                                            inputProps: {
+                                                'aria-label': 'users per page',
+                                            },
+                                            native: false,
+                                        }}
+                                        onChangePage={handleChangePage}
+                                        onChangeRowsPerPage={
+                                            handleChangeRowsPerPage
+                                        }
+                                        ActionsComponent={
+                                            TablePaginationActions
+                                        }
+                                    />
                                 </TableRow>
-                            )}
-                        </TableBody>
-                        <TableFooter>
-                            <TableRow>
-                                <TablePagination
-                                    rowsPerPageOptions={[
-                                        5,
-                                        10,
-                                        25,
-                                        { label: 'All', value: -1 },
-                                    ]}
-                                    colSpan={9}
-                                    count={users.length}
-                                    rowsPerPage={rowsPerPage}
-                                    page={page}
-                                    SelectProps={{
-                                        inputProps: {
-                                            'aria-label': 'users per page',
-                                        },
-                                        native: false,
-                                    }}
-                                    onChangePage={handleChangePage}
-                                    onChangeRowsPerPage={
-                                        handleChangeRowsPerPage
-                                    }
-                                    ActionsComponent={TablePaginationActions}
-                                />
-                            </TableRow>
-                        </TableFooter>
-                    </Table>
-                </TableContainer>
-            </Paper>
+                            </TableFooter>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+            </>
         )
     }
 }

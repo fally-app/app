@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '90vh',
+            height: '100vh',
+            flexDirection: 'column',
         },
     })
 )
@@ -59,7 +60,7 @@ export const admin = ({
     const { loggedOut } = useUser()
     const classes = useStyles()
 
-    const { data } = useSWR<IuserResponse, IerrorResponse>(
+    const { data, mutate } = useSWR<IuserResponse, IerrorResponse>(
         '/api/users',
         fetcher,
         { initialData }
@@ -75,7 +76,7 @@ export const admin = ({
         <>
             <NavBar />
             <div className={classes.wrapper}>
-                <UsersAdmin users={data.data} />
+                <UsersAdmin mutate={mutate} users={data.data} />
             </div>
         </>
     )
@@ -84,6 +85,8 @@ export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
+
+    console.log('data', data)
 
     return {
         props: {

@@ -1,5 +1,4 @@
 import Chip from '@material-ui/core/Chip'
-import { green } from '@material-ui/core/colors/green'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
@@ -146,12 +145,20 @@ export const Report: React.FC<ReportProps> = ({
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Chip
-                                                    color={
-                                                        row.percentage > 60
-                                                            ? 'primary'
-                                                            : 'secondary'
-                                                    }
+                                                    color="primary"
                                                     label={`${row.percentage}%`}
+                                                    style={{
+                                                        backgroundColor:
+                                                            row.percentage >= 70
+                                                                ? '#22852b'
+                                                                : row.percentage >=
+                                                                  60
+                                                                ? '#201b57'
+                                                                : row.percentage >=
+                                                                  50
+                                                                ? '#850574'
+                                                                : '#d60404',
+                                                    }}
                                                 />
                                             </TableCell>
                                         </TableRow>

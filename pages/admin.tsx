@@ -1,4 +1,5 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
+import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import Router from 'next/router'
 import { useEffect } from 'react'
@@ -82,11 +83,11 @@ export const admin = ({
 export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const data = await fetcher('http://localhost:3000/api/users')
+    const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
 
     return {
         props: {
-            initialData: JSON.parse(JSON.stringify(data)),
+            initialData: data.data,
         },
     }
 }

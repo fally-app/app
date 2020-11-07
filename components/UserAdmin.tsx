@@ -26,6 +26,7 @@ import React from 'react'
 import { mutate } from 'swr'
 
 import { Gender, IStatus } from '../models/User'
+import UpdateUserModal from './UpdateUserModal'
 
 interface IuserType {
     _id: string
@@ -161,6 +162,13 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
     const classes = useStyles2()
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(5)
+    const [isUpdateModalOpen, setisUpdateModalOpen] = React.useState<boolean>(
+        false
+    )
+
+    const handleModalCloseUpdateModal = () => {
+        setisUpdateModalOpen(curr => !curr)
+    }
 
     const emptyRows = users
         ? rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage)
@@ -253,7 +261,21 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                             />
                                         </TableCell>
                                         <TableCell>
-                                            <EditIcon />
+                                            <button
+                                                className={classes.pointer}
+                                                onClick={() =>
+                                                    handleModalCloseUpdateModal()
+                                                }>
+                                                <EditIcon />
+                                                <UpdateUserModal
+                                                    isUpdateModalOpen={
+                                                        isUpdateModalOpen
+                                                    }
+                                                    handleCloseupdateModal={
+                                                        handleModalCloseUpdateModal
+                                                    }
+                                                />
+                                            </button>
                                         </TableCell>
                                         <TableCell>
                                             <button

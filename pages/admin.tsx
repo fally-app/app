@@ -5,10 +5,12 @@ import Router from 'next/router'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 
+import AddNewUser from '../components/AddnewUser'
 import NavBar from '../components/NavBar'
 import UsersAdmin from '../components/UserAdmin'
 import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
+import { IFamilyTypes } from '../models/Family'
 import { Gender, IStatus } from '../models/User'
 
 interface IuserResponse {
@@ -52,10 +54,23 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export const admin = ({
-    initialData,
-}: {
+interface AdminProps {
     initialData: IuserResponse
+    families: {
+        success: true
+        data: [
+            {
+                _id: string
+                user_type: IFamilyTypes
+                name: string
+            }
+        ]
+    }
+}
+
+export const admin: React.FC<AdminProps> = ({
+    initialData,
+    families,
 }): React.ReactElement => {
     const { loggedOut } = useUser()
     const classes = useStyles()
@@ -70,12 +85,18 @@ export const admin = ({
         if (loggedOut) {
             Router.replace('/login')
         }
+
+        if (!data.data) {
+            Router.replace('/login')
+        }
     }, [loggedOut])
 
     return (
         <>
             <NavBar />
             <div className={classes.wrapper}>
+                <AddNewUser mutate={mutate} families={families.data} />
+
                 <UsersAdmin mutate={mutate} users={data.data} />
             </div>
         </>
@@ -85,11 +106,13 @@ export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
-
-    console.log('data', data)
+    const families = await axios.get(
+        process.env.SERVER_BASE_URL + '/api/family'
+    )
 
     return {
         props: {
+            families: families.data,
             initialData: data.data,
         },
     }

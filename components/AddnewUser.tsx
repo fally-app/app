@@ -12,7 +12,23 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import TextField from '@material-ui/core/TextField'
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
+import axios from 'axios'
 import React from 'react'
+import Snackbar from '@material-ui/core/Snackbar'
+
+import { IFamilyTypes } from '../models/Family'
+
+interface AddNewUserProps {
+    families: [
+        {
+            _id: string
+            user_type: IFamilyTypes
+            name: string
+        }
+    ]
+    mutate: () => void
+}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -26,10 +42,27 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export default function FormDialog(): React.ReactElement {
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />
+}
+
+export const FormDialog: React.FC<AddNewUserProps> = ({
+    families,
+    mutate,
+}): React.ReactElement => {
     const [openModal, setOpenModal] = React.useState(false)
     const [gender, setgender] = React.useState('')
+    const [firstName, setfirstName] = React.useState<string>('')
+    const [lastName, setlastName] = React.useState<string>('')
+    const [email, setEmail] = React.useState<string>('')
+    const [className, setClassName] = React.useState<string>('')
+    const [family, setFamily] = React.useState<string>()
+    const [isSnackOpen, setSnackOpen] = React.useState<boolean>(false)
+    const [erorr, setError] = React.useState<string>('')
+
     const classes = useStyles()
+
+    const familyArray = families.filter(fam => fam.user_type != 'ADMIN')
 
     const handleClickOpen = () => {
         setOpenModal(true)
@@ -39,12 +72,52 @@ export default function FormDialog(): React.ReactElement {
         setgender(event.target.value as string)
     }
 
+    const handleFamilySelect = (
+        event: React.ChangeEvent<{ value: unknown }>
+    ) => {
+        setFamily(event.target.value as string)
+    }
+
     const handleClose = () => {
         setOpenModal(false)
     }
 
+    async function handleAddNewUser() {
+        const data = {
+            firstName,
+            lastName,
+            gender,
+            family_id: family,
+            class_level: className,
+        }
+        try {
+            await axios.post('/api/users', data)
+            mutate()
+            setgender('')
+            setfirstName('')
+            setlastName('')
+            setEmail('')
+            setClassName('')
+            setFamily('')
+            handleClose()
+        } catch (error) {
+            setSnackOpen(true)
+            setError(error.response.data.error)
+        }
+    }
+
     return (
-        <div>
+        <div style={{ position: 'absolute', right: '1rem', top: '6rem' }}>
+            <Snackbar
+                open={isSnackOpen}
+                autoHideDuration={3000}
+                onClose={() => setSnackOpen(prev => !prev)}>
+                <Alert
+                    onClose={() => setSnackOpen(prev => !prev)}
+                    severity="error">
+                    {erorr}
+                </Alert>
+            </Snackbar>
             <Button
                 variant="outlined"
                 color="primary"
@@ -64,6 +137,8 @@ export default function FormDialog(): React.ReactElement {
                         id="fristname"
                         label="First Name"
                         type="text"
+                        value={firstName}
+                        onChange={e => setfirstName(e.target.value)}
                         fullWidth
                     />
 
@@ -72,6 +147,8 @@ export default function FormDialog(): React.ReactElement {
                         id="lastname"
                         label="Last Name"
                         type="text"
+                        value={lastName}
+                        onChange={e => setlastName(e.target.value)}
                         fullWidth
                     />
 
@@ -81,6 +158,8 @@ export default function FormDialog(): React.ReactElement {
                         label="Email Address"
                         type="email"
                         fullWidth
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
 
                     <TextField
@@ -89,6 +168,8 @@ export default function FormDialog(): React.ReactElement {
                         label="Class Name"
                         type="text"
                         fullWidth
+                        value={className}
+                        onChange={e => setClassName(e.target.value)}
                     />
 
                     <div className={classes.selectBox}>
@@ -100,7 +181,23 @@ export default function FormDialog(): React.ReactElement {
                             value={gender}
                             onChange={handleChange}>
                             <MenuItem value="Male">Male</MenuItem>
-                            <MenuItem value="Female">Famle</MenuItem>
+                            <MenuItem value="Female">Famale</MenuItem>
+                        </Select>
+                    </div>
+
+                    <div className={classes.selectBox}>
+                        <InputLabel id="label">Family</InputLabel>
+                        <Select
+                            labelId="label"
+                            id="select"
+                            fullWidth
+                            value={family}
+                            onChange={handleFamilySelect}>
+                            {familyArray.map(item => (
+                                <MenuItem key={`${item._id}`} value={item._id}>
+                                    {item.name}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </div>
                 </DialogContent>
@@ -108,7 +205,7 @@ export default function FormDialog(): React.ReactElement {
                     <Button onClick={handleClose} color="primary">
                         close
                     </Button>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleAddNewUser} color="primary">
                         Save
                     </Button>
                 </DialogActions>
@@ -116,3 +213,5 @@ export default function FormDialog(): React.ReactElement {
         </div>
     )
 }
+
+export default FormDialog

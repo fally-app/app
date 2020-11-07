@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose'
 
 import { IStatus } from './User'
 
-enum IFamilyTypes {
+export enum IFamilyTypes {
     ADMIN = 'ADMIN',
     FAMILY = 'FAMILY',
 }

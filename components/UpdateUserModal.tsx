@@ -36,8 +36,6 @@ export const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
 }): React.ReactElement => {
     const classes = useStyles()
 
-    console.log(isUpdateModalOpen)
-
     const [gender, setgender] = React.useState('')
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -45,63 +43,67 @@ export const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
     }
 
     return (
-        <Dialog open={isUpdateModalOpen} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">update user</DialogTitle>
-            <DialogContent>
-                <TextField
-                    margin="dense"
-                    id="fristname"
-                    label="First Name"
-                    type="text"
-                    fullWidth
-                />
-
-                <TextField
-                    margin="dense"
-                    id="lastname"
-                    label="Last Name"
-                    type="text"
-                    fullWidth
-                />
-
-                <TextField
-                    margin="dense"
-                    id="name"
-                    label="Email Address"
-                    type="email"
-                    fullWidth
-                />
-
-                <TextField
-                    margin="dense"
-                    id="class_name"
-                    label="Class Name"
-                    type="text"
-                    fullWidth
-                />
-
-                <div className={classes.selectBox}>
-                    <InputLabel id="label">Gender</InputLabel>
-                    <Select
-                        labelId="label"
-                        id="select"
+        <>
+            <Dialog
+                open={isUpdateModalOpen}
+                aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">update user</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        margin="dense"
+                        id="fristname"
+                        label="First Name"
+                        type="text"
                         fullWidth
-                        value={gender}
-                        onChange={handleChange}>
-                        <MenuItem value="Male">Male</MenuItem>
-                        <MenuItem value="Female">Famle</MenuItem>
-                    </Select>
-                </div>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleCloseupdateModal} color="primary">
-                    close
-                </Button>
-                <Button onClick={handleCloseupdateModal} color="primary">
-                    Save
-                </Button>
-            </DialogActions>
-        </Dialog>
+                    />
+
+                    <TextField
+                        margin="dense"
+                        id="lastname"
+                        label="Last Name"
+                        type="text"
+                        fullWidth
+                    />
+
+                    <TextField
+                        margin="dense"
+                        id="name"
+                        label="Email Address"
+                        type="email"
+                        fullWidth
+                    />
+
+                    <TextField
+                        margin="dense"
+                        id="class_name"
+                        label="Class Name"
+                        type="text"
+                        fullWidth
+                    />
+
+                    <div className={classes.selectBox}>
+                        <InputLabel id="label">Gender</InputLabel>
+                        <Select
+                            labelId="label"
+                            id="select"
+                            fullWidth
+                            value={gender}
+                            onChange={handleChange}>
+                            <MenuItem value="Male">Male</MenuItem>
+                            <MenuItem value="Female">Famle</MenuItem>
+                        </Select>
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseupdateModal} color="primary">
+                        close
+                    </Button>
+                    <Button onClick={handleCloseupdateModal} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </>
     )
 }
 export default UpdateUserModal

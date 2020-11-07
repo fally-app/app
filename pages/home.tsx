@@ -4,7 +4,6 @@ import Router from 'next/router'
 import React from 'react'
 import { useEffect } from 'react'
 
-import AddNewUser from '../components/AddnewUser'
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import useRequest from '../lib/useRequest'
@@ -83,9 +82,6 @@ export const home = (): React.ReactElement => {
             </Head>
             <NavBar />
             <div className={classes.wrapper}>
-                <div className={classes.devider}>
-                    <AddNewUser />
-                </div>
                 {!users ? (
                     <div>loading</div>
                 ) : users.data.length <= 0 ? (

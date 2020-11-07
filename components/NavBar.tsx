@@ -110,8 +110,6 @@ export default function NavBar(): React.ReactElement {
         setOpen(false)
     }
 
-    console.log()
-
     return user ? (
         <div className={classes.root}>
             <CssBaseline />

@@ -13,13 +13,29 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Snackbar from '@material-ui/core/Snackbar'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import TextField from '@material-ui/core/TextField'
+import EditIcon from '@material-ui/icons/Edit'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
 
 import { IFamilyTypes } from '../models/Family'
+import { Gender, IStatus } from '../models/User'
 
-interface AddNewUserProps {
+interface UpdateUserProps {
+    user: {
+        _id: string
+        firstName: string
+        lastName: string
+        email?: string
+        family_id: {
+            _id: string
+            name: string
+        }
+        gender?: Gender
+        status: IStatus
+        class_level: string
+        joined_at: string
+    }
     families: [
         {
             _id: string
@@ -27,6 +43,7 @@ interface AddNewUserProps {
             name: string
         }
     ]
+    user_family: string
     mutate: () => void
 }
 
@@ -46,17 +63,19 @@ function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-export const FormDialog: React.FC<AddNewUserProps> = ({
-    families,
+export const UpdateUser: React.FC<UpdateUserProps> = ({
+    user,
+    user_family,
     mutate,
+    families,
 }): React.ReactElement => {
     const [openModal, setOpenModal] = React.useState(false)
-    const [gender, setgender] = React.useState('')
-    const [firstName, setfirstName] = React.useState<string>('')
-    const [lastName, setlastName] = React.useState<string>('')
-    const [email, setEmail] = React.useState<string>('')
-    const [className, setClassName] = React.useState<string>('')
-    const [family, setFamily] = React.useState<string>()
+    const [gender, setgender] = React.useState<string>(user.gender as string)
+    const [firstName, setfirstName] = React.useState<string>(user.firstName)
+    const [lastName, setlastName] = React.useState<string>(user.lastName)
+    const [email, setEmail] = React.useState<string>(user.email)
+    const [className, setClassName] = React.useState<string>(user.class_level)
+    const [family, setFamily] = React.useState<string>(user_family)
     const [isSnackOpen, setSnackOpen] = React.useState<boolean>(false)
     const [erorr, setError] = React.useState<string>('')
 
@@ -105,9 +124,8 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
             setError(error.response.data.error)
         }
     }
-
     return (
-        <div style={{ position: 'absolute', right: '1rem', top: '6rem' }}>
+        <>
             <Snackbar
                 open={isSnackOpen}
                 autoHideDuration={3000}
@@ -118,11 +136,8 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                     {erorr}
                 </Alert>
             </Snackbar>
-            <Button
-                variant="outlined"
-                color="primary"
-                onClick={handleClickOpen}>
-                add new user
+            <Button onClick={handleClickOpen}>
+                <EditIcon />
             </Button>
             <Dialog
                 open={openModal}
@@ -210,8 +225,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </>
     )
 }
-
-export default FormDialog
+export default UpdateUser

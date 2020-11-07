@@ -97,7 +97,11 @@ export const admin: React.FC<AdminProps> = ({
             <div className={classes.wrapper}>
                 <AddNewUser mutate={mutate} families={families.data} />
 
-                <UsersAdmin mutate={mutate} users={data.data} />
+                <UsersAdmin
+                    mutate={mutate}
+                    users={data.data}
+                    families={families.data}
+                />
             </div>
         </>
     )

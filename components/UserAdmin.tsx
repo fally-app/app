@@ -16,7 +16,6 @@ import TableFooter from '@material-ui/core/TableFooter'
 import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
-import EditIcon from '@material-ui/icons/Edit'
 import FirstPageIcon from '@material-ui/icons/FirstPage'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
@@ -26,6 +25,7 @@ import React from 'react'
 import { mutate } from 'swr'
 
 import { Gender, IStatus } from '../models/User'
+import UpdateUser from './UpdateUser'
 import UpdateUserModal from './UpdateUserModal'
 
 interface IuserType {
@@ -156,9 +156,13 @@ const useStyles2 = makeStyles({
 interface UsersProps {
     users: IuserType[]
     mutate: () => void
+    families
 }
 
-export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
+export const Users: React.FC<UsersProps> = ({
+    users,
+    families,
+}): React.ReactElement => {
     const classes = useStyles2()
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(5)
@@ -261,12 +265,11 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                             />
                                         </TableCell>
                                         <TableCell>
-                                            <button
+                                            {/* <button
                                                 className={classes.pointer}
                                                 onClick={() =>
                                                     handleModalCloseUpdateModal()
                                                 }>
-                                                <EditIcon />
                                                 <UpdateUserModal
                                                     isUpdateModalOpen={
                                                         isUpdateModalOpen
@@ -275,7 +278,13 @@ export const Users: React.FC<UsersProps> = ({ users }): React.ReactElement => {
                                                         handleModalCloseUpdateModal
                                                     }
                                                 />
-                                            </button>
+                                            </button> */}
+                                            <UpdateUser
+                                                user_family={user.family_id._id}
+                                                user={user}
+                                                families={families}
+                                                mutate={mutate}
+                                            />
                                         </TableCell>
                                         <TableCell>
                                             <button

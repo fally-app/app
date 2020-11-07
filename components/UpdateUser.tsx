@@ -110,7 +110,7 @@ export const UpdateUser: React.FC<UpdateUserProps> = ({
             class_level: className,
         }
         try {
-            await axios.post('/api/users', data)
+            await axios.put(`/api/users/${user._id}`, data)
             mutate()
             setgender('')
             setfirstName('')
@@ -121,7 +121,11 @@ export const UpdateUser: React.FC<UpdateUserProps> = ({
             handleClose()
         } catch (error) {
             setSnackOpen(true)
-            setError(error.response.data.error)
+            if (error.response.data.error) {
+                setError(error.response.data.error)
+            } else {
+                setError('Some thing went wrong!')
+            }
         }
     }
     return (
@@ -144,7 +148,7 @@ export const UpdateUser: React.FC<UpdateUserProps> = ({
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">
-                    Create new user
+                    update {user.firstName} {user.lastName}
                 </DialogTitle>
                 <DialogContent>
                     <TextField

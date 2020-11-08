@@ -4,10 +4,13 @@ import React from 'react'
 
 import theme from '../theme'
 
+const APP_NAME = 'Sabbath School App'
+const APP_DESCRIPTION = 'This is an app to be used to make attendance in church'
+
 export default class MyDocument extends Document {
     render(): React.ReactElement {
         return (
-            <Html lang="en">
+            <Html lang="en" dir="ltr">
                 <Head>
                     <meta charSet="utf-8" />
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -15,14 +18,23 @@ export default class MyDocument extends Document {
                         name="viewport"
                         content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
                     />
-                    <meta name="description" content="Description" />
-                    <meta name="keywords" content="Keywords" />
+                    <meta name="application-name" content={APP_NAME} />
+                    <meta name="apple-mobile-web-app-capable" content="yes" />
+                    <meta
+                        name="apple-mobile-web-app-status-bar-style"
+                        content="default"
+                    />
+                    <meta
+                        name="apple-mobile-web-app-title"
+                        content={APP_NAME}
+                    />
+                    <meta name="description" content={APP_DESCRIPTION} />
+                    <meta name="format-detection" content="telephone=no" />
+                    <meta name="mobile-web-app-capable" content="yes" />
                     <meta
                         name="theme-color"
                         content={theme.palette.primary.main}
                     />
-
-                    <link rel="manifest" href="/manifest.json" />
 
                     <link
                         rel="apple-touch-icon"

@@ -42,7 +42,7 @@ export const getCurrentWeekofTheYear = () => {
     d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7))
 
     //@typescript-eslint/no-inferrable-types
-    const yearStart: any = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
+    const yearStart: Date = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
     // Calculate full weeks to nearest Thursday
     const weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7)
     // Return array of year and week number

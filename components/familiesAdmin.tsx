@@ -22,6 +22,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
 import axios from 'axios'
 import React from 'react'
+import { mutateInterface } from 'swr/dist/types'
 
 import { Gender, IStatus } from '../models/User'
 import UpdateUser from './UpdateUser'
@@ -153,8 +154,7 @@ const useStyles2 = makeStyles({
 
 interface UsersProps {
     users: IuserType[]
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mutate: () => any
+    mutate: () => mutateInterface<any>
     families
 }
 
@@ -258,6 +258,20 @@ export const Users: React.FC<UsersProps> = ({
                                             />
                                         </TableCell>
                                         <TableCell>
+                                            {/* <button
+                                                className={classes.pointer}
+                                                onClick={() =>
+                                                    handleModalCloseUpdateModal()
+                                                }>
+                                                <UpdateUserModal
+                                                    isUpdateModalOpen={
+                                                        isUpdateModalOpen
+                                                    }
+                                                    handleCloseupdateModal={
+                                                        handleModalCloseUpdateModal
+                                                    }
+                                                />
+                                            </button> */}
                                             <UpdateUser
                                                 user_family={user.family_id._id}
                                                 user={user}

@@ -24,6 +24,7 @@ import HomeIcon from '@material-ui/icons/Home'
 import MenuIcon from '@material-ui/icons/Menu'
 import PresentToAllIcon from '@material-ui/icons/PresentToAll'
 import ReportIcon from '@material-ui/icons/Report'
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Router from 'next/router'
@@ -177,6 +178,17 @@ export default function NavBar(): React.ReactElement {
                                     <PresentToAllIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Attendance" />
+                            </ListItem>
+                        </Link>
+                    )}
+
+                    {user.user_type === 'ADMIN' && (
+                        <Link href="/families" passHref>
+                            <ListItem button component="a">
+                                <ListItemIcon>
+                                    <SupervisedUserCircleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="families" />
                             </ListItem>
                         </Link>
                     )}

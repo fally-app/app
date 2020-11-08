@@ -44,7 +44,8 @@ interface UpdateUserProps {
         }
     ]
     user_family: string
-    mutate: () => void
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mutate: () => any
 }
 
 const useStyles = makeStyles((theme: Theme) =>

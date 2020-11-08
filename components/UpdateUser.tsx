@@ -111,8 +111,6 @@ export const UpdateUser: React.FC<UpdateUserProps> = ({
             class_level: className,
         }
 
-        console.log(data)
-
         try {
             await axios.put(`/api/users/${user._id}`, data)
             mutate()

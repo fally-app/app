@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import Axios from 'axios'
+import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import React from 'react'
 
@@ -58,6 +58,10 @@ export const Report: React.FC<ReportProps> = ({
     report,
 }): React.ReactElement => {
     const classes = useStyles()
+
+    if (!report) {
+        return <h1>SOmething went wrong</h1>
+    }
 
     return (
         <>
@@ -177,7 +181,7 @@ export const Report: React.FC<ReportProps> = ({
 export default Report
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const result = await Axios.get(
+    const result = await axios.get(
         process.env.SERVER_BASE_URL + '/api/family/attendance'
     )
 

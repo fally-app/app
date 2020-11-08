@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core'
+import dynamic from 'next/dynamic'
 import React from 'react'
 
-import MakeAttendance from '../components/MakeAttendance'
+// import MakeAttendance from '../components/MakeAttendance'
 import NavBar from '../components/NavBar'
 import useRequest from '../lib/useRequest'
 import { IerrorResponse, IuserResponse } from './home'
@@ -14,6 +15,10 @@ const useStyles = makeStyles({
         height: '90vh',
         flexDirection: 'column',
     },
+})
+
+const MakeAttendance = dynamic(() => import('../components/MakeAttendance'), {
+    ssr: false,
 })
 
 export const attendance: React.FC = (): React.ReactElement => {

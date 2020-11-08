@@ -101,7 +101,7 @@ export const UpdateUser: React.FC<UpdateUserProps> = ({
         setOpenModal(false)
     }
 
-    async function handleAddNewUser() {
+    async function handleUserUpdate() {
         const data = {
             firstName,
             lastName,
@@ -109,20 +109,28 @@ export const UpdateUser: React.FC<UpdateUserProps> = ({
             family_id: family,
             class_level: className,
         }
+
+        console.log(data)
+
         try {
             await axios.put(`/api/users/${user._id}`, data)
             mutate()
-            setgender('')
-            setfirstName('')
-            setlastName('')
-            setEmail('')
-            setClassName('')
-            setFamily('')
             handleClose()
         } catch (error) {
             setSnackOpen(true)
+
             if (error.response.data.error) {
-                setError(error.response.data.error)
+                if (
+                    !firstName ||
+                    !lastName ||
+                    !gender ||
+                    !family ||
+                    !className
+                ) {
+                    setError('Please insert into all fields')
+                } else {
+                    setError(error.response.data.error)
+                }
             } else {
                 setError('Some thing went wrong!')
             }
@@ -224,7 +232,7 @@ export const UpdateUser: React.FC<UpdateUserProps> = ({
                     <Button onClick={handleClose} color="primary">
                         close
                     </Button>
-                    <Button onClick={handleAddNewUser} color="primary">
+                    <Button onClick={handleUserUpdate} color="primary">
                         Save
                     </Button>
                 </DialogActions>

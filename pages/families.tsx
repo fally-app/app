@@ -5,27 +5,21 @@ import Router from 'next/router'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 
-import AddNewUser from '../components/AddnewUser'
+// import AddNewUser from '../components/AddnewUser'
+import FamiliesAdmin from '../components/FamiliesAdmin'
 import NavBar from '../components/NavBar'
-import UsersAdmin from '../components/UserAdmin'
 import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
-import { IFamilyTypes } from '../models/Family'
-import { Gender, IStatus } from '../models/User'
+import { IStatus } from '../models/User'
 
 interface IuserResponse {
     success: boolean
     data: [
         {
             _id: string
-            firstName: string
-            lastName: string
-            email?: string
-            family_id: {
-                _id: string
-                name: string
-            }
-            gender?: Gender
+            name: string
+            code: string
+            user_type?: string
             status: IStatus
             class_level: string
             joined_at: string
@@ -56,27 +50,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface AdminProps {
     initialData: IuserResponse
-    families: {
-        success: true
-        data: [
-            {
-                _id: string
-                user_type: IFamilyTypes
-                name: string
-            }
-        ]
-    }
 }
 
 export const admin: React.FC<AdminProps> = ({
     initialData,
-    families,
 }): React.ReactElement => {
     const { loggedOut } = useUser()
     const classes = useStyles()
 
     const { data, mutate } = useSWR<IuserResponse, IerrorResponse>(
-        '/api/users',
+        '/api/family',
         fetcher,
         { initialData }
     )
@@ -85,23 +68,15 @@ export const admin: React.FC<AdminProps> = ({
         if (loggedOut) {
             Router.replace('/login')
         }
-
-        if (!data.data) {
-            Router.replace('/login')
-        }
     }, [loggedOut])
 
     return (
         <>
             <NavBar />
             <div className={classes.wrapper}>
-                <AddNewUser mutate={mutate} families={families.data} />
+                {/* <AddNewUser mutate={mutate} families={data.data} /> */}
 
-                <UsersAdmin
-                    mutate={mutate}
-                    users={data.data}
-                    families={families.data}
-                />
+                <FamiliesAdmin mutate={mutate} families={data.data} />
             </div>
         </>
     )
@@ -109,15 +84,13 @@ export const admin: React.FC<AdminProps> = ({
 export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
     const families = await axios.get(
         process.env.SERVER_BASE_URL + '/api/family'
     )
 
     return {
         props: {
-            families: families.data,
-            initialData: data.data,
+            initialData: families.data,
         },
     }
 }

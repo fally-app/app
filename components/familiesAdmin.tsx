@@ -7,7 +7,6 @@ import {
     Theme,
     useTheme,
 } from '@material-ui/core/styles'
-import Switch from '@material-ui/core/Switch/Switch'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -22,21 +21,15 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
 import axios from 'axios'
 import React from 'react'
-import { mutateInterface } from 'swr/dist/types'
 
-import { Gender, IStatus } from '../models/User'
-import UpdateUser from './UpdateUser'
+import { IStatus } from '../models/User'
+// import UpdateUser from './UpdateUser'
 
-interface IuserType {
+interface IFamilyType {
     _id: string
-    firstName: string
-    lastName: string
-    email?: string
-    family_id: {
-        _id: string
-        name: string
-    }
-    gender?: Gender
+    name: string
+    code: string
+    user_type?: string
     status: IStatus
     class_level: string
     joined_at: string
@@ -152,23 +145,23 @@ const useStyles2 = makeStyles({
     },
 })
 
-interface UsersProps {
-    users: IuserType[]
-    mutate: () => mutateInterface<any>
-    families
+interface FamilyProps {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mutate: () => any
+    families: IFamilyType[]
 }
 
-export const Users: React.FC<UsersProps> = ({
-    users,
-    families,
+export const Family: React.FC<FamilyProps> = ({
     mutate,
+    families,
 }): React.ReactElement => {
     const classes = useStyles2()
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
-    const emptyRows = users
-        ? rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage)
+    const emptyRows = families
+        ? rowsPerPage -
+          Math.min(rowsPerPage, families.length - page * rowsPerPage)
         : 0
 
     const handleChangePage = (
@@ -187,105 +180,75 @@ export const Users: React.FC<UsersProps> = ({
 
     const handleDelete = async (id, name) => {
         if (confirm(`Are you sure to delete ${name}?`)) {
-            await axios.delete(`/api/users/${id}`)
+            await axios.delete(`/api/family/${id}`)
             mutate()
         } else {
             return
         }
     }
 
-    if (!users) {
+    if (!families) {
         return <div>Loading...</div>
-    } else if (users.length <= 0) {
+    } else if (families.length <= 0) {
         return <h1>No user added yet</h1>
     } else {
         return (
             <>
-                <h1>List of all user</h1>
+                <h1>List of all families</h1>
                 <Paper className={classes.root}>
                     <TableContainer className={classes.container}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>No</TableCell>
-                                    <TableCell align="left">
-                                        First Name
-                                    </TableCell>
-                                    <TableCell align="left">LastName</TableCell>
-                                    <TableCell align="left">Gender</TableCell>
-                                    <TableCell align="left">
-                                        Family Name
-                                    </TableCell>
-                                    <TableCell align="left">Class</TableCell>
+                                    <TableCell align="left">Name</TableCell>
+                                    <TableCell align="left">Code</TableCell>
+                                    <TableCell align="left">Type</TableCell>
                                     <TableCell align="left">Status</TableCell>
-                                    <TableCell align="left">Edit</TableCell>
+                                    <TableCell align="left">Update</TableCell>
                                     <TableCell align="left">Delete</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {(rowsPerPage > 0
-                                    ? users.slice(
+                                    ? families.slice(
                                           page * rowsPerPage,
                                           page * rowsPerPage + rowsPerPage
                                       )
-                                    : users
-                                ).map((user, index) => (
-                                    <TableRow key={user._id}>
+                                    : families
+                                ).map((family, index) => (
+                                    <TableRow key={family._id}>
                                         <TableCell component="th" scope="row">
                                             {index + 1}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
-                                            {user.firstName}
+                                            {family.name}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
-                                            {user.lastName}
+                                            {family.code}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
-                                            {user.gender}
+                                            {family.user_type}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
-                                            {user.family_id?.name}
+                                            {family.status}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
-                                            {user.class_level}
-                                        </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        {/* <TableCell component="th" scope="row">
                                             <Switch
                                                 value="true"
                                                 inputProps={{
                                                     'aria-label': 'Switch A',
                                                 }}
                                             />
-                                        </TableCell>
-                                        <TableCell>
-                                            {/* <button
-                                                className={classes.pointer}
-                                                onClick={() =>
-                                                    handleModalCloseUpdateModal()
-                                                }>
-                                                <UpdateUserModal
-                                                    isUpdateModalOpen={
-                                                        isUpdateModalOpen
-                                                    }
-                                                    handleCloseupdateModal={
-                                                        handleModalCloseUpdateModal
-                                                    }
-                                                />
-                                            </button> */}
-                                            <UpdateUser
-                                                user_family={user.family_id._id}
-                                                user={user}
-                                                families={families}
-                                                mutate={mutate}
-                                            />
-                                        </TableCell>
+                                        </TableCell>*/}
+                                        <TableCell></TableCell>
                                         <TableCell>
                                             <button
                                                 className={classes.pointer}
                                                 onClick={() =>
                                                     handleDelete(
-                                                        user._id,
-                                                        `${user.firstName} ${user.lastName}`
+                                                        family._id,
+                                                        `${family.name}`
                                                     )
                                                 }>
                                                 <DeleteOutlineIcon />
@@ -310,12 +273,12 @@ export const Users: React.FC<UsersProps> = ({
                                             { label: 'All', value: -1 },
                                         ]}
                                         colSpan={9}
-                                        count={users.length}
+                                        count={families.length}
                                         rowsPerPage={rowsPerPage}
                                         page={page}
                                         SelectProps={{
                                             inputProps: {
-                                                'aria-label': 'users per page',
+                                                'aria-label': 'family per page',
                                             },
                                             native: false,
                                         }}
@@ -337,4 +300,4 @@ export const Users: React.FC<UsersProps> = ({
     }
 }
 
-export default Users
+export default Family

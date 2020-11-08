@@ -1,6 +1,11 @@
 {
     "name": "Sabbath School App",
-    "short_name": "SS",
+    "short_name": "SSA",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -12,8 +17,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    ]
 }

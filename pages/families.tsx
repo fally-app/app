@@ -5,7 +5,7 @@ import Router from 'next/router'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 
-// import AddNewUser from '../components/AddnewUser'
+import AddNewFamily from '../components/AddNewFam'
 import FamiliesAdmin from '../components/FamiliesAdmin'
 import NavBar from '../components/NavBar'
 import fetcher from '../lib/fetch'
@@ -74,8 +74,7 @@ export const admin: React.FC<AdminProps> = ({
         <>
             <NavBar />
             <div className={classes.wrapper}>
-                {/* <AddNewUser mutate={mutate} families={data.data} /> */}
-
+                <AddNewFamily mutate={mutate} />
                 <FamiliesAdmin mutate={mutate} families={data.data} />
             </div>
         </>

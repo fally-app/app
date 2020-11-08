@@ -22,17 +22,18 @@ import LastPageIcon from '@material-ui/icons/LastPage'
 import axios from 'axios'
 import React from 'react'
 
+import { IFamilyTypes } from '../models/Family'
 import { IStatus } from '../models/User'
+import UpdateFam from './UpdateFam'
 // import UpdateUser from './UpdateUser'
 
 interface IFamilyType {
     _id: string
+    user_type: IFamilyTypes
     name: string
+    password: string
     code: string
-    user_type?: string
     status: IStatus
-    class_level: string
-    joined_at: string
 }
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -233,15 +234,13 @@ export const Family: React.FC<FamilyProps> = ({
                                         <TableCell component="th" scope="row">
                                             {family.status}
                                         </TableCell>
-                                        {/* <TableCell component="th" scope="row">
-                                            <Switch
-                                                value="true"
-                                                inputProps={{
-                                                    'aria-label': 'Switch A',
-                                                }}
+
+                                        <TableCell>
+                                            <UpdateFam
+                                                mutate={mutate}
+                                                family={family}
                                             />
-                                        </TableCell>*/}
-                                        <TableCell></TableCell>
+                                        </TableCell>
                                         <TableCell>
                                             <button
                                                 className={classes.pointer}

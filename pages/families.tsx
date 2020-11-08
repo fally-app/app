@@ -10,6 +10,7 @@ import FamiliesAdmin from '../components/FamiliesAdmin'
 import NavBar from '../components/NavBar'
 import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
+import { IFamilyTypes } from '../models/Family'
 import { IStatus } from '../models/User'
 
 interface IuserResponse {
@@ -17,12 +18,11 @@ interface IuserResponse {
     data: [
         {
             _id: string
+            user_type: IFamilyTypes
             name: string
+            password: string
             code: string
-            user_type?: string
             status: IStatus
-            class_level: string
-            joined_at: string
         }
     ]
 }

@@ -13,12 +13,25 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Snackbar from '@material-ui/core/Snackbar'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import TextField from '@material-ui/core/TextField'
+import EditIcon from '@material-ui/icons/Edit'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
 
-interface AddNewUserProps {
-    mutate: () => void
+import { IFamilyTypes } from '../models/Family'
+
+interface UpdateUserProps {
+    family: {
+        _id: string
+        user_type: IFamilyTypes
+        name: string
+        password: string
+        code: string
+        status?: string
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mutate: () => any
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,13 +50,15 @@ function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-export const FormDialog: React.FC<AddNewUserProps> = ({
+export const UpdateFam: React.FC<UpdateUserProps> = ({
     mutate,
+    family,
 }): React.ReactElement => {
     const [openModal, setOpenModal] = React.useState(false)
-    const [type, setType] = React.useState<string>('')
-    const [name, setName] = React.useState<string>('')
-    const [password, setPassword] = React.useState<string>('')
+    const [type, setType] = React.useState<string>(family.user_type)
+    const [name, setName] = React.useState<string>(family.name)
+    const [status, setStatus] = React.useState<string>(family?.status)
+    // const [password, setPassword] = React.useState<string>()
     const [isSnackOpen, setSnackOpen] = React.useState<boolean>(false)
     const [erorr, setError] = React.useState<string>('')
 
@@ -57,31 +72,44 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
         setType(event.target.value as string)
     }
 
+    const handleChangeStatus = (
+        event: React.ChangeEvent<{ value: unknown }>
+    ) => {
+        setStatus(event.target.value as string)
+    }
+
     const handleClose = () => {
         setOpenModal(false)
     }
 
-    async function handleAddNewUser() {
+    async function handleUserUpdate() {
         const data = {
             user_type: type,
             name,
-            password,
+            status,
+            // password,
         }
+
         try {
-            await axios.post('/api/family', data)
+            await axios.put(`/api/family/${family._id}`, data)
             mutate()
-            setType('')
-            setName('')
-            setPassword('')
             handleClose()
         } catch (error) {
             setSnackOpen(true)
-            setError(error.response.data.error)
+
+            if (error.response.data.error) {
+                if (!type || !name) {
+                    setError('Please insert into all fields')
+                } else {
+                    setError(error.response.data.error)
+                }
+            } else {
+                setError('Some thing went wrong!')
+            }
         }
     }
-
     return (
-        <div style={{ position: 'absolute', right: '1rem', top: '6rem' }}>
+        <>
             <Snackbar
                 open={isSnackOpen}
                 autoHideDuration={3000}
@@ -92,18 +120,15 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                     {erorr}
                 </Alert>
             </Snackbar>
-            <Button
-                variant="outlined"
-                color="primary"
-                onClick={handleClickOpen}>
-                add new family
+            <Button onClick={handleClickOpen}>
+                <EditIcon />
             </Button>
             <Dialog
                 open={openModal}
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">
-                    Create new family
+                    update {family.name}
                 </DialogTitle>
                 <DialogContent>
                     <TextField
@@ -113,16 +138,6 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                         type="text"
                         value={name}
                         onChange={e => setName(e.target.value)}
-                        fullWidth
-                    />
-
-                    <TextField
-                        margin="dense"
-                        id="password"
-                        label="password"
-                        type="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
                         fullWidth
                     />
 
@@ -138,18 +153,30 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                             <MenuItem value="ADMIN">ADMIN</MenuItem>
                         </Select>
                     </div>
+
+                    <div className={classes.selectBox}>
+                        <InputLabel id="label">Status</InputLabel>
+                        <Select
+                            labelId="label"
+                            id="select"
+                            fullWidth
+                            value={status}
+                            onChange={handleChangeStatus}>
+                            <MenuItem value="ACTIVE">ACTIVE</MenuItem>
+                            <MenuItem value="DIACTIVE">DIACTIVE</MenuItem>
+                        </Select>
+                    </div>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         close
                     </Button>
-                    <Button onClick={handleAddNewUser} color="primary">
+                    <Button onClick={handleUserUpdate} color="primary">
                         Save
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </>
     )
 }
-
-export default FormDialog
+export default UpdateFam

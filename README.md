@@ -8,7 +8,7 @@
 
 ### features
 
-- [x] Making the attendance
-- [x] User CRUD
-- [x] Family CRUD
-- [x]  Attendance statics Planning
+-   [x] Making the attendance
+-   [x] User CRUD
+-   [x] Family CRUD
+-   [x] Attendance statics Planning

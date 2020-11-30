@@ -36,10 +36,10 @@
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^10.4.0",
     "mongoose": "^5.10.9",
-    "next": "^9.5.5",
+    "next": "^10.0.3",
     "next-pwa": "^3.1.5",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "swr": "^0.3.6"
   },
   "devDependencies": {

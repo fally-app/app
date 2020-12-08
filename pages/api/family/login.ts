@@ -28,7 +28,7 @@ export default async function handler(
                 if (!findUser)
                     return res.status(400).json({
                         success: false,
-                        error: 'Invalid email or password',
+                        error: 'Invalid code or password',
                     })
 
                 const isPasswordValid = await bcrypt.compare(
@@ -39,7 +39,7 @@ export default async function handler(
                 if (!isPasswordValid)
                     return res.status(400).json({
                         success: false,
-                        error: 'Invalid email or password',
+                        error: 'Invalid code or password',
                     })
 
                 res.status(201).json({

@@ -5,7 +5,7 @@ import React from 'react'
 // import MakeAttendance from '../components/MakeAttendance'
 import NavBar from '../components/NavBar'
 import useRequest from '../lib/useRequest'
-import { IerrorResponse, IuserResponse } from './home'
+import { ErrorResponse, UserResponse } from './home'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -29,7 +29,7 @@ export const attendance: React.FC = (): React.ReactElement => {
         token = localStorage.getItem('auth-token')
     }
 
-    const { data: users } = useRequest<IuserResponse, IerrorResponse>({
+    const { data: users } = useRequest<UserResponse, ErrorResponse>({
         url: '/api/family/current',
         headers: {
             Authorization: `Bearer ${token}`,

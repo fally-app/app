@@ -28,6 +28,7 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Router from 'next/router'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import useUser from '../lib/useUser'
@@ -111,122 +112,126 @@ export default function NavBar(): React.ReactElement {
         setOpen(false)
     }
 
-    return user ? (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}>
-                <Toolbar>
-                    <Tooltip title="Home">
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            edge="start"
-                            className={clsx(classes.menuButton, {
-                                [classes.hide]: open,
-                            })}>
-                            <MenuIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Typography variant="h6" noWrap>
-                        {user.name}
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                variant="permanent"
-                className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
-                })}
-                classes={{
-                    paper: clsx({
+    return (
+        user && (
+            <div className={classes.root}>
+                <CssBaseline />
+                <AppBar
+                    position="fixed"
+                    className={clsx(classes.appBar, {
+                        [classes.appBarShift]: open,
+                    })}>
+                    <Toolbar>
+                        <Tooltip title="Home">
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                onClick={handleDrawerOpen}
+                                edge="start"
+                                className={clsx(classes.menuButton, {
+                                    [classes.hide]: open,
+                                })}>
+                                <MenuIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Typography variant="h6" noWrap>
+                            {user.name}
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    variant="permanent"
+                    className={clsx(classes.drawer, {
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
-                    }),
-                }}>
-                <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? (
-                            <ChevronRightIcon />
-                        ) : (
-                            <ChevronLeftIcon />
+                    })}
+                    classes={{
+                        paper: clsx({
+                            [classes.drawerOpen]: open,
+                            [classes.drawerClose]: !open,
+                        }),
+                    }}>
+                    <div className={classes.toolbar}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? (
+                                <ChevronRightIcon />
+                            ) : (
+                                <ChevronLeftIcon />
+                            )}
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <Link
+                            href={
+                                user.user_type === 'ADMIN' ? '/admin' : '/home'
+                            }
+                            passHref>
+                            <ListItem button component="a">
+                                <ListItemIcon>
+                                    <HomeIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Home" />
+                            </ListItem>
+                        </Link>
+
+                        {user.user_type != 'ADMIN' && (
+                            <Link href="/attendance" passHref>
+                                <ListItem button component="a">
+                                    <ListItemIcon>
+                                        <PresentToAllIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Attendance" />
+                                </ListItem>
+                            </Link>
                         )}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <Link
-                        href={user.user_type === 'ADMIN' ? '/admin' : '/home'}
-                        passHref>
-                        <ListItem button component="a">
-                            <ListItemIcon>
-                                <HomeIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Home" />
-                        </ListItem>
-                    </Link>
 
-                    {user.user_type != 'ADMIN' && (
-                        <Link href="/attendance" passHref>
+                        {user.user_type === 'ADMIN' && (
+                            <Link href="/families" passHref>
+                                <ListItem button component="a">
+                                    <ListItemIcon>
+                                        <SupervisedUserCircleIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="families" />
+                                </ListItem>
+                            </Link>
+                        )}
+
+                        <Link href="/report" passHref>
                             <ListItem button component="a">
                                 <ListItemIcon>
-                                    <PresentToAllIcon />
+                                    <ReportIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Attendance" />
+                                <ListItemText primary="Report" />
                             </ListItem>
                         </Link>
-                    )}
 
-                    {user.user_type === 'ADMIN' && (
-                        <Link href="/families" passHref>
+                        <Link href="/profile" passHref>
                             <ListItem button component="a">
                                 <ListItemIcon>
-                                    <SupervisedUserCircleIcon />
+                                    <AccountBoxIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="families" />
+                                <ListItemText primary="Account" />
                             </ListItem>
                         </Link>
-                    )}
-
-                    <Link href="/report" passHref>
-                        <ListItem button component="a">
+                    </List>
+                    <Divider />
+                    <List>
+                        <ListItem
+                            button
+                            onClick={() => {
+                                localStorage.removeItem('auth-token')
+                                mutate(null)
+                                Router.push('/login')
+                            }}>
                             <ListItemIcon>
-                                <ReportIcon />
+                                <ExitToAppIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Report" />
+                            <ListItemText primary="Logout" />
                         </ListItem>
-                    </Link>
-
-                    <Link href="/profile" passHref>
-                        <ListItem button component="a">
-                            <ListItemIcon>
-                                <AccountBoxIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Account" />
-                        </ListItem>
-                    </Link>
-                </List>
-                <Divider />
-                <List>
-                    <ListItem
-                        button
-                        onClick={() => {
-                            localStorage.removeItem('auth-token')
-                            mutate(null)
-                            Router.push('/login')
-                        }}>
-                        <ListItemIcon>
-                            <ExitToAppIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Logout" />
-                    </ListItem>
-                </List>
-            </Drawer>
-        </div>
-    ) : null
+                    </List>
+                </Drawer>
+            </div>
+        )
+    )
 }

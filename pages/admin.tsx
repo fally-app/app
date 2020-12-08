@@ -68,10 +68,10 @@ interface AdminProps {
     }
 }
 
-export const admin: React.FC<AdminProps> = ({
+export function admin({
     initialData,
     families,
-}): React.ReactElement => {
+}: AdminProps): React.ReactElement {
     const { loggedOut } = useUser()
     const classes = useStyles()
 

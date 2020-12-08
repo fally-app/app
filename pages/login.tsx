@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         header: {
             textAlign: 'center',
+            width: '30rem',
         },
         buttonProgress: {
             color: blue[500],

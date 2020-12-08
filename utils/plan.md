@@ -1,10 +1,10 @@
 # Plan and road map for this project
 
--   [ ] user's managment by admin and head of family(crud and activate)
--   [ ] attendance by head of family
+-   [ ] user's management by admin and head of family(crud and activate)
+-   [x] attendance by head of family
 -   [x] auto-generated report for the current sabbath
 
-### user's managment task
+### user's management task
 
 -   [ ] Head of family should be able to get access to users in his/her family
     -   [x] Create and api to get the current logged in family members

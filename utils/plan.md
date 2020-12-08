@@ -1,6 +1,6 @@
 # Plan and road map for this project
 
--   [x] user's management by admin and head of family(crud and activate)
+-   [ ] user's management by admin and head of family(crud and activate)
 -   [x] attendance by head of family
 -   [x] auto-generated report for the current sabbath
 
@@ -33,12 +33,12 @@
     -   [x] Head of family saves to add send api
 -   [x] The system must be able to generate the report for that sabbath
     -   [x] the system gets report according to the current date minus 7 days
--   [x] The report should be beatifully presented plus ranking and comments
+-   [x] The report should be beautifully presented plus ranking and comments
     -   [x] an automatic table displaying results from report
 
 > Dead line thursday 5th November 2020
 
 ### Next
 
--   [ ] pwa
--   [ ] deployment
+-   [x] pwa
+-   [x] deployment

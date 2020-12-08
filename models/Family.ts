@@ -27,6 +27,8 @@ const familySchema: Schema = new Schema({
     slug: String,
     name: {
         type: String,
+        unique: true,
+        trim: true,
         required: true,
     },
     password: {

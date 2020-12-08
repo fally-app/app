@@ -29,7 +29,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import Router from 'next/router'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import useUser from '../lib/useUser'
 
@@ -102,7 +102,8 @@ export default function NavBar(): React.ReactElement {
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = useState(false)
-    const { mutate, user } = useUser()
+    const { mutate, user, loggedOut } = useUser()
+    const router = useRouter()
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -112,126 +113,129 @@ export default function NavBar(): React.ReactElement {
         setOpen(false)
     }
 
-    return (
-        user && (
-            <div className={classes.root}>
-                <CssBaseline />
-                <AppBar
-                    position="fixed"
-                    className={clsx(classes.appBar, {
-                        [classes.appBarShift]: open,
-                    })}>
-                    <Toolbar>
-                        <Tooltip title="Home">
-                            <IconButton
-                                color="inherit"
-                                aria-label="open drawer"
-                                onClick={handleDrawerOpen}
-                                edge="start"
-                                className={clsx(classes.menuButton, {
-                                    [classes.hide]: open,
-                                })}>
-                                <MenuIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <Typography variant="h6" noWrap>
-                            {user.name}
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    variant="permanent"
-                    className={clsx(classes.drawer, {
+    useEffect(() => {
+        if (loggedOut) {
+            router.push('/login')
+        }
+        console.log(loggedOut)
+    }, [loggedOut])
+
+    return user ? (
+        <div className={classes.root}>
+            <CssBaseline />
+            <AppBar
+                position="fixed"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
+                })}>
+                <Toolbar>
+                    <Tooltip title="Home">
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            className={clsx(classes.menuButton, {
+                                [classes.hide]: open,
+                            })}>
+                            <MenuIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <Typography variant="h6" noWrap>
+                        {user.name}
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                variant="permanent"
+                className={clsx(classes.drawer, {
+                    [classes.drawerOpen]: open,
+                    [classes.drawerClose]: !open,
+                })}
+                classes={{
+                    paper: clsx({
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
-                    })}
-                    classes={{
-                        paper: clsx({
-                            [classes.drawerOpen]: open,
-                            [classes.drawerClose]: !open,
-                        }),
-                    }}>
-                    <div className={classes.toolbar}>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'rtl' ? (
-                                <ChevronRightIcon />
-                            ) : (
-                                <ChevronLeftIcon />
-                            )}
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>
-                        <Link
-                            href={
-                                user.user_type === 'ADMIN' ? '/admin' : '/home'
-                            }
-                            passHref>
-                            <ListItem button component="a">
-                                <ListItemIcon>
-                                    <HomeIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Home" />
-                            </ListItem>
-                        </Link>
-
-                        {user.user_type != 'ADMIN' && (
-                            <Link href="/attendance" passHref>
-                                <ListItem button component="a">
-                                    <ListItemIcon>
-                                        <PresentToAllIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Attendance" />
-                                </ListItem>
-                            </Link>
+                    }),
+                }}>
+                <div className={classes.toolbar}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'rtl' ? (
+                            <ChevronRightIcon />
+                        ) : (
+                            <ChevronLeftIcon />
                         )}
-
-                        {user.user_type === 'ADMIN' && (
-                            <Link href="/families" passHref>
-                                <ListItem button component="a">
-                                    <ListItemIcon>
-                                        <SupervisedUserCircleIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="families" />
-                                </ListItem>
-                            </Link>
-                        )}
-
-                        <Link href="/report" passHref>
-                            <ListItem button component="a">
-                                <ListItemIcon>
-                                    <ReportIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Report" />
-                            </ListItem>
-                        </Link>
-
-                        <Link href="/profile" passHref>
-                            <ListItem button component="a">
-                                <ListItemIcon>
-                                    <AccountBoxIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Account" />
-                            </ListItem>
-                        </Link>
-                    </List>
-                    <Divider />
-                    <List>
-                        <ListItem
-                            button
-                            onClick={() => {
-                                localStorage.removeItem('auth-token')
-                                mutate(null)
-                                Router.push('/login')
-                            }}>
+                    </IconButton>
+                </div>
+                <Divider />
+                <List>
+                    <Link
+                        href={user.user_type === 'ADMIN' ? '/admin' : '/home'}
+                        passHref>
+                        <ListItem button component="a">
                             <ListItemIcon>
-                                <ExitToAppIcon />
+                                <HomeIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Logout" />
+                            <ListItemText primary="Home" />
                         </ListItem>
-                    </List>
-                </Drawer>
-            </div>
-        )
-    )
+                    </Link>
+
+                    {user.user_type != 'ADMIN' && (
+                        <Link href="/attendance" passHref>
+                            <ListItem button component="a">
+                                <ListItemIcon>
+                                    <PresentToAllIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Attendance" />
+                            </ListItem>
+                        </Link>
+                    )}
+
+                    {user.user_type === 'ADMIN' && (
+                        <Link href="/families" passHref>
+                            <ListItem button component="a">
+                                <ListItemIcon>
+                                    <SupervisedUserCircleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="families" />
+                            </ListItem>
+                        </Link>
+                    )}
+
+                    <Link href="/report" passHref>
+                        <ListItem button component="a">
+                            <ListItemIcon>
+                                <ReportIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Report" />
+                        </ListItem>
+                    </Link>
+
+                    <Link href="/profile" passHref>
+                        <ListItem button component="a">
+                            <ListItemIcon>
+                                <AccountBoxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Account" />
+                        </ListItem>
+                    </Link>
+                </List>
+                <Divider />
+                <List>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            localStorage.removeItem('auth-token')
+                            mutate(null)
+                            Router.push('/login')
+                        }}>
+                        <ListItemIcon>
+                            <ExitToAppIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Logout" />
+                    </ListItem>
+                </List>
+            </Drawer>
+        </div>
+    ) : null
 }

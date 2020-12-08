@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import mongoose, { Document, Schema } from 'mongoose'
+import slugify from 'slugify'
 
 import { IStatus } from './User'
 
@@ -11,6 +12,7 @@ export enum IFamilyTypes {
 export interface IFamily extends Document {
     code: string
     name: string
+    slug: string
     password: string
     created_at: string
     user_type: IFamilyTypes
@@ -22,6 +24,7 @@ const familySchema: Schema = new Schema({
         type: String,
         required: true,
     },
+    slug: String,
     name: {
         type: String,
         required: true,
@@ -44,6 +47,11 @@ const familySchema: Schema = new Schema({
         type: Date,
         default: Date.now(),
     },
+})
+
+familySchema.pre<IFamily>('save', function (next) {
+    this.slug = slugify(this.name, { lower: true })
+    next()
 })
 
 familySchema.pre<IFamily>('save', function () {

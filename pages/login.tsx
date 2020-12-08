@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme: Theme) =>
         header: {
             textAlign: 'center',
             width: '30rem',
+            fontSize: '1.5rem',
+            fontWeight: 'bold',
+            textTransform: 'capitalize',
         },
         buttonProgress: {
             color: blue[500],
@@ -127,7 +130,7 @@ export const login = (): React.ReactElement => {
                             variant="h4"
                             component="h2"
                             className={classes.header}>
-                            Login
+                            Login here
                         </Typography>
 
                         <form>

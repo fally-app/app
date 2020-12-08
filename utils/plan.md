@@ -1,6 +1,6 @@
 # Plan and road map for this project
 
--   [ ] user's management by admin and head of family(crud and activate)
+-   [x] user's management by admin and head of family(crud and activate)
 -   [x] attendance by head of family
 -   [x] auto-generated report for the current sabbath
 

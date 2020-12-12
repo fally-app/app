@@ -40,5 +40,13 @@
 
 ### Next
 
--   [ ] pwa
--   [ ] deployment
+-   [x] pwa
+-   [x] deployment
+
+### Reviews
+
+- Persisting previous route on refresh
+- Dark mode enabling
+- Add new user on family Page
+- on attendance page make headers sticky on on school
+

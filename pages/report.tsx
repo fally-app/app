@@ -21,10 +21,10 @@ const useStyles = makeStyles({
         height: '90vh',
     },
     root: {
-        width: '85%',
+        width: '88%',
     },
     container: {
-        maxHeight: 440,
+        maxHeight: 500,
     },
 })
 

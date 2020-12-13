@@ -1,3 +1,5 @@
+// import 'tailwindcss/tailwind.css'
+
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { AppProps } from 'next/app'

@@ -1,14 +1,11 @@
 ### Sabbath school software
 
-#### Tech stack
+### Reason
 
--   Next.js Typescript
--   Material ui
--   MongoDB
+> To move all of church activities online
 
-### features
 
--   [x] Making the attendance
--   [x] User CRUD
--   [x] Family CRUD
--   [x] Attendance statics Planning
+#### Change log
+
+
+#### v1.0.0

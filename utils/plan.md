@@ -27,7 +27,7 @@
 
 - [ ] Persisting user's on route when refresh is done
 - [ ] on attendance page make headers sticky on on school
-- [ ] Fix table types on reports
+- [ ] Fix table layouts  on reports
 
 
 # Future

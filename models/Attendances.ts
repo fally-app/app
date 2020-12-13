@@ -3,14 +3,14 @@ import mongoose, { Document, Schema } from 'mongoose'
 import { IFamily } from './Family'
 import { IUser } from './User'
 
-export interface IAttandances extends Document {
+export interface IAttendances extends Document {
     user_Id: IUser['_id']
     family_code: IFamily['_id']
     isPresent: boolean
     studied7Times: boolean
     startedSabbath: boolean
     visited: boolean
-    wasvisited: boolean
+    wasVisited: boolean
     helped: boolean
     wasHelped: boolean
     isSick: boolean
@@ -18,7 +18,7 @@ export interface IAttandances extends Document {
     created_at: string
 }
 
-const attandanceShema: Schema = new Schema({
+const attendanceSchema: Schema = new Schema({
     user_Id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -45,7 +45,7 @@ const attandanceShema: Schema = new Schema({
         type: Boolean,
         default: false,
     },
-    wasvisited: {
+    wasVisited: {
         type: Boolean,
         default: false,
     },
@@ -72,4 +72,4 @@ const attandanceShema: Schema = new Schema({
 })
 
 export default mongoose.models['Attendances'] ||
-    mongoose.model<IFamily>('Attendances', attandanceShema)
+    mongoose.model<IFamily>('Attendances', attendanceSchema)

@@ -7,12 +7,12 @@ export interface IFamilyReport extends Document {
     present: number
     studied7times: number
     startedSabbath: number
-    visted: number
-    werevisted: number
+    visited: number
+    wereVisited: number
     helped: number
     wereHelped: number
     sick: number
-    vistors: number
+    visitors: number
 }
 
 const familyReportSchema: Schema = new Schema({
@@ -27,17 +27,17 @@ const familyReportSchema: Schema = new Schema({
     },
     studied7times: {
         type: Number,
-        dafault: 0,
+        default: 0,
     },
     startedSabbath: {
         type: Number,
-        dafault: 0,
+        default: 0,
     },
     visited: {
         type: Number,
-        dafault: 0,
+        default: 0,
     },
-    wereVisted: {
+    wereVisited: {
         type: Number,
         default: 0,
     },
@@ -53,17 +53,19 @@ const familyReportSchema: Schema = new Schema({
         type: Number,
         default: 0,
     },
-    vistors: {
+    visitors: {
         type: Number,
         default: 0,
     },
     sabbath_week: {
         type: Number,
         required: true,
+        default: 0,
     },
     absent: {
         type: Number,
         required: true,
+        default: 0,
     },
     year: {
         type: Number,

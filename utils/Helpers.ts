@@ -5,7 +5,7 @@ import User, { IUser } from '../models/User'
 export function codeGenerator(person: string): string {
     let code = ''
     let mainString
-    const AcdemicYear = '2020'
+    const AcademicYear = '2020'
     const randomAlphaLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     if (person == 'family') mainString = 'FAM'
@@ -16,7 +16,7 @@ export function codeGenerator(person: string): string {
             Math.floor(Math.random() * randomAlphaLetters.length)
         )
     }
-    code += AcdemicYear
+    code += AcademicYear
 
     return code
 }
@@ -34,7 +34,7 @@ export const getUserFromToken = async (token: string): Promise<IUser> => {
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getCurrentWeekofTheYear = () => {
+export const getCurrentWeekInTheYear = () => {
     let d = new Date()
     d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))
     // Set to nearest Thursday: current date + 4 - current day number

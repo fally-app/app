@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import FamilyReport from '../../../models/FamilyReport'
 import connectDB from '../../../utils/connectDB'
-import { getCurrentWeekofTheYear } from '../../../utils/Helpers'
+import { getCurrentWeekInTheYear } from '../../../utils/Helpers'
 
 interface TokenDecode {
     _id: string
@@ -39,8 +39,8 @@ export default async function handler(
 
                 const checkIfSaved = await FamilyReport.findOne({
                     family_code: family_id,
-                    sabbath_week: getCurrentWeekofTheYear()[1],
-                    year: getCurrentWeekofTheYear()[0],
+                    sabbath_week: getCurrentWeekInTheYear()[1],
+                    year: getCurrentWeekInTheYear()[0],
                 })
 
                 if (checkIfSaved)
@@ -61,8 +61,8 @@ export default async function handler(
                     sick: req.body.sick,
                     vistors: req.body.vistors,
                     absent: req.body.absent,
-                    sabbath_week: getCurrentWeekofTheYear()[1],
-                    year: getCurrentWeekofTheYear()[0],
+                    sabbath_week: getCurrentWeekInTheYear()[1],
+                    year: getCurrentWeekInTheYear()[0],
                 })
 
                 await data.save()

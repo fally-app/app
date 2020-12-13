@@ -9,7 +9,7 @@ export enum Gender {
 
 export enum IStatus {
     ACTIVE = 'ACTIVE',
-    DIACTIVE = 'DIACTIVE',
+    INACTIVE = 'INACTIVE',
 }
 
 export interface IUser extends Document {
@@ -24,9 +24,7 @@ export interface IUser extends Document {
 }
 
 const userSchema: Schema = new Schema({
-    email: {
-        type: String,
-    },
+    email: String,
     firstName: {
         required: true,
         type: String,

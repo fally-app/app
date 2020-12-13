@@ -10,7 +10,7 @@ import useRequest from '../lib/useRequest'
 import useUser from '../lib/useUser'
 import { Gender, IStatus } from '../models/User'
 
-export interface IuserResponse {
+export interface UserResponse {
     success: boolean
     data: [
         {
@@ -27,7 +27,7 @@ export interface IuserResponse {
     ]
 }
 
-export interface IerrorResponse {
+export interface ErrorResponse {
     success: boolean
     error: string
 }
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '90vh',
             flexDirection: 'column',
         },
-        devider: {
+        divider: {
             marginBottom: '2rem',
             marginTop: '2%',
         },
@@ -58,7 +58,7 @@ export const home = (): React.ReactElement => {
         token = localStorage.getItem('auth-token')
     }
 
-    const { data: users } = useRequest<IuserResponse, IerrorResponse>({
+    const { data: users } = useRequest<UserResponse, ErrorResponse>({
         url: '/api/family/current',
         headers: {
             Authorization: `Bearer ${token}`,

@@ -26,7 +26,7 @@ import React from 'react'
 import { Gender, IStatus } from '../models/User'
 import UpdateUser from './UpdateUser'
 
-interface IuserType {
+interface UserType {
     _id: string
     firstName: string
     lastName: string
@@ -152,7 +152,7 @@ const useStyles2 = makeStyles({
 })
 
 interface UsersProps {
-    users: IuserType[]
+    users: UserType[]
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any
     families

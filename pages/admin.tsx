@@ -5,7 +5,7 @@ import Router from 'next/router'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 
-import AddNewUser from '../components/AddnewUser'
+import AddNewUser from '../components/AddNewUser'
 import NavBar from '../components/NavBar'
 import UsersAdmin from '../components/UserAdmin'
 import fetcher from '../lib/fetch'
@@ -13,7 +13,7 @@ import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
 import { Gender, IStatus } from '../models/User'
 
-interface IuserResponse {
+interface UserResponse {
     success: boolean
     data: [
         {
@@ -33,7 +33,7 @@ interface IuserResponse {
     ]
 }
 
-interface IerrorResponse {
+interface ErrorResponse {
     success: boolean
     error: string
 }
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface AdminProps {
-    initialData: IuserResponse
+    initialData: UserResponse
     families: {
         success: true
         data: [
@@ -68,14 +68,14 @@ interface AdminProps {
     }
 }
 
-export const admin: React.FC<AdminProps> = ({
+export function admin({
     initialData,
     families,
-}): React.ReactElement => {
+}: AdminProps): React.ReactElement {
     const { loggedOut } = useUser()
     const classes = useStyles()
 
-    const { data, mutate } = useSWR<IuserResponse, IerrorResponse>(
+    const { data, mutate } = useSWR<UserResponse, ErrorResponse>(
         '/api/users',
         fetcher,
         { initialData }

@@ -41,6 +41,7 @@
         "react/prop-types": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "simple-import-sort/sort": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
         "jsx-a11y/anchor-is-valid": [
             "error",
             {

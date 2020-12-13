@@ -1,7 +1,6 @@
 # Plan and road map for this project
 
 -   [ ] user's management by admin and head of family(crud and activate)
--   [ ] attendance by head of family
 -   [x] auto-generated report for the current sabbath
 
 ### user's management task
@@ -18,10 +17,8 @@
 
 ### Reviews
 
-
 - Persisting previous route on refresh
 - Dark mode enabling
-
 
 # Current Issues
 

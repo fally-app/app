@@ -13,7 +13,7 @@ import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
 import { IStatus } from '../models/User'
 
-interface IuserResponse {
+interface UserResponse {
     success: boolean
     data: [
         {
@@ -27,7 +27,7 @@ interface IuserResponse {
     ]
 }
 
-interface IerrorResponse {
+interface ErrorResponse {
     success: boolean
     error: string
 }
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface AdminProps {
-    initialData: IuserResponse
+    initialData: UserResponse
 }
 
 export const admin: React.FC<AdminProps> = ({
@@ -58,7 +58,7 @@ export const admin: React.FC<AdminProps> = ({
     const { loggedOut } = useUser()
     const classes = useStyles()
 
-    const { data, mutate } = useSWR<IuserResponse, IerrorResponse>(
+    const { data, mutate } = useSWR<UserResponse, ErrorResponse>(
         '/api/family',
         fetcher,
         { initialData }

@@ -45,9 +45,9 @@ interface ReportProps {
             startedSabbath: number
             studied7times: number
             visited: number
-            vistors: number
+            visitors: number
             wereHelped: number
-            wereVisted: number
+            wereVisited: number
             year: number
             percentage: number
         }
@@ -133,7 +133,7 @@ export const Report: React.FC<ReportProps> = ({
                                                 {row.visited}
                                             </TableCell>
                                             <TableCell align="right">
-                                                {row.wereVisted}
+                                                {row.wereVisited}
                                             </TableCell>
                                             <TableCell align="right">
                                                 {row.studied7times}
@@ -145,7 +145,7 @@ export const Report: React.FC<ReportProps> = ({
                                                 {row.absent}
                                             </TableCell>
                                             <TableCell align="right">
-                                                {row.vistors}
+                                                {row.visitors}
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Chip

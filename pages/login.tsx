@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         header: {
             textAlign: 'center',
+            width: '30rem',
+            fontSize: '1.5rem',
+            fontWeight: 'bold',
+            textTransform: 'capitalize',
         },
         buttonProgress: {
             color: blue[500],
@@ -54,8 +58,8 @@ export const login = (): React.ReactElement => {
     const [code, setCode] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [errorMsg, setErrorMsg] = useState<string>('')
-    const [isSnackOpen, setisSnackOpen] = useState<boolean>(false)
-    const [loading, setloading] = useState<boolean>(false)
+    const [isSnackOpen, setIsSnackOpen] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const { user, mutate } = useUser()
 
@@ -74,7 +78,7 @@ export const login = (): React.ReactElement => {
     }
 
     const handleLogin = async () => {
-        setloading(true)
+        setLoading(true)
         try {
             const result = await api.post('/api/family/login', {
                 code,
@@ -82,15 +86,15 @@ export const login = (): React.ReactElement => {
             })
             localStorage.setItem('auth-token', result.data.data)
             mutate()
-            setloading(false)
+            setLoading(false)
         } catch (error) {
             if (error.response) {
                 setErrorMsg(error.response.data.error)
             } else {
                 setErrorMsg('Some thing went wrong')
             }
-            setloading(false)
-            setisSnackOpen(true)
+            setLoading(false)
+            setIsSnackOpen(true)
         }
     }
 
@@ -98,7 +102,7 @@ export const login = (): React.ReactElement => {
         if (reason === 'clickaway') {
             return
         }
-        setisSnackOpen(false)
+        setIsSnackOpen(false)
     }
 
     return (
@@ -126,7 +130,7 @@ export const login = (): React.ReactElement => {
                             variant="h4"
                             component="h2"
                             className={classes.header}>
-                            Login
+                            Login here
                         </Typography>
 
                         <form>

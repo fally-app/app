@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 
 import NavBar from '../components/NavBar'
 
-interface Ifamily {
+interface Family {
     name: string
 }
-interface IfamMembers {
+interface FamilyMembers {
     count: number
     data: [
         {
@@ -19,15 +19,15 @@ interface IfamMembers {
 export const profile: React.FC = (): React.ReactElement => {
     const router = useRouter()
     const { id } = router.query
-    const [family, setFamily] = useState<Ifamily>()
-    const [famMembers, setfamMembers] = useState<IfamMembers>()
+    const [family, setFamily] = useState<Family>()
+    const [famMembers, setFamMembers] = useState<FamilyMembers>()
 
     useEffect(() => {
         async function getProfile() {
             try {
                 const result = await axios.get(`/api/family/${id}`)
                 setFamily(result.data.data)
-                setfamMembers(result.data.members)
+                setFamMembers(result.data.members)
             } catch (error) {
                 console.log(error)
             }

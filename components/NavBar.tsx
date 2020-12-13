@@ -28,7 +28,8 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Router from 'next/router'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 import useUser from '../lib/useUser'
 
@@ -101,7 +102,8 @@ export default function NavBar(): React.ReactElement {
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = useState(false)
-    const { mutate, user } = useUser()
+    const { mutate, user, loggedOut } = useUser()
+    const router = useRouter()
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -110,6 +112,13 @@ export default function NavBar(): React.ReactElement {
     const handleDrawerClose = () => {
         setOpen(false)
     }
+
+    useEffect(() => {
+        if (loggedOut) {
+            router.push('/login')
+        }
+        console.log(loggedOut)
+    }, [loggedOut])
 
     return user ? (
         <div className={classes.root}>

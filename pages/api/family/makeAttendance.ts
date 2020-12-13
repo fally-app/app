@@ -38,7 +38,7 @@ export default async function handler(
                 const family_id = (decoded as TokenDecode)._id
 
                 const checkIfSaved = await FamilyReport.findOne({
-                    family_code: family_id,
+                    family: family_id,
                     sabbath_week: getCurrentWeekInTheYear()[1],
                     year: getCurrentWeekInTheYear()[0],
                 })
@@ -50,16 +50,16 @@ export default async function handler(
                     })
 
                 const data = new FamilyReport({
-                    family_code: family_id,
+                    family: family_id,
                     presents: req.body.presents,
                     studied7times: req.body.studied7times,
                     startedSabbath: req.body.startedSabbath,
                     visited: req.body.visited,
-                    wereVisted: req.body.wereVisted,
+                    wereVisited: req.body.wereVisited,
                     helped: req.body.helped,
                     wereHelped: req.body.wereHelped,
                     sick: req.body.sick,
-                    vistors: req.body.vistors,
+                    visitors: req.body.visitors,
                     absent: req.body.absent,
                     sabbath_week: getCurrentWeekInTheYear()[1],
                     year: getCurrentWeekInTheYear()[0],

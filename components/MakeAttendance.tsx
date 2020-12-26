@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'flex-end',
         },
         container: {
-            maxHeight: 440,
+            maxHeight: 485,
         },
     })
 )

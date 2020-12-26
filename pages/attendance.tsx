@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core'
 import dynamic from 'next/dynamic'
 import React from 'react'
 
-// import MakeAttendance from '../components/MakeAttendance'
 import NavBar from '../components/NavBar'
 import useRequest from '../lib/useRequest'
 import { ErrorResponse, UserResponse } from './home'

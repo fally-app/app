@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme: Theme) =>
             flexFlow: 'column nowrap',
             alignItems: 'flex-end',
         },
+        container: {
+            maxHeight: 440,
+        },
     })
 )
 
@@ -226,8 +229,8 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                     </Alert>
                 </Snackbar>
 
-                <TableContainer>
-                    <Table aria-label="simple table">
+                <TableContainer className={classes.container}>
+                    <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>No</TableCell>

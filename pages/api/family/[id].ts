@@ -19,7 +19,9 @@ export default async function handler(
         case 'GET':
             try {
                 const fam = await Family.findById(id)
-                const findMembers = await User.find({ family_id: id })
+                const findMembers = await User.find({ family_id: id }).sort({
+                    firstName: 1,
+                })
                 if (!fam) return res.status(400).json({ success: true })
                 res.status(200).json({
                     success: true,

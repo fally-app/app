@@ -36,7 +36,9 @@ export default async function handler(
                 const decoded = jwt.verify(token, process.env.JWT_SECRET)
                 const family_id = (decoded as TokenDecode)._id
 
-                const users = await User.find({ family_id })
+                const users = await User.find({ family_id }).sort({
+                    firstName: 1,
+                })
 
                 res.status(200).json({ success: true, data: users })
             } catch (error) {

@@ -45,7 +45,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
     const [name, setName] = React.useState<string>('')
     const [password, setPassword] = React.useState<string>('')
     const [isSnackOpen, setSnackOpen] = React.useState<boolean>(false)
-    const [erorr, setError] = React.useState<string>('')
+    const [error, setError] = React.useState<string>('')
 
     const classes = useStyles()
 
@@ -89,7 +89,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                 <Alert
                     onClose={() => setSnackOpen(prev => !prev)}
                     severity="error">
-                    {erorr}
+                    {error}
                 </Alert>
             </Snackbar>
             <Button

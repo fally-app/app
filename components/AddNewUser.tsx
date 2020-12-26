@@ -51,14 +51,14 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
     mutate,
 }): React.ReactElement => {
     const [openModal, setOpenModal] = React.useState(false)
-    const [gender, setgender] = React.useState('')
-    const [firstName, setfirstName] = React.useState<string>('')
-    const [lastName, setlastName] = React.useState<string>('')
+    const [gender, setGender] = React.useState('')
+    const [firstName, setFirstName] = React.useState<string>('')
+    const [lastName, setLastName] = React.useState<string>('')
     const [email, setEmail] = React.useState<string>('')
     const [className, setClassName] = React.useState<string>('')
     const [family, setFamily] = React.useState<string>()
     const [isSnackOpen, setSnackOpen] = React.useState<boolean>(false)
-    const [erorr, setError] = React.useState<string>('')
+    const [error, setError] = React.useState<string>('')
 
     const classes = useStyles()
 
@@ -69,7 +69,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
     }
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setgender(event.target.value as string)
+        setGender(event.target.value as string)
     }
 
     const handleFamilySelect = (
@@ -93,9 +93,9 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
         try {
             await axios.post('/api/users', data)
             mutate()
-            setgender('')
-            setfirstName('')
-            setlastName('')
+            setGender('')
+            setFirstName('')
+            setLastName('')
             setEmail('')
             setClassName('')
             setFamily('')
@@ -115,7 +115,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                 <Alert
                     onClose={() => setSnackOpen(prev => !prev)}
                     severity="error">
-                    {erorr}
+                    {error}
                 </Alert>
             </Snackbar>
             <Button
@@ -138,7 +138,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                         label="First Name"
                         type="text"
                         value={firstName}
-                        onChange={e => setfirstName(e.target.value)}
+                        onChange={e => setFirstName(e.target.value)}
                         fullWidth
                     />
 
@@ -148,7 +148,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                         label="Last Name"
                         type="text"
                         value={lastName}
-                        onChange={e => setlastName(e.target.value)}
+                        onChange={e => setLastName(e.target.value)}
                         fullWidth
                     />
 

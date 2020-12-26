@@ -63,11 +63,11 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
 }): React.ReactElement => {
     const classes = useStyles()
 
-    const [presents, setpresents] = React.useState<string[]>([])
-    const [vistors, setvistors] = React.useState<string>('0')
-    const [visit, setvistist] = React.useState<string[]>([])
-    const [visited, setvisited] = React.useState<string[]>([])
-    const [helped, sethelpded] = React.useState<string[]>([])
+    const [presents, setPresents] = React.useState<string[]>([])
+    const [visitors, setVisitors] = React.useState<string>('0')
+    const [visit, setVisit] = React.useState<string[]>([])
+    const [visited, setVisited] = React.useState<string[]>([])
+    const [helped, setHelped] = React.useState<string[]>([])
     const [washelped, setwashelpded] = React.useState<string[]>([])
     const [sick, setsick] = React.useState<string[]>([])
     const [studied, setstudied] = React.useState<string[]>([])
@@ -118,40 +118,40 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
 
     const handleHelp = id => {
         if (!helped.includes(id)) {
-            sethelpded([...helped, id])
+            setHelped([...helped, id])
         } else {
-            sethelpded(helped.filter(h => h != id))
+            setHelped(helped.filter(h => h != id))
         }
     }
 
     const handlePresence = id => {
         if (!presents.includes(id)) {
-            setpresents([...presents, id])
+            setPresents([...presents, id])
         } else {
-            setpresents(presents.filter(p => p != id))
+            setPresents(presents.filter(p => p != id))
         }
     }
 
     const handlewasvisted = id => {
         if (!visited.includes(id)) {
-            setvisited([...visited, id])
+            setVisited([...visited, id])
         } else {
-            setvisited(visited.filter(v => v != id))
+            setVisited(visited.filter(v => v != id))
         }
     }
 
     const handleVisit = id => {
         if (!visit.includes(id)) {
-            setvistist([...visit, id])
+            setVisit([...visit, id])
         } else {
-            setvistist(visit.filter(v => v != id))
+            setVisit(visit.filter(v => v != id))
         }
     }
 
     const handleSubmit = async () => {
         const data = {
             presents: presents.length,
-            vistors: parseInt(vistors),
+            vistors: parseInt(visitors),
             visited: visit.length,
             wereVisted: visited.length,
             helped: helped.length,
@@ -172,11 +172,11 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                 },
             })
 
-            setpresents([])
-            setvistors('')
-            setvistist([])
-            setvisited([])
-            sethelpded([])
+            setPresents([])
+            setVisitors('')
+            setVisit([])
+            setVisited([])
+            setHelped([])
             setwashelpded([])
             setsick([])
             setstudied([])
@@ -374,9 +374,9 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                     label="Number of visitors"
                     type="number"
                     variant="outlined"
-                    value={vistors}
+                    value={visitors}
                     InputProps={{ inputProps: { min: 0 } }}
-                    onChange={e => setvistors(e.target.value)}
+                    onChange={e => setVisitors(e.target.value)}
                     className={classes.divider}
                     size="small"
                 />

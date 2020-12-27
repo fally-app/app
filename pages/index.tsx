@@ -28,15 +28,14 @@ const App: React.FC = (): React.ReactElement => {
             <div
                 style={{
                     backgroundImage: `url('/bg.jpg')`,
-                    width: `100vw`,
-                    height: '100vh',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     display: 'flex',
                     justifyContent: 'center',
                     flexDirection: 'column',
                     alignItems: 'center',
-                }}>
+                }}
+                className=" w-screen h-screen">
                 {/* <Typography
                     variant="h2"
                     style={{ marginBottom: '2rem', color: '#fff' }}>

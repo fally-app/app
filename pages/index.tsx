@@ -22,7 +22,7 @@ const App: React.FC = (): React.ReactElement => {
     return (
         <>
             <Head>
-                <title>SDA - Sabbath School</title>
+                <title>RCA - Adventist Church</title>
             </Head>
 
             <div
@@ -37,7 +37,7 @@ const App: React.FC = (): React.ReactElement => {
                     flexDirection: 'column',
                     alignItems: 'center',
                 }}>
-                <Typography
+                {/* <Typography
                     variant="h2"
                     style={{ marginBottom: '2rem', color: '#fff' }}>
                     Welcome to the app
@@ -46,7 +46,7 @@ const App: React.FC = (): React.ReactElement => {
                     <Button variant="contained" color="primary">
                         Login here
                     </Button>
-                </Link>
+                </Link> */}
             </div>
         </>
     )

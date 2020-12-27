@@ -14,20 +14,18 @@
 -   [ ] create an api to change the status of the user
 -   [ ] add check button to activate and deactivate user
 
-
 ### Reviews
 
-- Persisting previous route on refresh
-- Dark mode enabling
+-   Persisting previous route on refresh
+-   Dark mode enabling
 
 # Current Issues
 
-- [ ] Persisting user's on route when refresh is done
-- [ ] on attendance page make headers sticky on on school
-- [ ] Fix table layouts  on reports
-
+-   [ ] Persisting user's on route when refresh is done
+-   [ ] on attendance page make headers sticky on on school
+-   [ ] Fix table layouts on reports
 
 # Future
 
-- Add Blogging like thing
-- Edit home page to be more attractive
+-   Add Blogging like thing
+-   Edit home page to be more attractive

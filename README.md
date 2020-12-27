@@ -11,7 +11,7 @@
 
 
 
-- [ ] Redesign the ui for the home page
+- [x] Redesign the ui for the home page
 - [ ] Fix typos for the variable names
 - [ ] Replace mongoose with just [mongoDb driver](https://www.npmjs.com/package/mongodb)
 - [ ] use [next-connect](https://www.npmjs.com/package/next-connect) middleware for api-routes

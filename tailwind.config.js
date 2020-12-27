@@ -7,6 +7,9 @@ module.exports = {
                 'hero-image': "url('/bg.jpg')",
             }),
         },
+        fontFamily: {
+            poppins: 'Poppins',
+        },
     },
     variants: {
         extend: {},

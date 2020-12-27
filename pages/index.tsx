@@ -26,7 +26,7 @@ const App: React.FC = (): React.ReactElement => {
                 <title>RCA - Adventist Church</title>
             </Head>
 
-            <div className=" w-screen h-screen bg-hero-image bg-no-repeat bg-cover">
+            <div className=" w-screen h-screen bg-hero-image bg-no-repeat bg-cover font-poppins">
                 {/* <Typography
                     variant="h2"
                     style={{ marginBottom: '2rem', color: '#fff' }}>
@@ -79,24 +79,27 @@ const App: React.FC = (): React.ReactElement => {
                 </nav>
                 <main className="flex justify-around items-center h-4/5">
                     <section>
-                        <h1 className="font-bold text-white text-4xl w-80 capitalize mb-8">
+                        <h1 className="font-bold text-white text-4xl w-96 leading-relaxed capitalize mb-8 font-poppins">
                             The holy spirit Inside Gods People
                         </h1>
                         {/* #0074ff */}
-                        <button className=" bg-blue-600 text-white py-4 px-12 rounded-full">
-                            Read More
-                        </button>
+                        <Link href="/blog">
+                            <a className=" bg-blue-600 text-white py-4 px-12 rounded-full font-poppins font-bold">
+                                Read More
+                            </a>
+                        </Link>
                     </section>
                     <section>
                         <Image
                             src="/animal-bg.jpg"
-                            width={400}
-                            height={400}
+                            width={600}
+                            height={500}
+                            priority={true}
                             layout="responsive"
                             alt="current post"
                             className=" rounded-md"
                         />
-                        <p className=" text-white pt-4 text-lg">
+                        <p className=" text-white pt-4 text-lg font-poppins">
                             God is Good all the time
                         </p>
                     </section>

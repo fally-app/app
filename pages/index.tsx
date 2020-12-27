@@ -1,6 +1,6 @@
-import { Button, Typography } from '@material-ui/core'
+// import { Button, Typography } from '@material-ui/core'
 import Head from 'next/head'
-import Link from 'next/link'
+// import Link from 'next/link'
 import Router from 'next/router'
 import { useEffect } from 'react'
 
@@ -25,17 +25,7 @@ const App: React.FC = (): React.ReactElement => {
                 <title>RCA - Adventist Church</title>
             </Head>
 
-            <div
-                style={{
-                    backgroundImage: `url('/bg.jpg')`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-                className=" w-screen h-screen">
+            <div className=" w-screen h-screen bg-hero-image bg-no-repeat bg-cover">
                 {/* <Typography
                     variant="h2"
                     style={{ marginBottom: '2rem', color: '#fff' }}>

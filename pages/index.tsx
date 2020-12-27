@@ -83,7 +83,7 @@ const App: React.FC = (): React.ReactElement => {
                             The holy spirit Inside Gods People
                         </h1>
                         {/* #0074ff */}
-                        <button className=" bg-blue-600 text-white py-8 px-12 rounded-full">
+                        <button className=" bg-blue-600 text-white py-4 px-12 rounded-full">
                             Read More
                         </button>
                     </section>

@@ -1,5 +1,6 @@
 // import { Button, Typography } from '@material-ui/core'
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import Router from 'next/router'
 import { useEffect } from 'react'
@@ -76,6 +77,30 @@ const App: React.FC = (): React.ReactElement => {
                         </Link>
                     </div>
                 </nav>
+                <main className="flex justify-around items-center h-4/5">
+                    <section>
+                        <h1 className="font-bold text-white text-4xl w-80 capitalize mb-8">
+                            The holy spirit Inside Gods People
+                        </h1>
+                        {/* #0074ff */}
+                        <button className=" bg-blue-600 text-white py-8 px-12 rounded-full">
+                            Read More
+                        </button>
+                    </section>
+                    <section>
+                        <Image
+                            src="/animal-bg.jpg"
+                            width={400}
+                            height={400}
+                            layout="responsive"
+                            alt="current post"
+                            className=" rounded-md"
+                        />
+                        <p className=" text-white pt-4 text-lg">
+                            God is Good all the time
+                        </p>
+                    </section>
+                </main>
             </div>
         </>
     )

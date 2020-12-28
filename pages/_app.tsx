@@ -1,6 +1,4 @@
-// import 'tailwindcss/tailwind.css'
-
-import '../tailwind.css'
+import '../styles/tailwind.css'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'

@@ -181,6 +181,8 @@ export const Report: React.FC<ReportProps> = ({
 export default Report
 
 export const getServerSideProps: GetServerSideProps = async () => {
+    //TODO: Bring all mongodb logic into this file
+
     const result = await axios.get(
         process.env.SERVER_BASE_URL + '/api/family/attendance'
     )

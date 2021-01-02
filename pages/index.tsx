@@ -46,7 +46,7 @@ const App: React.FC = (): React.ReactElement => {
                         <Link href="/blog">
                             <a>Blog</a>
                         </Link>
-                        <Link href="/signin">
+                        <Link href="/login">
                             <a>Signin</a>
                         </Link>
                         <Link href="/search">

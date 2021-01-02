@@ -4,7 +4,7 @@ global.mongo = global.mongo || {}
 
 export const connectToDB = async () => {
     if (!global.mongo.client) {
-        global.mongo.client = new MongoClient(process.env.DATABASE_URL, {
+        global.mongo.client = new MongoClient(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             bufferMaxEntries: 0,
@@ -16,7 +16,7 @@ export const connectToDB = async () => {
         console.log('connected to DB')
     }
 
-    const db: Db = global.mongo.client.db('known')
+    const db: Db = global.mongo.client.db('SabbathSoft')
 
     return { db, dbClient: global.mongo.client }
 }

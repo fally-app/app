@@ -1,25 +1,8 @@
-// import { Button, Typography } from '@material-ui/core'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import Router from 'next/router'
-import { useEffect } from 'react'
-
-import useUser from '../lib/useUser'
 
 const App: React.FC = (): React.ReactElement => {
-    const { user } = useUser()
-
-    useEffect(() => {
-        if (user) {
-            if (user?.user_type === 'ADMIN') {
-                Router.replace('/admin')
-            } else if (user?.user_type === 'FAMILY') {
-                Router.replace('/home')
-            }
-        }
-    }, [user])
-
     return (
         <>
             <Head>
@@ -27,16 +10,6 @@ const App: React.FC = (): React.ReactElement => {
             </Head>
 
             <div className=" w-screen h-screen bg-hero-image bg-no-repeat bg-cover font-poppins">
-                {/* <Typography
-                    variant="h2"
-                    style={{ marginBottom: '2rem', color: '#fff' }}>
-                    Welcome to the app
-                </Typography>
-                <Link href="/login" passHref>
-                    <Button variant="contained" color="primary">
-                        Login here
-                    </Button>
-                </Link> */}
                 <nav className=" flex justify-around pt-4">
                     <h3 className="text-white text-3xl font-bold">SDA</h3>
                     <div className=" flex justify-between gap-8 text-white">

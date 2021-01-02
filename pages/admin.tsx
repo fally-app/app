@@ -8,7 +8,7 @@ import useSWR from 'swr'
 import AddNewUser from '../components/AddNewUser'
 import NavBar from '../components/NavBar'
 import UsersAdmin from '../components/UserAdmin'
-import { connectToDB, family } from '../db'
+import { connectToDB, family, user } from '../db'
 import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
@@ -107,14 +107,22 @@ export function admin({
 export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props: any = {}
-    const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
+    // const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
     // const families = await axios.get(
     //     process.env.SERVER_BASE_URL + '/api/family'
     // )
 
     const { db } = await connectToDB()
-    props.families = await family.getFamilies(db)
+    const families = await family.getFamilies(db)
+
+    props.families = families
+
+    const users = await user.getAllUsers(db)
+    props.users = users
+
+    console.log(users)
 
     return { props }
 }

@@ -14,22 +14,22 @@ import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
 import { Gender, IStatus } from '../models/User'
 
-interface UserResponse {
-    _id: string
-    firstName: string
-    lastName: string
-    email?: string
-    family_id: string
-    gender?: Gender
-    status: IStatus
-    class_level: string
-    joined_at: string
-}
+// interface UserResponse {
+//     _id: string
+//     firstName: string
+//     lastName: string
+//     email?: string
+//     family_id: string
+//     gender?: Gender
+//     status: IStatus
+//     class_level: string
+//     joined_at: string
+// }
 
-interface ErrorResponse {
-    success: boolean
-    error: string
-}
+// interface ErrorResponse {
+//     success: boolean
+//     error: string
+// }
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -74,14 +74,12 @@ export const admin: React.FC<AdminProps> = ({ users, families }) => {
     const { loggedOut } = useUser()
     const classes = useStyles()
 
-    const { data, mutate } = useSWR('/api/users', fetcher, { users })
+    const { data, mutate } = useSWR('/api/users', fetcher, {
+        initialData: users,
+    })
 
     useEffect(() => {
         if (loggedOut) {
-            Router.replace('/login')
-        }
-
-        if (!data.data) {
             Router.replace('/login')
         }
     }, [loggedOut])
@@ -94,11 +92,7 @@ export const admin: React.FC<AdminProps> = ({ users, families }) => {
             <div className={classes.wrapper}>
                 <AddNewUser mutate={mutate} families={families} />
 
-                <UsersAdmin
-                    mutate={mutate}
-                    users={data.data}
-                    families={families}
-                />
+                <UsersAdmin mutate={mutate} users={data} families={families} />
             </div>
         </>
     )

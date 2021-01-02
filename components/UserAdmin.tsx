@@ -31,10 +31,7 @@ interface UserType {
     firstName: string
     lastName: string
     email?: string
-    family_id: {
-        _id: string
-        name: string
-    }
+    family_id: string
     gender?: Gender
     status: IStatus
     class_level: string
@@ -244,7 +241,7 @@ export const Users: React.FC<UsersProps> = ({
                                             {user.gender}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
-                                            {user.family_id?.name}
+                                            {user.family_id}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
                                             {user.class_level}
@@ -258,12 +255,14 @@ export const Users: React.FC<UsersProps> = ({
                                             />
                                         </TableCell>
                                         <TableCell>
-                                            <UpdateUser
-                                                user_family={user.family_id._id}
+                                            {/* <UpdateUser
+                                                user_family={
+                                                    user.family_id?._id
+                                                }
                                                 user={user}
                                                 families={families}
                                                 mutate={mutate}
-                                            />
+                                            /> */}
                                         </TableCell>
                                         <TableCell>
                                             <button

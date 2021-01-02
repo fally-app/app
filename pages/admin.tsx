@@ -101,20 +101,13 @@ export const admin: React.FC<AdminProps> = ({ users, families }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props: any = {}
-    // const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
-    // const families = await axios.get(
-    //     process.env.SERVER_BASE_URL + '/api/family'
-    // )
 
     const { db } = await connectToDB()
-    const families = await family.getFamilies(db)
+    props.families = await family.getFamilies(db)
 
-    props.families = JSON.stringify(families)
+    props.users = await user.getAllUsers(db)
 
-    const users = await user.getAllUsers(db)
-    props.users = JSON.stringify(users)
-
-    return { props }
+    return { props: JSON.parse(JSON.stringify(props)) }
 }
 
 export default admin

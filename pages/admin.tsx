@@ -122,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const users = await user.getAllUsers(db)
     props.users = users
 
-    console.log(users)
+    console.log(props)
 
     return { props }
 }

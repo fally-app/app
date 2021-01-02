@@ -8,6 +8,7 @@ import useSWR from 'swr'
 import AddNewUser from '../components/AddNewUser'
 import NavBar from '../components/NavBar'
 import UsersAdmin from '../components/UserAdmin'
+import { connectToDB, family } from '../db'
 import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
@@ -56,16 +57,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface AdminProps {
     initialData: UserResponse
-    families: {
-        success: true
-        data: [
-            {
-                _id: string
-                user_type: IFamilyTypes
-                name: string
-            }
-        ]
-    }
+    families: [
+        {
+            _id: string
+            user_type: IFamilyTypes
+            name: string
+        }
+    ]
 }
 
 export function admin({
@@ -95,12 +93,12 @@ export function admin({
         <>
             <NavBar />
             <div className={classes.wrapper}>
-                <AddNewUser mutate={mutate} families={families.data} />
+                <AddNewUser mutate={mutate} families={families} />
 
                 <UsersAdmin
                     mutate={mutate}
                     users={data.data}
-                    families={families.data}
+                    families={families}
                 />
             </div>
         </>
@@ -109,15 +107,14 @@ export function admin({
 export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
+    const props: any = {}
     const data = await axios.get(process.env.SERVER_BASE_URL + '/api/users')
-    const families = await axios.get(
-        process.env.SERVER_BASE_URL + '/api/family'
-    )
+    // const families = await axios.get(
+    //     process.env.SERVER_BASE_URL + '/api/family'
+    // )
 
-    return {
-        props: {
-            families: families.data,
-            initialData: data.data,
-        },
-    }
+    const { db } = await connectToDB()
+    props.families = await family.getFamilies(db)
+
+    return { props }
 }

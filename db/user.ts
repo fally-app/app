@@ -5,5 +5,11 @@ export const getUserById = async (db: Db, id: string) => {
 }
 
 export const getAllUsers = async (db: Db) => {
-    return db.collection('users').find()
+    return db
+        .collection('users')
+        .find({ status: 'ACTIVE' })
+        .sort({
+            firstName: 1,
+        })
+        .toArray()
 }

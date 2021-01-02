@@ -256,7 +256,9 @@ export const Users: React.FC<UsersProps> = ({
                                         </TableCell>
                                         <TableCell>
                                             <UpdateUser
-                                                user_family={user.family_id._id}
+                                                user_family={
+                                                    user.family_id?._id
+                                                }
                                                 user={user}
                                                 families={families}
                                                 mutate={mutate}

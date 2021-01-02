@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import User, { IStatus } from '../../../models/User'
+import { connectToDB, user } from '../../../db'
+import User from '../../../models/User'
 import connectDB from '../../../utils/connectDB'
 import { codeGenerator } from '../../../utils/Helpers'
 
@@ -14,12 +15,9 @@ export default async function handler(
     switch (method) {
         case 'GET':
             try {
-                const Users = await User.find({ status: IStatus.ACTIVE })
-                    .sort({
-                        firstName: 1,
-                    })
-                    .populate('family_id')
-                res.status(200).json({ success: false, data: Users })
+                const { db } = await connectToDB()
+                const users = await user.getAllUsers(db)
+                res.status(200).send(users)
             } catch (error) {
                 res.status(400).json({ success: false, error })
             }

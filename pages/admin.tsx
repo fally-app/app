@@ -15,23 +15,15 @@ import { IFamilyTypes } from '../models/Family'
 import { Gender, IStatus } from '../models/User'
 
 interface UserResponse {
-    success: boolean
-    data: [
-        {
-            _id: string
-            firstName: string
-            lastName: string
-            email?: string
-            family_id: {
-                _id: string
-                name: string
-            }
-            gender?: Gender
-            status: IStatus
-            class_level: string
-            joined_at: string
-        }
-    ]
+    _id: string
+    firstName: string
+    lastName: string
+    email?: string
+    family_id: string
+    gender?: Gender
+    status: IStatus
+    class_level: string
+    joined_at: string
 }
 
 interface ErrorResponse {
@@ -56,7 +48,19 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface AdminProps {
-    initialData: UserResponse
+    users: [
+        {
+            _id: string
+            firstName: string
+            lastName: string
+            email?: string
+            family_id: string
+            gender?: Gender
+            status: IStatus
+            class_level: string
+            joined_at: string
+        }
+    ]
     families: [
         {
             _id: string
@@ -66,18 +70,11 @@ interface AdminProps {
     ]
 }
 
-export function admin({
-    initialData,
-    families,
-}: AdminProps): React.ReactElement {
+export const admin: React.FC<AdminProps> = ({ users, families }) => {
     const { loggedOut } = useUser()
     const classes = useStyles()
 
-    const { data, mutate } = useSWR<UserResponse, ErrorResponse>(
-        '/api/users',
-        fetcher,
-        { initialData }
-    )
+    const { data, mutate } = useSWR('/api/users', fetcher, { users })
 
     useEffect(() => {
         if (loggedOut) {
@@ -88,6 +85,8 @@ export function admin({
             Router.replace('/login')
         }
     }, [loggedOut])
+
+    console.log(data)
 
     return (
         <>
@@ -104,7 +103,6 @@ export function admin({
         </>
     )
 }
-export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -117,12 +115,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const { db } = await connectToDB()
     const families = await family.getFamilies(db)
 
-    props.families = families
+    props.families = JSON.stringify(families)
 
     const users = await user.getAllUsers(db)
-    props.users = users
-
-    console.log(props)
+    props.users = JSON.stringify(users)
 
     return { props }
 }
+
+export default admin

@@ -2,7 +2,7 @@ import { Db } from 'mongodb'
 
 export const getCurrentReport = async (db: Db) => {
     return db
-        .collection('reports')
+        .collection('familyreports')
         .aggregate([
             {
                 $lookup: {
@@ -14,4 +14,5 @@ export const getCurrentReport = async (db: Db) => {
             },
         ])
         .sort({ percentage: -1 })
+        .toArray()
 }

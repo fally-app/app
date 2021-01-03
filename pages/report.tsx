@@ -12,6 +12,7 @@ import { GetServerSideProps } from 'next'
 import React from 'react'
 
 import NavBar from '../components/NavBar'
+import { connectToDB, report } from '../db'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -181,15 +182,12 @@ export const Report: React.FC<ReportProps> = ({
 export default Report
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    //TODO: Bring all mongodb logic into this file
-
-    const result = await axios.get(
-        process.env.SERVER_BASE_URL + '/api/family/attendance'
-    )
+    const { db } = await connectToDB()
+    const reportData = await report.getCurrentReport(db)
 
     return {
         props: {
-            report: result.data.data,
+            report: reportData,
         },
     }
 }

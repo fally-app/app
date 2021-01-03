@@ -13,23 +13,6 @@ import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
 import { UserType } from '../utils/types'
 
-// interface UserResponse {
-//     _id: string
-//     firstName: string
-//     lastName: string
-//     email?: string
-//     family_id: string
-//     gender?: Gender
-//     status: IStatus
-//     class_level: string
-//     joined_at: string
-// }
-
-// interface ErrorResponse {
-//     success: boolean
-//     error: string
-// }
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {

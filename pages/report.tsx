@@ -12,7 +12,7 @@ import { GetServerSideProps } from 'next'
 import React from 'react'
 
 import NavBar from '../components/NavBar'
-import { connectToDB } from '../db'
+import { connectToDB, report } from '../db'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -188,7 +188,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
         process.env.SERVER_BASE_URL + '/api/family/attendance'
     )
 
-    // const {db} = await connectToDB()
+    const { db } = await connectToDB()
+    const reportData = await report.getCurrentReport(db)
+
+    console.log(reportData)
 
     return {
         props: {

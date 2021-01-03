@@ -1,11 +1,11 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
+import dynamic from 'next/dynamic'
 import Router from 'next/router'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 
 import AddNewUser from '../components/AddNewUser'
-import NavBar from '../components/NavBar'
 import UsersAdmin from '../components/UserAdmin'
 import { connectToDB, family, user } from '../db'
 import fetcher from '../lib/fetch'
@@ -40,6 +40,8 @@ interface AdminProps {
     ]
 }
 
+const NavBar = dynamic(() => import('../components/NavBar'), { ssr: false })
+
 export const admin: React.FC<AdminProps> = ({ users, families }) => {
     const { loggedOut } = useUser()
     const classes = useStyles()
@@ -53,8 +55,6 @@ export const admin: React.FC<AdminProps> = ({ users, families }) => {
             Router.replace('/login')
         }
     }, [loggedOut])
-
-    console.log(data)
 
     return (
         <>

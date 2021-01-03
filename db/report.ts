@@ -24,3 +24,10 @@ export const getCurrentReport = async (db: Db) => {
         ])
         .toArray()
 }
+
+export const addReport = async (db: Db, report) => {
+    return db
+        .collection('familyreports')
+        .insertOne(report)
+        .then(({ ops }) => ops[0])
+}

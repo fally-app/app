@@ -8,6 +8,14 @@ export const getAllUsers = async (db: Db) => {
     return db
         .collection('users')
         .aggregate([
+            {
+                $lookup: {
+                    from: 'families',
+                    localField: 'family_id',
+                    foreignField: '_id',
+                    as: 'family',
+                },
+            },
             { $match: { status: 'ACTIVE' } },
             { $sort: { firstName: 1 } },
         ])

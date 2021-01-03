@@ -104,7 +104,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const { db } = await connectToDB()
     props.families = await family.getFamilies(db)
 
-    props.users = await user.getAllUsers(db)
+    const users = await user.getAllUsers(db)
+
+    users.forEach(element => console.log(element.family))
+    props.users = users
 
     return { props: JSON.parse(JSON.stringify(props)) }
 }

@@ -11,24 +11,7 @@ import { connectToDB, family, user } from '../db'
 import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
-import { Gender, IStatus } from '../models/User'
-
-// interface UserResponse {
-//     _id: string
-//     firstName: string
-//     lastName: string
-//     email?: string
-//     family_id: string
-//     gender?: Gender
-//     status: IStatus
-//     class_level: string
-//     joined_at: string
-// }
-
-// interface ErrorResponse {
-//     success: boolean
-//     error: string
-// }
+import { UserType } from '../utils/types'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -47,19 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface AdminProps {
-    users: [
-        {
-            _id: string
-            firstName: string
-            lastName: string
-            email?: string
-            family_id: string
-            gender?: Gender
-            status: IStatus
-            class_level: string
-            joined_at: string
-        }
-    ]
+    users: UserType[]
     families: [
         {
             _id: string

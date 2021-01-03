@@ -23,20 +23,9 @@ import LastPageIcon from '@material-ui/icons/LastPage'
 import axios from 'axios'
 import React from 'react'
 
-import { Gender, IStatus } from '../models/User'
+import { UserType } from '../utils/types'
 import UpdateUser from './UpdateUser'
 
-interface UserType {
-    _id: string
-    firstName: string
-    lastName: string
-    email?: string
-    family_id: string
-    gender?: Gender
-    status: IStatus
-    class_level: string
-    joined_at: string
-}
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -241,7 +230,7 @@ export const Users: React.FC<UsersProps> = ({
                                             {user.gender}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
-                                            {user.family_id}
+                                            {user.family[0].name}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
                                             {user.class_level}
@@ -255,14 +244,12 @@ export const Users: React.FC<UsersProps> = ({
                                             />
                                         </TableCell>
                                         <TableCell>
-                                            {/* <UpdateUser
-                                                user_family={
-                                                    user.family_id?._id
-                                                }
+                                            <UpdateUser
+                                                user_family={user.family[0]._id}
                                                 user={user}
                                                 families={families}
                                                 mutate={mutate}
-                                            /> */}
+                                            />
                                         </TableCell>
                                         <TableCell>
                                             <button

@@ -7,9 +7,17 @@ export const getUserById = async (db: Db, id: string) => {
 export const getAllUsers = async (db: Db) => {
     return db
         .collection('users')
-        .find({ status: 'ACTIVE' })
-        .sort({
-            firstName: 1,
-        })
+        .aggregate([
+            {
+                $lookup: {
+                    from: 'families',
+                    localField: 'family_id',
+                    foreignField: '_id',
+                    as: 'family',
+                },
+            },
+            { $match: { status: 'ACTIVE' } },
+            { $sort: { firstName: 1 } },
+        ])
         .toArray()
 }

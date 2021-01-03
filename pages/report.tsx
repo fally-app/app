@@ -191,7 +191,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const { db } = await connectToDB()
     const reportData = await report.getCurrentReport(db)
 
-    reportData.forEach(family => console.log(family.family))
+    console.log(reportData)
 
     return {
         props: {

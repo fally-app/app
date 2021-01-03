@@ -19,23 +19,10 @@ import axios from 'axios'
 import React from 'react'
 
 import { IFamilyTypes } from '../models/Family'
-import { Gender, IStatus } from '../models/User'
+import { UserType } from '../utils/types'
 
 interface UpdateUserProps {
-    user: {
-        _id: string
-        firstName: string
-        lastName: string
-        email?: string
-        family_id: {
-            _id: string
-            name: string
-        }
-        gender?: Gender
-        status: IStatus
-        class_level: string
-        joined_at: string
-    }
+    user: UserType
     families: [
         {
             _id: string

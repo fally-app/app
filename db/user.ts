@@ -26,8 +26,9 @@ export const getAllUsers = async (db: Db) => {
 }
 
 export const addUser = async (db: Db, user) => {
-    return db
+    const newUser = await db
         .collection('users')
         .insertOne({ ...user, code: codeGenerator('user') })
         .then(({ ops }) => ops[0])
+    return newUser
 }

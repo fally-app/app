@@ -15,6 +15,11 @@ handler.get(async (req: Request, res) => {
     res.send({ data: users })
 })
 
+handler.post(async (req: Request, res) => {
+    const newUser = await user.addUser(req.db, req.body)
+    res.send({ data: newUser })
+})
+
 export default handler
 // export default async function handler(
 //     req: NextApiRequest,

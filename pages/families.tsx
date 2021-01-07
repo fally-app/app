@@ -1,5 +1,4 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
-import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import Router from 'next/router'
 import { useEffect } from 'react'

@@ -8,6 +8,8 @@ import useSWR from 'swr'
 import AddNewFamily from '../components/AddNewFam'
 import FamiliesAdmin from '../components/FamiliesAdmin'
 import NavBar from '../components/NavBar'
+import { family } from '../db'
+import { connectToDB } from '../db/connect'
 import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
@@ -83,13 +85,12 @@ export const admin: React.FC<AdminProps> = ({
 export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const families = await axios.get(
-        process.env.SERVER_BASE_URL + '/api/family'
-    )
+    const { db } = await connectToDB()
+    const families = await family.getFamilies(db)
 
     return {
         props: {
-            initialData: families.data,
+            initialData: JSON.parse(JSON.stringify(families)),
         },
     }
 }

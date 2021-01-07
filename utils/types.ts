@@ -26,10 +26,8 @@ export interface UserType {
     status: IStatus
     class_level: string
     joined_at: string
-    family: [
-        {
-            _id: string
-            name: string
-        }
-    ]
+    family: {
+        _id: string
+        name: string
+    }
 }

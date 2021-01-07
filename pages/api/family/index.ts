@@ -26,9 +26,10 @@ export default async function handler(
                 const checkExists = await Family.findOne({ name })
 
                 if (checkExists)
-                    return res
-                        .status(404)
-                        .json({ success: false, error: 'Family arledy exists' })
+                    return res.status(404).json({
+                        success: false,
+                        error: 'Family already exists',
+                    })
 
                 const newFam = {
                     name,

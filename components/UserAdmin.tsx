@@ -230,7 +230,7 @@ export const Users: React.FC<UsersProps> = ({
                                             {user.gender}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
-                                            {user.family[0].name}
+                                            {user.family.name}
                                         </TableCell>
                                         <TableCell component="th" scope="row">
                                             {user.class_level}
@@ -245,7 +245,7 @@ export const Users: React.FC<UsersProps> = ({
                                         </TableCell>
                                         <TableCell>
                                             <UpdateUser
-                                                user_family={user.family[0]._id}
+                                                user_family={user.family._id}
                                                 user={user}
                                                 families={families}
                                                 mutate={mutate}

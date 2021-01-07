@@ -27,6 +27,7 @@ interface AddNewUserProps {
             name: string
         }
     ]
+
     mutate: () => void
 }
 
@@ -134,7 +135,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                 <DialogContent>
                     <TextField
                         margin="dense"
-                        id="fristname"
+                        id="firstname"
                         label="First Name"
                         type="text"
                         value={firstName}
@@ -181,7 +182,7 @@ export const FormDialog: React.FC<AddNewUserProps> = ({
                             value={gender}
                             onChange={handleChange}>
                             <MenuItem value="Male">Male</MenuItem>
-                            <MenuItem value="Female">Famale</MenuItem>
+                            <MenuItem value="Female">Female</MenuItem>
                         </Select>
                     </div>
 

@@ -10,6 +10,7 @@ export const getAllUsers = async (db: Db) => {
     return db
         .collection('users')
         .aggregate([
+            { $match: { status: 'ACTIVE' } },
             {
                 $lookup: {
                     from: 'families',
@@ -18,15 +19,16 @@ export const getAllUsers = async (db: Db) => {
                     as: 'family',
                 },
             },
-            { $match: { status: 'ACTIVE' } },
+            { $unwind: '$family' },
             { $sort: { firstName: 1 } },
         ])
         .toArray()
 }
 
 export const addUser = async (db: Db, user) => {
-    return db
+    const newUser = await db
         .collection('users')
         .insertOne({ ...user, code: codeGenerator('user') })
         .then(({ ops }) => ops[0])
+    return newUser
 }

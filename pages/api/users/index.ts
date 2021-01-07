@@ -14,6 +14,8 @@ handler.get(async (req: Request, res) => {
     const users = await user.getAllUsers(req.db)
     res.send({ data: users })
 })
+
+export default handler
 // export default async function handler(
 //     req: NextApiRequest,
 //     res: NextApiResponse

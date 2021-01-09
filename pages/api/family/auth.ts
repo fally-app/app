@@ -18,6 +18,8 @@ handler.post('/login', async (req, res) => {
         req.query.code as string
     )
 
+    console.log('check family ', checkFamily)
+
     const isPasswordValid = await bcrypt.compare(
         req.body.password,
         checkFamily.password
@@ -31,3 +33,5 @@ handler.post('/login', async (req, res) => {
         data: createToken(checkFamily),
     })
 })
+
+export default handler

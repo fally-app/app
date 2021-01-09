@@ -13,19 +13,15 @@ export default async (req, res, next) => {
     ) {
         token = req.headers.authorization.split(' ')[1]
 
-        if (!token) {
-            return res
-                .status(404)
-                .json({ success: false, error: 'Not token passed' })
+        if (token) {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            const user = await family.getFamilyById(
+                db,
+                (decoded as TokenDecode)._id
+            )
+
+            req.user = user
         }
-
-        const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        const user = await family.getFamilyById(
-            db,
-            (decoded as TokenDecode)._id
-        )
-
-        req.user = user
 
         next()
     } else {

@@ -8,7 +8,6 @@ import useSWR from 'swr'
 import AddNewUser from '../components/AddNewUser'
 import UsersAdmin from '../components/UserAdmin'
 import { connectToDB, family, user } from '../db'
-import fetcher from '../lib/fetch'
 import useUser from '../lib/useUser'
 import { IFamilyTypes } from '../models/Family'
 import { UserType } from '../utils/types'
@@ -42,6 +41,8 @@ interface AdminProps {
 
 const NavBar = dynamic(() => import('../components/NavBar'), { ssr: false })
 
+const fetcher = url => fetch(url).then(r => r.json())
+
 export const admin: React.FC<AdminProps> = ({ users, families }) => {
     const { loggedOut } = useUser()
     const classes = useStyles()
@@ -55,6 +56,8 @@ export const admin: React.FC<AdminProps> = ({ users, families }) => {
             Router.replace('/login')
         }
     }, [loggedOut])
+
+    console.log(data)
 
     return (
         <>

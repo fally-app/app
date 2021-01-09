@@ -50,8 +50,6 @@ export const admin: React.FC<AdminProps> = ({
         }
     }, [loggedOut])
 
-    console.log(data)
-
     return (
         families.length > 0 && (
             <>

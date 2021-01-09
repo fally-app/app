@@ -32,3 +32,7 @@ export const addUser = async (db: Db, user) => {
         .then(({ ops }) => ops[0])
     return newUser
 }
+
+export const findUserById = async (db: Db, _id: string) => {
+    return db.collection('users').findOne({ _id })
+}

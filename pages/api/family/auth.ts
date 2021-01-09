@@ -12,7 +12,7 @@ const handler = nc<Request, NextApiResponse>({ onError })
 
 handler.use(middleware)
 
-handler.post('/login', async (req, res) => {
+handler.use('/login', async (req, res) => {
     const checkFamily = await family.getFamilyByCode(
         req.db,
         req.query.code as string

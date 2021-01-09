@@ -117,7 +117,6 @@ export default function NavBar(): React.ReactElement {
         if (loggedOut) {
             router.push('/login')
         }
-        console.log(loggedOut)
     }, [loggedOut])
 
     return user ? (

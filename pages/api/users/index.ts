@@ -17,7 +17,6 @@ handler.get(async (req, res) => {
 
 handler.post(async (req, res) => {
     const newUser = await user.addUser(req.db, req.body)
-    console.log(newUser)
     res.status(201).send({ success: true, data: newUser })
 })
 

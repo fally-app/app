@@ -31,8 +31,7 @@ handler.put(async (req, res) => {
 })
 
 handler.delete(async (req, res) => {
-    const returned = await user.deleteUser(req.db, req.query.id as string)
-    console.log(returned)
+    await user.deleteUser(req.db, req.query.id as string)
     res.status(200).json({ success: true, data: {} })
 })
 

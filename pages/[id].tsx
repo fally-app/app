@@ -29,7 +29,7 @@ export const profile: React.FC = (): React.ReactElement => {
                 setFamily(result.data.data)
                 setFamMembers(result.data.members)
             } catch (error) {
-                console.log(error)
+                throw new Error(error)
             }
         }
         getProfile()

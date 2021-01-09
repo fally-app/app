@@ -57,8 +57,6 @@ export const admin: React.FC<AdminProps> = ({ users, families }) => {
         }
     }, [loggedOut])
 
-    console.log(data)
-
     return (
         <>
             <NavBar />

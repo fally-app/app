@@ -25,7 +25,6 @@ import React from 'react'
 import { IFamilyTypes } from '../models/Family'
 import { IStatus } from '../models/User'
 import UpdateFam from './UpdateFam'
-// import UpdateUser from './UpdateUser'
 
 interface IFamilyType {
     _id: string

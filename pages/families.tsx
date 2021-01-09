@@ -28,11 +28,6 @@ interface UserResponse {
     ]
 }
 
-interface ErrorResponse {
-    success: boolean
-    error: string
-}
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {

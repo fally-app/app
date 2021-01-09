@@ -59,7 +59,7 @@ export const home = (): React.ReactElement => {
     }
 
     const { data: users } = useRequest<UserResponse, ErrorResponse>({
-        url: '/api/family/current',
+        url: '/api/family/me',
         headers: {
             Authorization: `Bearer ${token}`,
         },

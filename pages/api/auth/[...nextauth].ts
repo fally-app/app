@@ -11,8 +11,7 @@ export default (req, res) =>
         },
         providers: [
             Providers.Credentials({
-                authorize: async credentials => {
-                    console.log(credentials)
+                authorize: {
                     // const user = /*{}*/
                 },
             }),

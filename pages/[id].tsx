@@ -29,7 +29,7 @@ export const profile: React.FC = (): React.ReactElement => {
                 setFamily(result.data.data)
                 setFamMembers(result.data.members)
             } catch (error) {
-                console.log(error)
+                throw new Error(error)
             }
         }
         getProfile()
@@ -60,13 +60,3 @@ export const profile: React.FC = (): React.ReactElement => {
     )
 }
 export default profile
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//     const result = await axios.get(process.env.SERVER_BASE_URL + '/api/family/')
-
-//     return {
-//         props: {
-//             report: result.data.data,
-//         },
-//     }
-// }

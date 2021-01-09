@@ -29,7 +29,7 @@ export const attendance: React.FC = (): React.ReactElement => {
     }
 
     const { data: users } = useRequest<UserResponse, ErrorResponse>({
-        url: '/api/family/current',
+        url: '/api/family/me',
         headers: {
             Authorization: `Bearer ${token}`,
         },

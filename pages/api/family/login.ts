@@ -1,57 +1,40 @@
 import bcrypt from 'bcrypt'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiResponse } from 'next'
+import nc from 'next-connect'
 
-import Family from '../../../models/Family'
-import connectDB from '../../../utils/connectDB'
-import { createToken } from '../../../utils/Helpers'
+import { family } from '@/db/index'
+import middleware from '@/middleware/all'
+import onError from '@/middleware/error'
+import { createToken } from '@/utils/Helpers'
+import { Request } from '@/utils/types'
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<void> {
-    const { method } = req
-    await connectDB()
+const handler = nc<Request, NextApiResponse>({ onError })
 
-    switch (method) {
-        case 'POST':
-            try {
-                const { code, password } = req.body
+handler.use(middleware)
 
-                if (!code || !password)
-                    return res.status(404).json({
-                        success: false,
-                        error: 'All fields are required',
-                    })
+handler.post(async (req, res) => {
+    const { code, password } = req.body
 
-                const findUser = await Family.findOne({ code })
+    if (!code || !password)
+        return res.status(404).json({
+            success: false,
+            error: 'All fields are required',
+        })
 
-                if (!findUser)
-                    return res.status(400).json({
-                        success: false,
-                        error: 'Invalid code or password',
-                    })
+    const checkFamily = await family.getFamilyByCode(req.db, code)
 
-                const isPasswordValid = await bcrypt.compare(
-                    password,
-                    findUser.password
-                )
+    if (!checkFamily)
+        return res.send({ success: false, error: 'Invalid code or password' })
 
-                if (!isPasswordValid)
-                    return res.status(400).json({
-                        success: false,
-                        error: 'Invalid code or password',
-                    })
+    const isPasswordValid = await bcrypt.compare(password, checkFamily.password)
 
-                res.status(201).json({
-                    success: true,
-                    data: createToken(findUser),
-                })
-            } catch (error) {
-                res.status(400).json({ success: false, error })
-            }
-            break
-        default:
-            res.status(400).json({ success: true })
-            break
-    }
-}
+    if (!isPasswordValid)
+        return res.send({ success: false, error: 'Invalid code or password' })
+
+    res.status(201).json({
+        success: true,
+        data: createToken(checkFamily),
+    })
+})
+
+export default handler

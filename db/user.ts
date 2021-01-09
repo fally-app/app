@@ -1,4 +1,4 @@
-import { Db } from 'mongodb'
+import { Db, ObjectId } from 'mongodb'
 
 import { codeGenerator } from '../utils/Helpers'
 
@@ -28,27 +28,30 @@ export const getAllUsers = async (db: Db) => {
 export const addUser = async (db: Db, user) => {
     const newUser = await db
         .collection('users')
-        .insertOne({ ...user, code: codeGenerator('user') })
+        .insertOne({ ...user, status: 'ACTIVE', code: codeGenerator('user') })
         .then(({ ops }) => ops[0])
     return newUser
 }
 
 export const findUserById = async (db: Db, id: string) => {
-    console.log(id)
-    return db.collection('users').findOne({ _id: id })
+    const _id = new ObjectId(id)
+    const data = await db.collection('users').findOne({ _id })
+    return data
 }
 
 export const updateUser = async (db: Db, _id: string, new_records) => {
     const operation = await db
         .collection('users')
-        .updateOne({ _id }, { $set: new_records })
+        .updateOne({ _id: new ObjectId(_id) }, { $set: new_records })
     if (!operation.result.ok) {
         throw new Error('Could not update document')
     }
-    const updated = await db.collection('users').findOne({ _id })
+    const updated = await db
+        .collection('users')
+        .findOne({ _id: new ObjectId(_id) })
     return updated
 }
 
 export const deleteUser = async (db: Db, _id: string) => {
-    return db.collection('users').deleteOne({ _id })
+    return db.collection('users').deleteOne({ _id: new ObjectId(_id) })
 }

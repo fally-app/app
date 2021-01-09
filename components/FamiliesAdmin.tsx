@@ -22,18 +22,10 @@ import LastPageIcon from '@material-ui/icons/LastPage'
 import axios from 'axios'
 import React from 'react'
 
-import { IFamilyTypes } from '../models/Family'
-import { IStatus } from '../models/User'
+import { FamilyType } from '@/utils/types'
+
 import UpdateFam from './UpdateFam'
 
-interface IFamilyType {
-    _id: string
-    user_type: IFamilyTypes
-    name: string
-    password: string
-    code: string
-    status: IStatus
-}
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -148,7 +140,7 @@ const useStyles2 = makeStyles({
 interface FamilyProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any
-    families: IFamilyType[]
+    families: FamilyType[]
 }
 
 export const Family: React.FC<FamilyProps> = ({
@@ -187,9 +179,7 @@ export const Family: React.FC<FamilyProps> = ({
         }
     }
 
-    if (!families) {
-        return <div>Loading...</div>
-    } else if (families.length <= 0) {
+    if (families.length <= 0) {
         return <h1>No user added yet</h1>
     } else {
         return (

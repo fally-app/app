@@ -1,66 +1,31 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiResponse } from 'next'
+import nc from 'next-connect'
 
-import Family from '../../../models/Family'
-import User from '../../../models/User'
-import connectDB from '../../../utils/connectDB'
+import { family } from '@/db/index'
+import middleware from '@/middleware/all'
+import onError from '@/middleware/error'
+import { Request } from '@/utils/types'
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<void> {
-    await connectDB()
+const handler = nc<Request, NextApiResponse>({ onError })
+handler.use(middleware)
 
-    const {
-        query: { id },
-        method,
-    } = req
+handler.get(async (req, res) => {
+    const fam = await family.getFamilyById(req.db, req.query.id as string)
+    res.send(fam)
+})
 
-    switch (method) {
-        case 'GET':
-            try {
-                const fam = await Family.findById(id)
-                const findMembers = await User.find({ family_id: id }).sort({
-                    firstName: 1,
-                })
-                if (!fam) return res.status(400).json({ success: true })
-                res.status(200).json({
-                    success: true,
-                    data: fam,
-                    members: {
-                        count: findMembers.length,
-                        data: findMembers,
-                    },
-                })
-            } catch (error) {
-                res.status(404).json({ success: true, error })
-            }
-            break
-        case 'PUT':
-            try {
-                const fam = await Family.findByIdAndUpdate(id, req.body, {
-                    new: true,
-                    runValidators: true,
-                })
-                if (!fam)
-                    return res.status(400).json({ success: true, data: fam })
-                res.status(201).json({ success: true, data: fam })
-            } catch (error) {
-                res.status(404).json({ success: true, error })
-            }
-            break
+handler.put(async (req, res) => {
+    const fam = await family.updateFamily(
+        req.db,
+        req.query.id as string,
+        req.body
+    )
+    res.status(201).json({ success: true, data: fam })
+})
 
-        case 'DELETE':
-            try {
-                const deletedUser = await Family.deleteOne({ _id: id })
-                if (!deletedUser)
-                    return res.status(400).json({ success: false })
-                res.status(200).json({ success: true, data: {} })
-            } catch (error) {
-                res.status(400).json({ success: true, error })
-            }
-            break
-        default:
-            res.status(400).json({ success: true })
-            break
-    }
-}
+handler.delete(async (req, res) => {
+    await family.deleteFamily(req.db, req.query.id as string)
+    res.status(201).json({ success: true, data: {} })
+})
+
+export default handler

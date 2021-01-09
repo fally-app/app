@@ -46,7 +46,9 @@ export const updateUser = async (db: Db, _id: string, new_records) => {
     if (!operation.result.ok) {
         throw new Error('Could not update document')
     }
-    const updated = await db.collection('users').findOne({ _id })
+    const updated = await db
+        .collection('users')
+        .findOne({ _id: new ObjectId(_id) })
     return updated
 }
 

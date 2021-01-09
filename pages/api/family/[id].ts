@@ -1,66 +1,96 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+// import { NextApiRequest, NextApiResponse } from 'next'
 
-import Family from '../../../models/Family'
-import User from '../../../models/User'
-import connectDB from '../../../utils/connectDB'
+// import Family from '../../../models/Family'
+// import User from '../../../models/User'
+// import connectDB from '../../../utils/connectDB'
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<void> {
-    await connectDB()
+// export default async function handler(
+//     req: NextApiRequest,
+//     res: NextApiResponse
+// ): Promise<void> {
+//     await connectDB()
 
-    const {
-        query: { id },
-        method,
-    } = req
+//     const {
+//         query: { id },
+//         method,
+//     } = req
 
-    switch (method) {
-        case 'GET':
-            try {
-                const fam = await Family.findById(id)
-                const findMembers = await User.find({ family_id: id }).sort({
-                    firstName: 1,
-                })
-                if (!fam) return res.status(400).json({ success: true })
-                res.status(200).json({
-                    success: true,
-                    data: fam,
-                    members: {
-                        count: findMembers.length,
-                        data: findMembers,
-                    },
-                })
-            } catch (error) {
-                res.status(404).json({ success: true, error })
-            }
-            break
-        case 'PUT':
-            try {
-                const fam = await Family.findByIdAndUpdate(id, req.body, {
-                    new: true,
-                    runValidators: true,
-                })
-                if (!fam)
-                    return res.status(400).json({ success: true, data: fam })
-                res.status(201).json({ success: true, data: fam })
-            } catch (error) {
-                res.status(404).json({ success: true, error })
-            }
-            break
+//     switch (method) {
+//         case 'GET':
+//             try {
+//                 const fam = await Family.findById(id)
+//                 const findMembers = await User.find({ family_id: id }).sort({
+//                     firstName: 1,
+//                 })
+//                 if (!fam) return res.status(400).json({ success: true })
+//                 res.status(200).json({
+//                     success: true,
+//                     data: fam,
+//                     members: {
+//                         count: findMembers.length,
+//                         data: findMembers,
+//                     },
+//                 })
+//             } catch (error) {
+//                 res.status(404).json({ success: true, error })
+//             }
+//             break
+//         case 'PUT':
+//             try {
+//                 const fam = await Family.findByIdAndUpdate(id, req.body, {
+//                     new: true,
+//                     runValidators: true,
+//                 })
+//                 if (!fam)
+//                     return res.status(400).json({ success: true, data: fam })
+//                 res.status(201).json({ success: true, data: fam })
+//             } catch (error) {
+//                 res.status(404).json({ success: true, error })
+//             }
+//             break
 
-        case 'DELETE':
-            try {
-                const deletedUser = await Family.deleteOne({ _id: id })
-                if (!deletedUser)
-                    return res.status(400).json({ success: false })
-                res.status(200).json({ success: true, data: {} })
-            } catch (error) {
-                res.status(400).json({ success: true, error })
-            }
-            break
-        default:
-            res.status(400).json({ success: true })
-            break
-    }
-}
+//         case 'DELETE':
+//             try {
+//                 const deletedUser = await Family.deleteOne({ _id: id })
+//                 if (!deletedUser)
+//                     return res.status(400).json({ success: false })
+//                 res.status(200).json({ success: true, data: {} })
+//             } catch (error) {
+//                 res.status(400).json({ success: true, error })
+//             }
+//             break
+//         default:
+//             res.status(400).json({ success: true })
+//             break
+//     }
+// }
+
+import { NextApiResponse } from 'next'
+import nc from 'next-connect'
+
+import { family } from '@/db/index'
+import middleware from '@/middleware/all'
+import onError from '@/middleware/error'
+import { Request } from '@/utils/types'
+
+const handler = nc<Request, NextApiResponse>({ onError })
+
+handler.get(async (req, res) => {
+    const fam = await family.getFamilyById(req.db, req.query.id as string)
+    res.send(fam)
+})
+
+handler.put(async (req, res) => {
+    const fam = await family.updateFamily(
+        req.db,
+        req.query.id as string,
+        req.body
+    )
+    res.status(201).json({ success: true, data: fam })
+})
+
+handler.delete(async (req, res) => {
+    await family.deleteFamily(req.db, req.query.id as string)
+    res.status(201).json({ success: true, data: {} })
+})
+handler.use(middleware)

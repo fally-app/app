@@ -1,10 +1,10 @@
 import nc from 'next-connect'
 
-import { user } from '../../../db'
-import middleware from '../../../middleware/all'
-import onError from '../../../middleware/error'
+import { user } from '@/db/index'
+import middleware from '@/middleware/all'
+import onError from '@/middleware/error'
 // import { codeGenerator } from '../../../utils/Helpers'
-import { Request } from '../../../utils/types'
+import { Request } from '@/utils/types'
 
 const handler = nc({ onError })
 

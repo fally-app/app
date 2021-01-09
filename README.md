@@ -18,8 +18,7 @@
 
 -   [ ] Add blog section for the application
 
-
 ### What's I'm working on right now
 
-- [ ] Make auth routes work with next-connect middleware
-- [ ] Make all api routes with with next-connect
+-   [ ] Make auth routes work with next-connect middleware
+-   [ ] Make all api routes with with next-connect

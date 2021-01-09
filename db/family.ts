@@ -36,6 +36,7 @@ export const insertNewFamily = async (db: Db, new_record) => {
         .collection('families')
         .insertOne({
             ...new_record,
+            status: 'ACTIVE',
             code: codeGenerator('family'),
         })
         .then(({ ops }) => ops[0])

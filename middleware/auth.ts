@@ -20,10 +20,12 @@ export default async (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        req.user = await family.getFamilyByCode(
+        const user = await family.getFamilyById(
             db,
             (decoded as TokenDecode)._id
         )
+
+        req.user = user
 
         next()
     } else {

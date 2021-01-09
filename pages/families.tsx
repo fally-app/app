@@ -50,20 +50,18 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface AdminProps {
-    initialData: UserResponse
+    families: UserResponse
 }
 
 export const admin: React.FC<AdminProps> = ({
-    initialData,
+    families,
 }): React.ReactElement => {
     const { loggedOut } = useUser()
     const classes = useStyles()
 
-    const { data, mutate } = useSWR<UserResponse, ErrorResponse>(
-        '/api/family',
-        fetcher,
-        { initialData }
-    )
+    const { data, mutate } = useSWR('/api/family', fetcher, {
+        initialData: families,
+    })
 
     useEffect(() => {
         if (loggedOut) {
@@ -89,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     return {
         props: {
-            initialData: JSON.parse(JSON.stringify(families)),
+            families: JSON.parse(JSON.stringify(families)),
         },
     }
 }

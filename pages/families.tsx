@@ -62,6 +62,7 @@ export const admin: React.FC<AdminProps> = ({
         )
     )
 }
+
 export default admin
 
 export const getServerSideProps: GetServerSideProps = async () => {

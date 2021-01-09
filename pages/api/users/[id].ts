@@ -32,33 +32,3 @@ handler.delete(async (req, res) => {
 })
 
 export default handler
-
-//         case 'PUT':
-//             try {
-//                 const user = await User.findByIdAndUpdate(id, req.body, {
-//                     new: true,
-//                     runValidators: true,
-//                 })
-//                 if (!user)
-//                     return res.status(400).json({ success: true, data: user })
-//                 res.status(201).json({ success: true, data: user })
-//             } catch (error) {
-//                 res.status(404).json({ success: true, error })
-//             }
-//             break
-
-//         case 'DELETE':
-//             try {
-//                 const deletedUser = await User.deleteOne({ _id: id })
-//                 if (!deletedUser)
-//                     return res.status(400).json({ success: false })
-//                 res.status(200).json({ success: true, data: {} })
-//             } catch (error) {
-//                 res.status(400).json({ success: true, error })
-//             }
-//             break
-//         default:
-//             res.status(400).json({ success: true })
-//             break
-//     }
-// }

@@ -11,7 +11,7 @@ handler.use(middleware)
 
 handler.get(async (req, res) => {
     const families = await family.getFamilies(req.db)
-    res.status(200).json({ success: true, data: families })
+    res.status(200).send(families)
 })
 
 handler.post(async (req, res) => {

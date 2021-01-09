@@ -18,17 +18,10 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
 
-import { IFamilyTypes } from '../models/Family'
+import { FamilyType } from '@/utils/types'
 
 interface UpdateUserProps {
-    family: {
-        _id: string
-        user_type: IFamilyTypes
-        name: string
-        password: string
-        code: string
-        status?: string
-    }
+    family: FamilyType
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any

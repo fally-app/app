@@ -36,3 +36,17 @@ export interface TokenDecode {
     _id: string
     ait: string
 }
+
+export enum USER_TYPES {
+    ADMIN = 'ADMIN',
+    FAMILY = 'FAMILY',
+}
+
+export interface FamilyType {
+    _id: string
+    user_type: USER_TYPES
+    name: string
+    password: string
+    code: string
+    status: IStatus
+}

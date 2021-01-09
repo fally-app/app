@@ -71,4 +71,9 @@ handler.get(async (req, res) => {
     res.status(200).json({ success: true, data: families })
 })
 
+handler.post(async (req, res) => {
+    const fam = await family.insertNewFamily(req.db, req.body)
+    res.status(201).json({ success: true, data: fam })
+})
+
 export default handler

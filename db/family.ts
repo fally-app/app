@@ -31,7 +31,7 @@ export const deleteFamily = async (db: Db, _id: string) => {
     return db.collection('families').deleteOne({ _id: new ObjectId(_id) })
 }
 
-export const getFamily = async (db: Db, new_record) => {
+export const insertNewFamily = async (db: Db, new_record) => {
     const newFamily = db
         .collection('families')
         .insertOne({

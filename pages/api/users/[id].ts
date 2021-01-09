@@ -12,7 +12,7 @@ handler.use(middleware)
 
 handler.get(async (req, res) => {
     const getUser = await user.findUserById(req.db, req.query.id as string)
-    if (!getUser) return res.status(400).json({ success: true, data: [] })
+    // if (!getUser) return res.status(400).json({ success: true, data: [] })
     res.status(200).json({ success: true, data: getUser })
 })
 

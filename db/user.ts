@@ -1,4 +1,4 @@
-import { Db } from 'mongodb'
+import { Db, ObjectId } from 'mongodb'
 
 import { codeGenerator } from '../utils/Helpers'
 
@@ -34,14 +34,15 @@ export const addUser = async (db: Db, user) => {
 }
 
 export const findUserById = async (db: Db, id: string) => {
-    console.log(id)
-    return db.collection('users').findOne({ _id: id })
+    const _id = new ObjectId(id)
+    const data = await db.collection('users').findOne({ _id })
+    return data
 }
 
 export const updateUser = async (db: Db, _id: string, new_records) => {
     const operation = await db
         .collection('users')
-        .updateOne({ _id }, { $set: new_records })
+        .updateOne({ _id: new ObjectId(_id) }, { $set: new_records })
     if (!operation.result.ok) {
         throw new Error('Could not update document')
     }
@@ -50,5 +51,5 @@ export const updateUser = async (db: Db, _id: string, new_records) => {
 }
 
 export const deleteUser = async (db: Db, _id: string) => {
-    return db.collection('users').deleteOne({ _id })
+    return db.collection('users').deleteOne({ _id: new ObjectId(_id) })
 }

@@ -15,6 +15,7 @@ export default async (req, res, next) => {
 export const getUserIdFromToken = async token => {
     try {
         const user = jwt.verify(token, process.env.JWT_SECRET)
+        console.log(user)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return (user as any).id
     } catch (e) {

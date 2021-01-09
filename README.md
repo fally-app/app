@@ -20,5 +20,6 @@
 
 ### What's I'm working on right now
 
--   [ ] Make auth routes work with next-connect middleware
--   [ ] Make all api routes with with next-connect
+-   [x] Make auth routes work with next-connect middleware
+-   [x] Make all api routes with with next-connect
+-   [ ] Fix the mutate on admin

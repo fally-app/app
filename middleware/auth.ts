@@ -1,10 +1,30 @@
 import jwt from 'jsonwebtoken'
 
-export default async (req, res, next) => {
-    const token = req.headers.authorization
+import { connectToDB, family } from '@/db/index'
+import { TokenDecode } from '@/utils/types'
 
-    if (token) {
-        req.token = token
+export default async (req, res, next) => {
+    const { db } = await connectToDB()
+    let token
+
+    if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith('Bearer')
+    ) {
+        token = req.headers.authorization.split(' ')[1]
+
+        if (!token) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'Not token passed' })
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        req.user = await family.getFamilyByCode(
+            db,
+            (decoded as TokenDecode)._id
+        )
+
         next()
     } else {
         res.status(401)

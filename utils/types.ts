@@ -31,3 +31,8 @@ export interface UserType {
         name: string
     }
 }
+
+export interface TokenDecode {
+    _id: string
+    ait: string
+}

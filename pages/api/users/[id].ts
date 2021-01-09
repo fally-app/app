@@ -1,6 +1,7 @@
 import { NextApiResponse } from 'next'
 import nc from 'next-connect'
 
+import { user } from '@/db/index'
 import middleware from '@/middleware/all'
 import onError from '@/middleware/error'
 import { Request } from '@/utils/types'
@@ -9,34 +10,29 @@ const handler = nc<Request, NextApiResponse>({ onError })
 
 handler.use(middleware)
 
-// handler.get((req, res) => {})
+handler.get(async (req, res) => {
+    const getUser = await user.findUserById(req.db, req.query.id)
+    if (!getUser) return res.status(400).json({ success: true })
+    res.status(200).json({ success: true, data: getUser })
+})
 
-// import { NextApiRequest, NextApiResponse } from 'next'
+handler.post(async (req, res) => {
+    const addedUser = await user.addUser(req.db, req.query.id)
+    res.status(201).json({ success: true, data: addedUser })
+})
 
-// import User from '../../../models/User'
-// import connectDB from '../../../utils/connectDB'
+handler.put(async (req, res) => {
+    const update = await user.updateUser(req.db, req.query.id, req.body)
+    res.status(200).json({ success: true, data: update })
+})
 
-// export default async function handler(
-//     req: NextApiRequest,
-//     res: NextApiResponse
-// ): Promise<void> {
-//     await connectDB()
+handler.delete(async (req, res) => {
+    await user.deleteUser(req.db, req.query.id)
+    res.status(200).json({ success: true, data: {} })
+})
 
-//     const {
-//         query: { id },
-//         method,
-//     } = req
+export default handler
 
-//     switch (method) {
-//         case 'GET':
-//             try {
-//                 const user = await User.findById(id)
-//                 if (!user) return res.status(400).json({ success: true })
-//                 res.status(200).json({ success: true, data: user })
-//             } catch (error) {
-//                 res.status(404).json({ success: true, error })
-//             }
-//             break
 //         case 'PUT':
 //             try {
 //                 const user = await User.findByIdAndUpdate(id, req.body, {

@@ -33,6 +33,14 @@ export const addUser = async (db: Db, user) => {
     return newUser
 }
 
-export const findUserById = async (db: Db, _id: string) => {
+export const findUserById = async (db: Db, _id) => {
     return db.collection('users').findOne({ _id })
+}
+
+export const updateUser = async (db: Db, _id, new_records) => {
+    return db.collection('users').updateOne(_id, new_records)
+}
+
+export const deleteUser = async (db: Db, _id) => {
+    return db.collection('users').deleteOne({ _id })
 }

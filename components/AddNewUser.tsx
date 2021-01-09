@@ -27,7 +27,6 @@ interface AddNewUserProps {
             name: string
         }
     ]
-
     mutate: () => void
 }
 

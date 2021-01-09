@@ -12,7 +12,7 @@ handler.use(middleware)
 
 handler.get(async (req: Request, res) => {
     const users = await user.getAllUsers(req.db)
-    res.send({ data: users })
+    res.send(users)
 })
 
 handler.post(async (req: Request, res) => {

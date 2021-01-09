@@ -7,6 +7,7 @@ import onError from '@/middleware/error'
 import { Request } from '@/utils/types'
 
 const handler = nc<Request, NextApiResponse>({ onError })
+handler.use(middleware)
 
 handler.get(async (req, res) => {
     const fam = await family.getFamilyById(req.db, req.query.id as string)
@@ -26,4 +27,5 @@ handler.delete(async (req, res) => {
     await family.deleteFamily(req.db, req.query.id as string)
     res.status(201).json({ success: true, data: {} })
 })
-handler.use(middleware)
+
+export default handler

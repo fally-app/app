@@ -1,5 +1,7 @@
 import { Db, ObjectId } from 'mongodb'
 
+import { codeGenerator } from '@/utils/Helpers'
+
 export const getFamilies = async (db: Db) => {
     return db.collection('families').find().toArray()
 }
@@ -27,4 +29,15 @@ export const updateFamily = async (db: Db, id: string, new_records) => {
 
 export const deleteFamily = async (db: Db, _id: string) => {
     return db.collection('families').deleteOne({ _id: new ObjectId(_id) })
+}
+
+export const getFamily = async (db: Db, new_record) => {
+    const newFamily = db
+        .collection('families')
+        .insertOne({
+            ...new_record,
+            code: codeGenerator('family'),
+        })
+        .then(({ ops }) => ops[0])
+    return newFamily
 }

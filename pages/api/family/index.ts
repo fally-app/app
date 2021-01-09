@@ -64,6 +64,7 @@ import onError from '@/middleware/error'
 import { Request } from '@/utils/types'
 
 const handler = nc<Request, NextApiResponse>({ onError })
+handler.use(middleware)
 
 handler.get(async (req, res) => {
     const families = await family.getFamilies(req.db)

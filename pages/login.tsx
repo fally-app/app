@@ -130,7 +130,7 @@ export const login = (): React.ReactElement => {
                             variant="h4"
                             component="h2"
                             className={classes.header}>
-                            Login here
+                            Login into your account
                         </Typography>
 
                         <form>

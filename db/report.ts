@@ -3,6 +3,7 @@ import { Db } from 'mongodb'
 import { getCurrentWeekInTheYear } from '../utils/Helpers'
 
 export const getCurrentReport = async (db: Db) => {
+    console.log(getCurrentWeekInTheYear()[0], getCurrentWeekInTheYear()[1] - 1)
     return db
         .collection('familyreports')
         .aggregate([
@@ -16,10 +17,13 @@ export const getCurrentReport = async (db: Db) => {
             },
             {
                 $match: {
-                    sabbath_week: getCurrentWeekInTheYear()[1],
+                    sabbath_week: getCurrentWeekInTheYear()[1] - 1,
                     year: getCurrentWeekInTheYear()[0],
                 },
             },
+
+            { $unwind: '$family' },
+
             { $sort: { percentage: -1 } },
         ])
         .toArray()

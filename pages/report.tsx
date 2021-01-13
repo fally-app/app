@@ -186,7 +186,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     return {
         props: {
-            report: reportData,
+            report: JSON.parse(JSON.stringify(reportData)),
         },
     }
 }

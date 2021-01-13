@@ -1,4 +1,3 @@
-export default async function onError(error, req, res, next) {
+export default async function onError(error, req, res) {
     res.status(500).end(error.toString())
-    next()
 }

@@ -32,14 +32,14 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         header: {
             textAlign: 'center',
-            width: '30rem',
-            fontSize: '1.5rem',
+            fontSize: '1rem',
             fontWeight: 'bold',
             textTransform: 'capitalize',
         },
         headerLogo: {
             textAlign: 'center',
-            width: '30rem',
+            paddingTop: '1rem',
+            width: '35rem',
             fontSize: '1.5rem',
             fontWeight: 'bold',
             textTransform: 'capitalize',

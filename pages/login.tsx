@@ -14,11 +14,12 @@ import { blue } from '@material-ui/core/colors'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import Head from 'next/head'
+import Link from 'next/link'
 import Router from 'next/router'
 import React, { useEffect, useState } from 'react'
 
-import api from '../lib/api'
-import useUser from '../lib/useUser'
+import api from '@/lib/api'
+import useUser from '@/lib/useUser'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -30,6 +31,13 @@ const useStyles = makeStyles((theme: Theme) =>
             marginBottom: 25,
         },
         header: {
+            textAlign: 'center',
+            width: '30rem',
+            fontSize: '1.5rem',
+            fontWeight: 'bold',
+            textTransform: 'capitalize',
+        },
+        headerLogo: {
             textAlign: 'center',
             width: '30rem',
             fontSize: '1.5rem',
@@ -125,12 +133,21 @@ export const login = (): React.ReactElement => {
                 className={classes.root}
                 alignItems="center">
                 <Card>
+                    <Link href="/">
+                        <Typography
+                            variant="h4"
+                            component="h2"
+                            className={classes.headerLogo}>
+                            RCA-SDA
+                        </Typography>
+                    </Link>
+
                     <CardContent>
                         <Typography
                             variant="h4"
                             component="h2"
                             className={classes.header}>
-                            Login into your account
+                            Login
                         </Typography>
 
                         <form>

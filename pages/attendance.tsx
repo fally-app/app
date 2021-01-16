@@ -29,11 +29,13 @@ export const attendance: React.FC = (): React.ReactElement => {
     }
 
     const { data: users } = useRequest<UserResponse, ErrorResponse>({
-        url: '/api/family/me',
+        url: '/api/family/getUsersInFamily',
         headers: {
             Authorization: `Bearer ${token}`,
         },
     })
+
+    console.log('Attendance', users)
 
     return (
         <>

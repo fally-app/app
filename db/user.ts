@@ -55,3 +55,7 @@ export const updateUser = async (db: Db, _id: string, new_records) => {
 export const deleteUser = async (db: Db, _id: string) => {
     return db.collection('users').deleteOne({ _id: new ObjectId(_id) })
 }
+
+export const getUsersInFamily = async (db: Db, _id: string) => {
+    return db.collection('users').find({ family_id: _id }).toArray()
+}

@@ -4,6 +4,17 @@ import { NextApiRequest } from 'next'
 export interface Request extends NextApiRequest {
     db: Db
     dbClient: MongoClient
+    user: {
+        _id: string
+        firstName: string
+        lastName: string
+        email?: string
+        family_id: string
+        gender?: Gender
+        status: IStatus
+        class_level: string
+        joined_at: string
+    }
 }
 
 export enum Gender {

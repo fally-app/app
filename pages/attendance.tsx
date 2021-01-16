@@ -35,13 +35,11 @@ export const attendance: React.FC = (): React.ReactElement => {
         },
     })
 
-    console.log('Attendance', users)
-
     return (
         <>
             <NavBar />
             <div className={classes.wrapper}>
-                <MakeAttendance users={users?.data} />
+                {users && <MakeAttendance users={users?.data} />}
             </div>
         </>
     )

@@ -57,5 +57,11 @@ export const deleteUser = async (db: Db, _id: string) => {
 }
 
 export const getUsersInFamily = async (db: Db, _id: string) => {
-    return db.collection('users').find({ family_id: _id }).toArray()
+    const mysort = { firstName: 1 }
+
+    return db
+        .collection('users')
+        .find({ family_id: _id })
+        .sort(mysort)
+        .toArray()
 }

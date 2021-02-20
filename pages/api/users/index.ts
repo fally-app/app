@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb'
 import { NextApiResponse } from 'next'
 import nc from 'next-connect'
 
@@ -19,8 +20,12 @@ handler.get(async (req, res) => {
 })
 
 handler.post(async (req, res) => {
-    console.log(req.body)
-    const newUser = await user.addUser(req.db, req.body)
+    const dataToInsert = {
+        ...req.body,
+        family_id: new ObjectId(req.body.family_id),
+    }
+
+    const newUser = await user.addUser(req.db, dataToInsert)
     res.status(201).send({ success: true, data: newUser })
 })
 

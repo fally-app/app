@@ -13,9 +13,6 @@ handler.use(middleware)
 
 handler.get(async (req, res) => {
     const users = await user.getAllUsers(req.db)
-
-    console.log('Users numbers', users.length)
-
     res.send(users)
 })
 

@@ -40,7 +40,7 @@
         "next": "10.2.3",
         "next-auth": "3.1.0",
         "next-connect": "0.10.1",
-        "next-pwa": "3.1.5",
+        "next-pwa": "5.2.21",
         "react": "17.0.1",
         "react-dom": "17.0.1",
         "slugify": "1.5.3",

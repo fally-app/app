@@ -43,7 +43,7 @@
         "next-pwa": "3.1.5",
         "react": "17.0.1",
         "react-dom": "17.0.1",
-        "slugify": "1.4.6",
+        "slugify": "1.5.3",
         "swr": "0.3.9"
     },
     "devDependencies": {

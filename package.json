@@ -20,47 +20,46 @@
         ]
     },
     "dependencies": {
-        "@material-ui/core": "^4.11.0",
-        "@material-ui/icons": "^4.9.1",
-        "@material-ui/lab": "^4.0.0-alpha.56",
-        "@types/jsonwebtoken": "^8.5.0",
-        "@types/mongoose": "^5.10.5",
-        "@typescript-eslint/eslint-plugin": "^4.4.0",
-        "@typescript-eslint/parser": "^4.4.0",
-        "axios": "^0.21.0",
-        "bcrypt": "^5.0.0",
+        "@material-ui/core": "^4.11.4",
+        "@material-ui/icons": "^4.11.2",
+        "@material-ui/lab": "^4.0.0-alpha.58",
+        "@types/jsonwebtoken": "^8.5.1",
+        "@types/mongoose": "^5.11.97",
+        "@typescript-eslint/eslint-plugin": "^4.27.0",
+        "@typescript-eslint/parser": "^4.27.0",
+        "axios": "^0.21.1",
+        "bcrypt": "^5.0.1",
         "clsx": "^1.1.1",
         "eslint-plugin-simple-import-sort": "^5.0.3",
-        "husky": "^4.3.0",
+        "husky": "^4.3.8",
         "isomorphic-unfetch": "^3.1.0",
         "jsonwebtoken": "^8.5.1",
-        "lint-staged": "^10.4.0",
-        "mongodb": "^3.6.6",
-        "mongoose": "^5.10.9",
-        "next": "^10.0.3",
-        "next-auth": "^3.1.0",
+        "lint-staged": "^10.5.4",
+        "mongodb": "^3.6.9",
+        "mongoose": "^5.12.14",
+        "next": "^10.2.3",
         "next-connect": "^0.9.1",
         "next-pwa": "^3.1.5",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
-        "slugify": "^1.4.6",
-        "swr": "^0.3.6"
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "slugify": "^1.5.3",
+        "swr": "^0.3.11"
     },
     "devDependencies": {
-        "@types/mongodb": "^3.6.2",
-        "@types/node": "^14.11.8",
-        "@types/react": "^16.9.52",
-        "autoprefixer": "^10.1.0",
-        "eslint": "^7.25.0",
-        "eslint-config-prettier": "^6.12.0",
-        "eslint-plugin-jsx-a11y": "^6.3.1",
-        "eslint-plugin-prettier": "^3.1.4",
-        "eslint-plugin-react": "^7.21.4",
-        "eslint-plugin-react-hooks": "^4.1.2",
-        "postcss": "^8.2.1",
-        "prettier": "^2.1.2",
-        "tailwindcss": "^2.0.2",
-        "typescript": "^4.0.3"
+        "@types/mongodb": "^3.6.18",
+        "@types/node": "^14.17.3",
+        "@types/react": "^16.14.8",
+        "autoprefixer": "^10.2.6",
+        "eslint": "^7.28.0",
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-react": "^7.24.0",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "postcss": "^8.3.5",
+        "prettier": "^2.3.1",
+        "tailwindcss": "^2.2.0",
+        "typescript": "^4.3.4"
     },
     "prettier": {
         "tabWidth": 4,
@@ -71,5 +70,18 @@
         "bracketSpacing": true,
         "arrowParens": "avoid",
         "endOfLine": "crlf"
+    },
+    "renovate": {
+        "packageRules": [
+            {
+                "matchUpdateTypes": [
+                    "minor",
+                    "patch",
+                    "pin",
+                    "digest"
+                ],
+                "automerge": true
+            }
+        ]
     }
 }

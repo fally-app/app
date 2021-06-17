@@ -29,7 +29,7 @@ specifiers:
   mongodb: 3.6.6
   mongoose: 5.10.18
   next: 10.2.3
-  next-auth: 3.3.0
+  next-auth: 3.27.0
   next-connect: 0.10.1
   next-pwa: 3.1.5
   postcss: 8.3.5
@@ -60,7 +60,7 @@ dependencies:
   mongodb: 3.6.6
   mongoose: 5.10.18
   next: 10.2.3_9a12fb72fb239ac7bad83d4e13557364
-  next-auth: 3.3.0_react-dom@17.0.1+react@17.0.1
+  next-auth: 3.27.0_80e57a0c498f306a8b55582231bae180
   next-connect: 0.10.1
   next-pwa: 3.1.5_next@10.2.3
   react: 17.0.1
@@ -1437,6 +1437,43 @@ packages:
       react-is: 17.0.2
     dev: false
 
+  /@next-auth/prisma-legacy-adapter/0.0.1-canary.127_next-auth@3.27.0:
+    resolution: {integrity: sha512-Pd2Y8b1ibDywrndbj3751VNKv1mVcg2w0uNIi01EBVkm5pqA1X+VnKWbPeHfh4arLYw93RPCvfLbWBZS7J1gZQ==}
+    peerDependencies:
+      '@prisma/client': ^2.16.1
+      next-auth: ^3.17.2
+    dependencies:
+      '@babel/runtime': 7.14.6
+      next-auth: 3.27.0_80e57a0c498f306a8b55582231bae180
+    dev: false
+
+  /@next-auth/typeorm-legacy-adapter/0.0.2-canary.129_mongodb@3.6.6+next-auth@3.27.0:
+    resolution: {integrity: sha512-xEGz3TzBzz+5nXQ6BnC++KGfxTOAgztL32ZRLq47UKz9M0kFBP6pCMJjTszltsBHYUI/Wac2IG2egMTpHtppiQ==}
+    peerDependencies:
+      mongodb: ^3.5.9
+      mssql: ^6.2.1
+      mysql: ^2.18.1
+      next-auth: ^3.1.0
+      pg: ^8.2.1
+    peerDependenciesMeta:
+      mongodb:
+        optional: true
+      mssql:
+        optional: true
+      mysql:
+        optional: true
+      pg:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.14.6
+      mongodb: 3.6.6
+      next-auth: 3.27.0_80e57a0c498f306a8b55582231bae180
+      require_optional: 1.0.1
+      typeorm: 0.2.34
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@next/env/10.2.3:
     resolution: {integrity: sha512-uBOjRBjsWC4C8X3DfmWWP6ekwLnf2JCCwQX9KVnJtJkqfDsv1yQPakdOEwvJzXQc3JC/v5KKffYPVmV2wHXCgQ==}
     dev: false
@@ -2623,10 +2660,6 @@ packages:
       public-encrypt: 4.0.3
       randombytes: 2.1.0
       randomfill: 1.0.4
-    dev: false
-
-  /crypto-js/4.0.0:
-    resolution: {integrity: sha512-bzHZN8Pn+gS7DQA6n+iUmBfl0hO5DJq++QP3U6uTucDtk/0iGpXd/Gg7CGR0p8tJhofJyaKoWBuJI4eAO00BBg==}
     dev: false
 
   /crypto-random-string/1.0.0:
@@ -4494,13 +4527,15 @@ packages:
       sax: 1.2.4
     dev: false
 
-  /next-auth/3.3.0_react-dom@17.0.1+react@17.0.1:
-    resolution: {integrity: sha512-Ur5V1WVW4K0sUUEpCqU6cyjJBpWaCcrPS22J+PDIv+7pHjIJ5B0+9IzItLr0c+ZkA6qOctd48l7S3gZjwQz4oA==}
+  /next-auth/3.27.0_80e57a0c498f306a8b55582231bae180:
+    resolution: {integrity: sha512-mnPwODN+g4901o5TcK3x8+pxEM4si19QPOkP7NCXMz90VMMEDBlm3SGviraYQm6QwYxrwK8sG1hN6SxLIM7ckw==}
     peerDependencies:
       react: ^16.13.1 || ^17
       react-dom: ^16.13.1 || ^17
     dependencies:
-      crypto-js: 4.0.0
+      '@babel/runtime': 7.14.6
+      '@next-auth/prisma-legacy-adapter': 0.0.1-canary.127_next-auth@3.27.0
+      '@next-auth/typeorm-legacy-adapter': 0.0.2-canary.129_mongodb@3.6.6+next-auth@3.27.0
       futoin-hkdf: 1.3.3
       jose: 1.28.1
       jsonwebtoken: 8.5.1
@@ -4512,9 +4547,12 @@ packages:
       querystring: 0.2.1
       react: 17.0.1
       react-dom: 17.0.1_react@17.0.1
-      require_optional: 1.0.1
-      typeorm: 0.2.34
     transitivePeerDependencies:
+      - '@prisma/client'
+      - mongodb
+      - mssql
+      - mysql
+      - pg
       - supports-color
     dev: false
 

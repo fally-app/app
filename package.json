@@ -37,7 +37,7 @@
         "lint-staged": "11.0.0",
         "mongodb": "3.6.6",
         "mongoose": "5.10.18",
-        "next": "10.2.3",
+        "next": "11.0.0",
         "next-auth": "3.3.0",
         "next-connect": "0.10.1",
         "next-pwa": "3.1.5",

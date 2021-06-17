@@ -4,7 +4,7 @@ specifiers:
   '@material-ui/core': 4.11.4
   '@material-ui/icons': 4.11.2
   '@material-ui/lab': 4.0.0-alpha.58
-  '@types/jsonwebtoken': 8.5.0
+  '@types/jsonwebtoken': 8.5.1
   '@types/mongodb': 3.6.18
   '@types/mongoose': 5.10.5
   '@types/node': 15.12.2
@@ -45,7 +45,7 @@ dependencies:
   '@material-ui/core': 4.11.4_aef73de6374e2d7a7f5dc9d5ceec06df
   '@material-ui/icons': 4.11.2_47779f01b3af0731f455209f2582eea0
   '@material-ui/lab': 4.0.0-alpha.58_47779f01b3af0731f455209f2582eea0
-  '@types/jsonwebtoken': 8.5.0
+  '@types/jsonwebtoken': 8.5.1
   '@types/mongoose': 5.10.5
   '@typescript-eslint/eslint-plugin': 4.8.2_333bde4f3962d030e48b06801a64ab25
   '@typescript-eslint/parser': 4.8.2_eslint@7.25.0+typescript@4.3.4
@@ -1584,8 +1584,8 @@ packages:
     resolution: {integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==}
     dev: false
 
-  /@types/jsonwebtoken/8.5.0:
-    resolution: {integrity: sha512-9bVao7LvyorRGZCw0VmH/dr7Og+NdjYSsKAxB43OQoComFbBgsEpoR9JW6+qSq/ogwVBg8GI2MfAlk4SYI4OLg==}
+  /@types/jsonwebtoken/8.5.1:
+    resolution: {integrity: sha512-rNAPdomlIUX0i0cg2+I+Q1wOUr531zHBQ+cV/28PJ39bSPKjahatZZ2LMuhiguETkCgLVzfruw/ZvNMNkKoSzw==}
     dependencies:
       '@types/node': 15.12.2
     dev: false

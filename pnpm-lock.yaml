@@ -7,7 +7,7 @@ specifiers:
   '@types/jsonwebtoken': 8.5.1
   '@types/mongodb': 3.6.18
   '@types/mongoose': 5.10.5
-  '@types/node': 15.12.2
+  '@types/node': 15.12.4
   '@types/react': 17.0.11
   '@typescript-eslint/eslint-plugin': 4.8.2
   '@typescript-eslint/parser': 4.8.2
@@ -71,7 +71,7 @@ dependencies:
 
 devDependencies:
   '@types/mongodb': 3.6.18
-  '@types/node': 15.12.2
+  '@types/node': 15.12.4
   '@types/react': 17.0.11
   autoprefixer: 10.2.6_postcss@8.3.5
   eslint: 7.29.0
@@ -1611,6 +1611,10 @@ packages:
 
   /@types/node/15.12.2:
     resolution: {integrity: sha512-zjQ69G564OCIWIOHSXyQEEDpdpGl+G348RAKY0XXy9Z5kU9Vzv1GMNnkar/ZJ8dzXB3COzD9Mo9NtRZ4xfgUww==}
+
+  /@types/node/15.12.4:
+    resolution: {integrity: sha512-zrNj1+yqYF4WskCMOHwN+w9iuD12+dGm0rQ35HLl9/Ouuq52cEtd0CH9qMgrdNmi5ejC1/V7vKEXYubB+65DkA==}
+    dev: true
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}

@@ -22,7 +22,7 @@ specifiers:
   eslint-plugin-prettier: 3.4.0
   eslint-plugin-react: 7.21.5
   eslint-plugin-react-hooks: 4.2.0
-  eslint-plugin-simple-import-sort: 5.0.3
+  eslint-plugin-simple-import-sort: 7.0.0
   husky: 6.0.0
   isomorphic-unfetch: 3.1.0
   jsonwebtoken: 8.5.1
@@ -53,7 +53,7 @@ dependencies:
   axios: 0.21.1
   bcrypt: 5.0.0
   clsx: 1.1.1
-  eslint-plugin-simple-import-sort: 5.0.3_eslint@7.29.0
+  eslint-plugin-simple-import-sort: 7.0.0_eslint@7.29.0
   husky: 6.0.0
   isomorphic-unfetch: 3.1.0
   jsonwebtoken: 8.5.1
@@ -3222,8 +3222,8 @@ packages:
       string.prototype.matchall: 4.0.5
     dev: true
 
-  /eslint-plugin-simple-import-sort/5.0.3_eslint@7.29.0:
-    resolution: {integrity: sha512-1rf3AWiHeWNCQdAq0iXNnlccnH1UDnelGgrPbjBBHE8d2hXVtOudcmy0vTF4hri3iJ0MKz8jBhmH6lJ0ZWZLHQ==}
+  /eslint-plugin-simple-import-sort/7.0.0_eslint@7.29.0:
+    resolution: {integrity: sha512-U3vEDB5zhYPNfxT5TYR7u01dboFZp+HNpnGhkDB2g/2E4wZ/g1Q9Ton8UwCLfRV9yAKyYqDh62oHOamvkFxsvw==}
     peerDependencies:
       eslint: '>=5.0.0'
     dependencies:

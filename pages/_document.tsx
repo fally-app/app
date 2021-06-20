@@ -1,7 +1,6 @@
 import { ServerStyleSheets } from '@material-ui/core/styles'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
-
 import theme from '../theme'
 
 const APP_NAME = 'Sabbath School App'

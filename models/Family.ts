@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt'
 import mongoose, { Document, Schema } from 'mongoose'
 import slugify from 'slugify'
-
 import { IStatus } from './User'
 
 export enum IFamilyTypes {
@@ -60,7 +59,7 @@ familySchema.pre<IFamily>('save', function () {
     const hashedPassword = bcrypt.hashSync(
         this.password,
         12,
-        process.env.JWT_SECRET
+        process.env.PASSWORD_HASH_SCRET
     )
     this.password = hashedPassword
 })

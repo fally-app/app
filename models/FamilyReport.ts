@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from 'mongoose'
-
 import { IFamily } from './Family'
 
 export interface IFamilyReport extends Document {
@@ -13,7 +12,7 @@ export interface IFamilyReport extends Document {
     wereHelped: number
     sick: number
     visitors: number
-    schoolAbsence: number
+    away: number
 }
 
 const familyReportSchema: Schema = new Schema({
@@ -58,10 +57,6 @@ const familyReportSchema: Schema = new Schema({
         type: Number,
         default: 0,
     },
-    schoolAbsence: {
-        type: Number,
-        default: 0,
-    },
     sabbath_week: {
         type: Number,
         required: true,
@@ -70,6 +65,10 @@ const familyReportSchema: Schema = new Schema({
     absent: {
         type: Number,
         required: true,
+        default: 0,
+    },
+    away: {
+        type: Number,
         default: 0,
     },
     year: {

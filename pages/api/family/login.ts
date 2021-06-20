@@ -1,12 +1,11 @@
-import bcrypt from 'bcrypt'
-import { NextApiResponse } from 'next'
-import nc from 'next-connect'
-
 import { family } from '@/db/index'
 import middleware from '@/middleware/all'
 import onError from '@/middleware/error'
 import { createToken } from '@/utils/Helpers'
 import { Request } from '@/utils/types'
+import bcrypt from 'bcrypt'
+import { NextApiResponse } from 'next'
+import nc from 'next-connect'
 
 const handler = nc<Request, NextApiResponse>({ onError })
 
@@ -21,7 +20,7 @@ handler.post(async (req, res) => {
             error: 'All fields are required',
         })
 
-        console.log(req.body)
+    console.log(req.body)
 
     const checkFamily = await family.getFamilyByCode(req.db, code)
 

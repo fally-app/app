@@ -1,7 +1,6 @@
-import nc from 'next-connect'
-
 import middleware from '@/middleware/all'
 import onError from '@/middleware/error'
+import nc from 'next-connect'
 
 const handler = nc({ onError })
 

@@ -1,10 +1,9 @@
-import { NextApiResponse } from 'next'
-import nc from 'next-connect'
-
 import { user } from '@/db/index'
 import middleware from '@/middleware/all'
 import onError from '@/middleware/error'
 import { Request } from '@/utils/types'
+import { NextApiResponse } from 'next'
+import nc from 'next-connect'
 
 const handler = nc<Request, NextApiResponse>({ onError })
 

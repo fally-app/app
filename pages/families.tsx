@@ -1,11 +1,9 @@
+import { FamilyType } from '@/utils/types'
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GetServerSideProps } from 'next'
 import Router from 'next/router'
 import { useEffect } from 'react'
 import useSWR from 'swr'
-
-import { FamilyType } from '@/utils/types'
-
 import AddNewFamily from '../components/AddNewFam'
 import FamiliesAdmin from '../components/FamiliesAdmin'
 import NavBar from '../components/NavBar'

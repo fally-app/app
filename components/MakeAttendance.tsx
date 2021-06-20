@@ -11,13 +11,12 @@ import TextField from '@material-ui/core/TextField/TextField'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
-
 import { Gender, IStatus } from '../models/User'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            maxHeight: 440,
+            maxHeight: 400,
             flexShrink: 0,
             marginLeft: theme.spacing(2.5),
         },
@@ -169,8 +168,12 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             sick: sick.length,
             studied7times: studied.length,
             startedSabbath: startedSabbath.length,
-            absent: users.length - presents.length + sick.length - schoolAbsence.length,
-            schoolAbsence: schoolAbsence.length
+            absent:
+                users.length -
+                presents.length -
+                sick.length -
+                schoolAbsence.length,
+            away: schoolAbsence.length,
         }
 
         try {
@@ -194,11 +197,12 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setstudied([])
             setStartedSabbath([])
             setsaved('Saved successfully')
+
         } catch (error) {
             setError(
                 error.response.data.error
                     ? error.response.data.error
-                    : 'sometihng went wrong'
+                    : 'something went wrong'
             )
         }
     }
@@ -248,7 +252,9 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                 <TableCell>No</TableCell>
                                 <TableCell>Names</TableCell>
                                 <TableCell align="right">Yaje</TableCell>
-                                <TableCell align="right">Ntabwo ari mu kigo</TableCell>
+                                <TableCell align="right">
+                                    Afite impamvu
+                                </TableCell>
                                 <TableCell align="right">Yarasuye</TableCell>
                                 <TableCell align="right">Yarasuwe</TableCell>
                                 <TableCell align="right">Yarafashije</TableCell>

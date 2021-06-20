@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
-
 import FamilyReport from '../../../models/FamilyReport'
 import connectDB from '../../../utils/connectDB'
 import { getCurrentWeekInTheYear } from '../../../utils/Helpers'
@@ -81,16 +80,14 @@ export default async function handler(
                             (req.body.presents +
                                 req.body.absent +
                                 req.body.sick -
-                                req.body.schoolAbsence
-                            )) *
+                                req.body.schoolAbsence)) *
                             100 +
                             (req.body.studied7times / req.body.presents) * 100 +
                             (req.body.startedSabbath /
                                 (req.body.presents +
                                     req.body.absent +
                                     req.body.sick -
-                                    req.body.schoolAbsence
-                                    )) *
+                                    req.body.schoolAbsence)) *
                                 100) /
                             3
                     )}`,

@@ -13,6 +13,7 @@ export interface IFamilyReport extends Document {
     wereHelped: number
     sick: number
     visitors: number
+    schoolAbsence: number
 }
 
 const familyReportSchema: Schema = new Schema({
@@ -54,6 +55,10 @@ const familyReportSchema: Schema = new Schema({
         default: 0,
     },
     visitors: {
+        type: Number,
+        default: 0,
+    },
+    schoolAbsence: {
         type: Number,
         default: 0,
     },

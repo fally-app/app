@@ -21,6 +21,8 @@ handler.post(async (req, res) => {
             error: 'All fields are required',
         })
 
+        console.log(req.body)
+
     const checkFamily = await family.getFamilyByCode(req.db, code)
 
     if (!checkFamily)

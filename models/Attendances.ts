@@ -14,6 +14,7 @@ export interface IAttendances extends Document {
     helped: boolean
     wasHelped: boolean
     isSick: boolean
+    schoolAbsence: boolean
     broughtOneTenth: boolean
     created_at: string
 }
@@ -58,6 +59,10 @@ const attendanceSchema: Schema = new Schema({
         default: false,
     },
     isSick: {
+        type: Boolean,
+        default: false,
+    },
+    schoolAbsence:{
         type: Boolean,
         default: false,
     },

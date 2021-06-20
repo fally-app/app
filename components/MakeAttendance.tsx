@@ -74,10 +74,12 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
     const [startedSabbath, setStartedSabbath] = React.useState<string[]>([])
     const [error, setError] = React.useState<string>()
     const [saved, setsaved] = React.useState<string>()
+    const [schoolAbsence, setSchoolAbsence] = React.useState<string[]>([])
 
     const isPresent = id => presents.includes(id)
     const hasVisited = id => visit.includes(id)
     const wasvisted = id => visited.includes(id)
+    const isSchoolAbsence = id => schoolAbsence.includes(id)
     const hasHelped = id => helped.includes(id)
     const wasGivenHelp = id => washelped.includes(id)
     const isSick = id => sick.includes(id)
@@ -113,6 +115,14 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setwashelpded([...washelped, id])
         } else {
             setwashelpded(washelped.filter(w => w != id))
+        }
+    }
+
+    const handleSchoolAbsence = id => {
+        if (!schoolAbsence.includes(id)) {
+            setSchoolAbsence([...schoolAbsence, id])
+        } else {
+            setSchoolAbsence(schoolAbsence.filter(w => w != id))
         }
     }
 
@@ -159,7 +169,8 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             sick: sick.length,
             studied7times: studied.length,
             startedSabbath: startedSabbath.length,
-            absent: users.length - presents.length + sick.length,
+            absent: users.length - presents.length + sick.length - schoolAbsence.length,
+            schoolAbsence: schoolAbsence.length
         }
 
         try {
@@ -177,6 +188,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setVisit([])
             setVisited([])
             setHelped([])
+            setSchoolAbsence([])
             setwashelpded([])
             setsick([])
             setstudied([])
@@ -236,6 +248,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                 <TableCell>No</TableCell>
                                 <TableCell>Names</TableCell>
                                 <TableCell align="right">Yaje</TableCell>
+                                <TableCell align="right">Ntabwo ari mu kigo</TableCell>
                                 <TableCell align="right">Yarasuye</TableCell>
                                 <TableCell align="right">Yarasuwe</TableCell>
                                 <TableCell align="right">Yarafashije</TableCell>
@@ -267,6 +280,19 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                             color="primary"
                                             onChange={() =>
                                                 handlePresence(row._id)
+                                            }
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Checkbox
+                                            checked={isSchoolAbsence(row._id)}
+                                            color="primary"
+                                            onChange={() =>
+                                                handleSchoolAbsence(row._id)
                                             }
                                             inputProps={{
                                                 'aria-label':

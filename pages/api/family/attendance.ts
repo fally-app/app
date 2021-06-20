@@ -73,19 +73,24 @@ export default async function handler(
                     sick: req.body.sick,
                     visitors: req.body.visitors,
                     absent: req.body.absent,
+                    schoolAbsence: req.body.schoolAbsence,
                     sabbath_week: getCurrentWeekInTheYear()[1],
                     year: getCurrentWeekInTheYear()[0],
                     percentage: `${Math.round(
                         ((req.body.presents /
                             (req.body.presents +
                                 req.body.absent +
-                                req.body.sick)) *
+                                req.body.sick -
+                                req.body.schoolAbsence
+                            )) *
                             100 +
                             (req.body.studied7times / req.body.presents) * 100 +
                             (req.body.startedSabbath /
                                 (req.body.presents +
                                     req.body.absent +
-                                    req.body.sick)) *
+                                    req.body.sick -
+                                    req.body.schoolAbsence
+                                    )) *
                                 100) /
                             3
                     )}`,

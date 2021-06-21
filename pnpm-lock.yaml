@@ -10,7 +10,7 @@ specifiers:
   '@types/node': 15.12.4
   '@types/react': 17.0.11
   '@typescript-eslint/eslint-plugin': 4.28.0
-  '@typescript-eslint/parser': 4.27.0
+  '@typescript-eslint/parser': 4.28.0
   autoprefixer: 10.2.6
   axios: 0.21.1
   bcrypt: 5.0.1
@@ -48,8 +48,8 @@ dependencies:
   '@material-ui/lab': 4.0.0-alpha.58_5e14cec25e1ceef8d08e6ab1e0c4cb05
   '@types/jsonwebtoken': 8.5.2
   '@types/mongoose': 5.10.5
-  '@typescript-eslint/eslint-plugin': 4.28.0_b7b1357bbf6753e7455d6ef3191d413d
-  '@typescript-eslint/parser': 4.27.0_eslint@7.29.0+typescript@4.3.4
+  '@typescript-eslint/eslint-plugin': 4.28.0_4ec1e0eca7c6e4115e1e7a13008fdec2
+  '@typescript-eslint/parser': 4.28.0_eslint@7.29.0+typescript@4.3.4
   axios: 0.21.1
   bcrypt: 5.0.1
   clsx: 1.1.1
@@ -1763,7 +1763,7 @@ packages:
     resolution: {integrity: sha512-HrCIVMLjE1MOozVoD86622S7aunluLb2PJdPfb3nYiEtohm8mIB/vyv0Fd37AdeMFrTUQXEunw78YloMA3Qilg==}
     dev: false
 
-  /@typescript-eslint/eslint-plugin/4.28.0_b7b1357bbf6753e7455d6ef3191d413d:
+  /@typescript-eslint/eslint-plugin/4.28.0_4ec1e0eca7c6e4115e1e7a13008fdec2:
     resolution: {integrity: sha512-KcF6p3zWhf1f8xO84tuBailV5cN92vhS+VT7UJsPzGBm9VnQqfI9AsiMUFUCYHTYPg1uCCo+HyiDnpDuvkAMfQ==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -1775,7 +1775,7 @@ packages:
         optional: true
     dependencies:
       '@typescript-eslint/experimental-utils': 4.28.0_eslint@7.29.0+typescript@4.3.4
-      '@typescript-eslint/parser': 4.27.0_eslint@7.29.0+typescript@4.3.4
+      '@typescript-eslint/parser': 4.28.0_eslint@7.29.0+typescript@4.3.4
       '@typescript-eslint/scope-manager': 4.28.0
       debug: 4.3.1
       eslint: 7.29.0
@@ -1824,6 +1824,27 @@ packages:
       typescript: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@typescript-eslint/parser/4.28.0_eslint@7.29.0+typescript@4.3.4:
+    resolution: {integrity: sha512-7x4D22oPY8fDaOCvkuXtYYTQ6mTMmkivwEzS+7iml9F9VkHGbbZ3x4fHRwxAb5KeuSkLqfnYjs46tGx2Nour4A==}
+    engines: {node: ^10.12.0 || >=12.0.0}
+    peerDependencies:
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/scope-manager': 4.28.0
+      '@typescript-eslint/types': 4.28.0
+      '@typescript-eslint/typescript-estree': 4.28.0_typescript@4.3.4
+      debug: 4.3.1
+      eslint: 7.29.0
+      typescript: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /@typescript-eslint/scope-manager/4.27.0:
     resolution: {integrity: sha512-DY73jK6SEH6UDdzc6maF19AHQJBFVRf6fgAXHPXCGEmpqD4vYgPEzqpFz1lf/daSbOcMpPPj9tyXXDPW2XReAw==}
@@ -1831,6 +1852,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 4.27.0
       '@typescript-eslint/visitor-keys': 4.27.0
+    dev: true
 
   /@typescript-eslint/scope-manager/4.28.0:
     resolution: {integrity: sha512-eCALCeScs5P/EYjwo6se9bdjtrh8ByWjtHzOkC4Tia6QQWtQr3PHovxh3TdYTuFcurkYI4rmFsRFpucADIkseg==}
@@ -1843,6 +1865,7 @@ packages:
   /@typescript-eslint/types/4.27.0:
     resolution: {integrity: sha512-I4ps3SCPFCKclRcvnsVA/7sWzh7naaM/b4pBO2hVxnM3wrU51Lveybdw5WoIktU/V4KfXrTt94V9b065b/0+wA==}
     engines: {node: ^8.10.0 || ^10.13.0 || >=11.10.1}
+    dev: true
 
   /@typescript-eslint/types/4.28.0:
     resolution: {integrity: sha512-p16xMNKKoiJCVZY5PW/AfILw2xe1LfruTcfAKBj3a+wgNYP5I9ZEKNDOItoRt53p4EiPV6iRSICy8EPanG9ZVA==}
@@ -1868,6 +1891,7 @@ packages:
       typescript: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@typescript-eslint/typescript-estree/4.28.0_typescript@4.3.4:
     resolution: {integrity: sha512-m19UQTRtxMzKAm8QxfKpvh6OwQSXaW1CdZPoCaQuLwAq7VZMNuhJmZR4g5281s2ECt658sldnJfdpSZZaxUGMQ==}
@@ -1896,6 +1920,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 4.27.0
       eslint-visitor-keys: 2.1.0
+    dev: true
 
   /@typescript-eslint/visitor-keys/4.28.0:
     resolution: {integrity: sha512-PjJyTWwrlrvM5jazxYF5ZPs/nl0kHDZMVbuIcbpawVXaDPelp3+S9zpOz5RmVUfS/fD5l5+ZXNKnWhNYjPzCvw==}

@@ -36,16 +36,16 @@ specifiers:
   postcss: 8.3.5
   prettier: 2.3.1
   react: 17.0.2
-  react-dom: 17.0.1
+  react-dom: 17.0.2
   slugify: 1.5.3
   swr: 0.5.6
   tailwindcss: 2.2.2
   typescript: 4.3.4
 
 dependencies:
-  '@material-ui/core': 4.11.4_ac4e8f447cd9034bbf389b9da2e491ae
-  '@material-ui/icons': 4.11.2_70d34ebe82b693d3035df0558603825d
-  '@material-ui/lab': 4.0.0-alpha.58_70d34ebe82b693d3035df0558603825d
+  '@material-ui/core': 4.11.4_7a759d72fcbc11ce03c9de110c21df82
+  '@material-ui/icons': 4.11.2_5e14cec25e1ceef8d08e6ab1e0c4cb05
+  '@material-ui/lab': 4.0.0-alpha.58_5e14cec25e1ceef8d08e6ab1e0c4cb05
   '@types/jsonwebtoken': 8.5.2
   '@types/mongoose': 5.10.5
   '@typescript-eslint/eslint-plugin': 4.28.0_b7b1357bbf6753e7455d6ef3191d413d
@@ -60,12 +60,12 @@ dependencies:
   lint-staged: 11.0.0
   mongodb: 3.6.9
   mongoose: 5.10.18
-  next: 11.0.0_54f57eb4556b66465fa43aaece9d3672
-  next-auth: 3.27.0_a55d4b8ef9272135b323cdf098de4097
+  next: 11.0.0_2dbe935e140170ce01c975771f1adcbd
+  next-auth: 3.27.0_512841371352dfb1a858f4dec25565f6
   next-connect: 0.10.1
   next-pwa: 5.2.21_next@11.0.0
   react: 17.0.2
-  react-dom: 17.0.1_react@17.0.2
+  react-dom: 17.0.2_react@17.0.2
   slugify: 1.5.3
   swr: 0.5.6_react@17.0.2
 
@@ -1315,7 +1315,7 @@ packages:
       - supports-color
     dev: false
 
-  /@material-ui/core/4.11.4_ac4e8f447cd9034bbf389b9da2e491ae:
+  /@material-ui/core/4.11.4_7a759d72fcbc11ce03c9de110c21df82:
     resolution: {integrity: sha512-oqb+lJ2Dl9HXI9orc6/aN8ZIAMkeThufA5iZELf2LQeBn2NtjVilF5D2w7e9RpntAzDb4jK5DsVhkfOvFY/8fg==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -1327,10 +1327,10 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.14.6
-      '@material-ui/styles': 4.11.4_ac4e8f447cd9034bbf389b9da2e491ae
-      '@material-ui/system': 4.11.3_ac4e8f447cd9034bbf389b9da2e491ae
+      '@material-ui/styles': 4.11.4_7a759d72fcbc11ce03c9de110c21df82
+      '@material-ui/system': 4.11.3_7a759d72fcbc11ce03c9de110c21df82
       '@material-ui/types': 5.1.0_@types+react@17.0.11
-      '@material-ui/utils': 4.11.2_react-dom@17.0.1+react@17.0.2
+      '@material-ui/utils': 4.11.2_react-dom@17.0.2+react@17.0.2
       '@types/react': 17.0.11
       '@types/react-transition-group': 4.4.1
       clsx: 1.1.1
@@ -1338,12 +1338,12 @@ packages:
       popper.js: 1.16.1-lts
       prop-types: 15.7.2
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
       react-is: 17.0.2
-      react-transition-group: 4.4.2_react-dom@17.0.1+react@17.0.2
+      react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
     dev: false
 
-  /@material-ui/icons/4.11.2_70d34ebe82b693d3035df0558603825d:
+  /@material-ui/icons/4.11.2_5e14cec25e1ceef8d08e6ab1e0c4cb05:
     resolution: {integrity: sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -1356,13 +1356,13 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.14.6
-      '@material-ui/core': 4.11.4_ac4e8f447cd9034bbf389b9da2e491ae
+      '@material-ui/core': 4.11.4_7a759d72fcbc11ce03c9de110c21df82
       '@types/react': 17.0.11
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /@material-ui/lab/4.0.0-alpha.58_70d34ebe82b693d3035df0558603825d:
+  /@material-ui/lab/4.0.0-alpha.58_5e14cec25e1ceef8d08e6ab1e0c4cb05:
     resolution: {integrity: sha512-GKHlJqLxUeHH3L3dGQ48ZavYrqGOTXkFkiEiuYMAnAvXAZP4rhMIqeHOPXSUQan4Bd8QnafDcpovOSLnadDmKw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -1375,17 +1375,17 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.14.6
-      '@material-ui/core': 4.11.4_ac4e8f447cd9034bbf389b9da2e491ae
-      '@material-ui/utils': 4.11.2_react-dom@17.0.1+react@17.0.2
+      '@material-ui/core': 4.11.4_7a759d72fcbc11ce03c9de110c21df82
+      '@material-ui/utils': 4.11.2_react-dom@17.0.2+react@17.0.2
       '@types/react': 17.0.11
       clsx: 1.1.1
       prop-types: 15.7.2
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
       react-is: 17.0.2
     dev: false
 
-  /@material-ui/styles/4.11.4_ac4e8f447cd9034bbf389b9da2e491ae:
+  /@material-ui/styles/4.11.4_7a759d72fcbc11ce03c9de110c21df82:
     resolution: {integrity: sha512-KNTIZcnj/zprG5LW0Sao7zw+yG3O35pviHzejMdcSGCdWbiO8qzRgOYL8JAxAsWBKOKYwVZxXtHWaB5T2Kvxew==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -1399,7 +1399,7 @@ packages:
       '@babel/runtime': 7.14.6
       '@emotion/hash': 0.8.0
       '@material-ui/types': 5.1.0_@types+react@17.0.11
-      '@material-ui/utils': 4.11.2_react-dom@17.0.1+react@17.0.2
+      '@material-ui/utils': 4.11.2_react-dom@17.0.2+react@17.0.2
       '@types/react': 17.0.11
       clsx: 1.1.1
       csstype: 2.6.17
@@ -1414,10 +1414,10 @@ packages:
       jss-plugin-vendor-prefixer: 10.6.0
       prop-types: 15.7.2
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /@material-ui/system/4.11.3_ac4e8f447cd9034bbf389b9da2e491ae:
+  /@material-ui/system/4.11.3_7a759d72fcbc11ce03c9de110c21df82:
     resolution: {integrity: sha512-SY7otguNGol41Mu2Sg6KbBP1ZRFIbFLHGK81y4KYbsV2yIcaEPOmsCK6zwWlp+2yTV3J/VwT6oSBARtGIVdXPw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -1429,12 +1429,12 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.14.6
-      '@material-ui/utils': 4.11.2_react-dom@17.0.1+react@17.0.2
+      '@material-ui/utils': 4.11.2_react-dom@17.0.2+react@17.0.2
       '@types/react': 17.0.11
       csstype: 2.6.17
       prop-types: 15.7.2
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /@material-ui/types/5.1.0_@types+react@17.0.11:
@@ -1448,7 +1448,7 @@ packages:
       '@types/react': 17.0.11
     dev: false
 
-  /@material-ui/utils/4.11.2_react-dom@17.0.1+react@17.0.2:
+  /@material-ui/utils/4.11.2_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-Uul8w38u+PICe2Fg2pDKCaIG7kOyhowZ9vjiC1FsVwPABTW8vPPKfF6OvxRq3IiBaI1faOJmgdvMG7rMJARBhA==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -1458,7 +1458,7 @@ packages:
       '@babel/runtime': 7.14.6
       prop-types: 15.7.2
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
       react-is: 17.0.2
     dev: false
 
@@ -1469,7 +1469,7 @@ packages:
       next-auth: ^3.17.2
     dependencies:
       '@babel/runtime': 7.14.6
-      next-auth: 3.27.0_a55d4b8ef9272135b323cdf098de4097
+      next-auth: 3.27.0_512841371352dfb1a858f4dec25565f6
     dev: false
 
   /@next-auth/typeorm-legacy-adapter/0.0.2-canary.129_mongodb@3.6.9+next-auth@3.27.0:
@@ -1492,7 +1492,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.14.6
       mongodb: 3.6.9
-      next-auth: 3.27.0_a55d4b8ef9272135b323cdf098de4097
+      next-auth: 3.27.0_512841371352dfb1a858f4dec25565f6
       require_optional: 1.0.1
       typeorm: 0.2.34
     transitivePeerDependencies:
@@ -1511,7 +1511,7 @@ packages:
     resolution: {integrity: sha512-gydtFzRqsT549U8+sY8382I/f4HFcelD8gdUGnAofQJa/jEU1jkxmjCHC8tmEiyeMLidl7iDZgchfSCpmMzzUg==}
     dev: false
 
-  /@next/react-dev-overlay/11.0.0_react-dom@17.0.1+react@17.0.2:
+  /@next/react-dev-overlay/11.0.0_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-q+Wp+eStEMThe77zxdeJ/nbuODkHR6P+/dfUqYXZSqbLf6x5c5xwLBauwwVbkCYFZpAlDuL8Jk8QSAH1OsqC2w==}
     peerDependencies:
       react: ^17.0.2
@@ -1525,7 +1525,7 @@ packages:
       data-uri-to-buffer: 3.0.1
       platform: 1.3.6
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
       shell-quote: 1.7.2
       source-map: 0.8.0-beta.0
       stacktrace-parser: 0.1.10
@@ -3098,7 +3098,7 @@ packages:
       eslint-plugin-jsx-a11y: 6.4.1_eslint@7.29.0
       eslint-plugin-react: 7.24.0_eslint@7.29.0
       eslint-plugin-react-hooks: 4.2.0_eslint@7.29.0
-      next: 11.0.0_54f57eb4556b66465fa43aaece9d3672
+      next: 11.0.0_2dbe935e140170ce01c975771f1adcbd
       typescript: 4.3.4
     transitivePeerDependencies:
       - supports-color
@@ -4682,7 +4682,7 @@ packages:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
     dev: true
 
-  /next-auth/3.27.0_a55d4b8ef9272135b323cdf098de4097:
+  /next-auth/3.27.0_512841371352dfb1a858f4dec25565f6:
     resolution: {integrity: sha512-mnPwODN+g4901o5TcK3x8+pxEM4si19QPOkP7NCXMz90VMMEDBlm3SGviraYQm6QwYxrwK8sG1hN6SxLIM7ckw==}
     peerDependencies:
       react: ^16.13.1 || ^17
@@ -4701,7 +4701,7 @@ packages:
       preact-render-to-string: 5.1.19_preact@10.5.13
       querystring: 0.2.1
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:
       - '@prisma/client'
       - mongodb
@@ -4725,7 +4725,7 @@ packages:
       babel-loader: 8.2.2
       clean-webpack-plugin: 3.0.0
       globby: 11.0.4
-      next: 11.0.0_54f57eb4556b66465fa43aaece9d3672
+      next: 11.0.0_2dbe935e140170ce01c975771f1adcbd
       terser-webpack-plugin: 5.1.3
       workbox-webpack-plugin: 6.1.5
       workbox-window: 6.1.5
@@ -4736,7 +4736,7 @@ packages:
       - webpack
     dev: false
 
-  /next/11.0.0_54f57eb4556b66465fa43aaece9d3672:
+  /next/11.0.0_2dbe935e140170ce01c975771f1adcbd:
     resolution: {integrity: sha512-1OA0ccCTwVtdLats/1v7ReiBVx+Akya0UVhHo9IBr8ZkpDI3/SGNcaruJBp5agy8ROF97VDKkZamoUXxRB9NUA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -4758,7 +4758,7 @@ packages:
       '@hapi/accept': 5.0.2
       '@next/env': 11.0.0
       '@next/polyfill-module': 11.0.0
-      '@next/react-dev-overlay': 11.0.0_react-dom@17.0.1+react@17.0.2
+      '@next/react-dev-overlay': 11.0.0_react-dom@17.0.2+react@17.0.2
       '@next/react-refresh-utils': 11.0.0_react-refresh@0.8.3
       assert: 2.0.0
       ast-types: 0.13.2
@@ -4793,7 +4793,7 @@ packages:
       querystring-es3: 0.2.1
       raw-body: 2.4.1
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
       react-is: 17.0.2
       react-refresh: 0.8.3
       stream-browserify: 3.0.0
@@ -5477,10 +5477,10 @@ packages:
       unpipe: 1.0.0
     dev: false
 
-  /react-dom/17.0.1_react@17.0.2:
-    resolution: {integrity: sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==}
+  /react-dom/17.0.2_react@17.0.2:
+    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
-      react: 17.0.1
+      react: 17.0.2
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
@@ -5500,7 +5500,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react-transition-group/4.4.2_react-dom@17.0.1+react@17.0.2:
+  /react-transition-group/4.4.2_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==}
     peerDependencies:
       react: '>=16.6.0'
@@ -5511,7 +5511,7 @@ packages:
       loose-envify: 1.4.0
       prop-types: 15.7.2
       react: 17.0.2
-      react-dom: 17.0.1_react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react/17.0.2:

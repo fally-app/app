@@ -6,7 +6,7 @@ specifiers:
   '@material-ui/lab': 4.0.0-alpha.58
   '@types/jsonwebtoken': 8.5.2
   '@types/mongodb': 3.6.18
-  '@types/mongoose': 5.10.5
+  '@types/mongoose': 5.11.96
   '@types/node': 15.12.4
   '@types/react': 17.0.11
   '@typescript-eslint/eslint-plugin': 4.28.0
@@ -28,7 +28,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 3.6.9
-  mongoose: 5.10.18
+  mongoose: 5.12.14
   next: 11.0.0
   next-auth: 3.27.0
   next-connect: 0.10.1
@@ -47,7 +47,7 @@ dependencies:
   '@material-ui/icons': 4.11.2_5e14cec25e1ceef8d08e6ab1e0c4cb05
   '@material-ui/lab': 4.0.0-alpha.58_5e14cec25e1ceef8d08e6ab1e0c4cb05
   '@types/jsonwebtoken': 8.5.2
-  '@types/mongoose': 5.10.5
+  '@types/mongoose': 5.11.96
   '@typescript-eslint/eslint-plugin': 4.28.0_4ec1e0eca7c6e4115e1e7a13008fdec2
   '@typescript-eslint/parser': 4.28.0_eslint@7.29.0+typescript@4.3.4
   axios: 0.21.1
@@ -59,7 +59,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 3.6.9
-  mongoose: 5.10.18
+  mongoose: 5.12.14
   next: 11.0.0_2dbe935e140170ce01c975771f1adcbd
   next-auth: 3.27.0_512841371352dfb1a858f4dec25565f6
   next-connect: 0.10.1
@@ -1676,11 +1676,17 @@ packages:
       '@types/bson': 4.0.3
       '@types/node': 15.12.2
 
-  /@types/mongoose/5.10.5:
-    resolution: {integrity: sha512-37QMIA954T3n+HSksSNLlxZsqF8fMJu5S4dyPBod6gRxGtsXlQ9jUtL8BE8Seimv99u79eLXI3bggoCnSQ/fxQ==}
+  /@types/mongoose/5.11.96:
+    resolution: {integrity: sha512-keiY22ljJtXyM7osgScmZOHV6eL5VFUD5tQumlu+hjS++HND5nM8jNEdj5CSWfKIJpVwQfPuwQ2SfBqUnCAVRw==}
     dependencies:
-      '@types/mongodb': 3.6.18
-      '@types/node': 15.12.2
+      mongoose: 5.12.14
+    transitivePeerDependencies:
+      - aws4
+      - bson-ext
+      - kerberos
+      - mongodb-client-encryption
+      - mongodb-extjson
+      - snappy
     dev: false
 
   /@types/node/15.12.2:
@@ -4264,8 +4270,8 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /kareem/2.3.1:
-    resolution: {integrity: sha512-l3hLhffs9zqoDe8zjmb/mAN4B8VT3L56EUvKNqLFVs9YlFA+zx7ke1DO8STAdDyYNkeSo1nKmjuvQeI12So8Xw==}
+  /kareem/2.3.2:
+    resolution: {integrity: sha512-STHz9P7X2L4Kwn72fA4rGyqyXdmrMSdxqHx9IXon/FXluXieaFA6KJ2upcHAHxQPQ0LeM/OjLrhFxifHewOALQ==}
     dev: false
 
   /language-subtag-registry/0.3.21:
@@ -4561,8 +4567,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /mongodb/3.6.3:
-    resolution: {integrity: sha512-rOZuR0QkodZiM+UbQE5kDsJykBqWi0CL4Ec2i1nrGrUI3KO11r6Fbxskqmq3JK2NH7aW4dcccBuUujAP0ERl5w==}
+  /mongodb/3.6.8:
+    resolution: {integrity: sha512-sDjJvI73WjON1vapcbyBD3Ao9/VN3TKYY8/QX9EPbs22KaCSrQ5rXo5ZZd44tWJ3wl3FlnrFZ+KyUtNH6+1ZPQ==}
     engines: {node: '>=4'}
     peerDependencies:
       aws4: '*'
@@ -4588,7 +4594,7 @@ packages:
       bl: 2.2.1
       bson: 1.1.6
       denque: 1.5.0
-      require_optional: 1.0.1
+      optional-require: 1.0.3
       safe-buffer: 5.2.1
     optionalDependencies:
       saslprep: 1.0.3
@@ -4627,28 +4633,29 @@ packages:
       saslprep: 1.0.3
     dev: false
 
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.10.18:
+  /mongoose-legacy-pluralize/1.0.2_mongoose@5.12.14:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
       mongoose: '*'
     dependencies:
-      mongoose: 5.10.18
+      mongoose: 5.12.14
     dev: false
 
-  /mongoose/5.10.18:
-    resolution: {integrity: sha512-vaLUzBpUxqacoCqP/xXWMg/uVwCDrlc8LvYjDXCf8hdApvX/CXa0HLa7v2ieFaVd5Fgv3W2QXODLoC4Z/abbNw==}
+  /mongoose/5.12.14:
+    resolution: {integrity: sha512-1lMRY8cfGYFWHqe5DLnVgNQDyD0fEbSoWIQe9Mllt/ZtayZ5XUFQt+o5VKrB44vsT5cLNzgwEFO0NvwTwqLluQ==}
     engines: {node: '>=4.0.0'}
     dependencies:
+      '@types/mongodb': 3.6.18
       bson: 1.1.6
-      kareem: 2.3.1
-      mongodb: 3.6.3
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.10.18
-      mpath: 0.7.0
-      mquery: 3.2.2
+      kareem: 2.3.2
+      mongodb: 3.6.8
+      mongoose-legacy-pluralize: 1.0.2_mongoose@5.12.14
+      mpath: 0.8.3
+      mquery: 3.2.5
       ms: 2.1.2
       regexp-clone: 1.0.0
       safe-buffer: 5.2.1
-      sift: 7.0.1
+      sift: 13.5.2
       sliced: 1.0.1
     transitivePeerDependencies:
       - aws4
@@ -4659,13 +4666,13 @@ packages:
       - snappy
     dev: false
 
-  /mpath/0.7.0:
-    resolution: {integrity: sha512-Aiq04hILxhz1L+f7sjGyn7IxYzWm1zLNNXcfhDtx04kZ2Gk7uvFdgZ8ts1cWa/6d0TQmag2yR8zSGZUmp0tFNg==}
+  /mpath/0.8.3:
+    resolution: {integrity: sha512-eb9rRvhDltXVNL6Fxd2zM9D4vKBxjVVQNLNijlj7uoXUy19zNDsIif5zR+pWmPCWNKwAtqyo4JveQm4nfD5+eA==}
     engines: {node: '>=4.0.0'}
     dev: false
 
-  /mquery/3.2.2:
-    resolution: {integrity: sha512-XB52992COp0KP230I3qloVUbkLUxJIu328HBP2t2EsxSFtf4W1HPSOBWOXf1bqxK4Xbb66lfMJ+Bpfd9/yZE1Q==}
+  /mquery/3.2.5:
+    resolution: {integrity: sha512-VjOKHHgU84wij7IUoZzFRU07IAxd5kWJaDmyUzQlbjHjyoeK5TNeeo8ZsFDtTYnSgpW6n/nMNIHvE3u8Lbrf4A==}
     engines: {node: '>=4.0.0'}
     dependencies:
       bluebird: 3.5.1
@@ -5910,8 +5917,8 @@ packages:
       object-inspect: 1.10.3
     dev: true
 
-  /sift/7.0.1:
-    resolution: {integrity: sha512-oqD7PMJ+uO6jV9EQCl0LrRw1OwsiPsiFQR5AR30heR+4Dl7jBBbDLnNvWiak20tzZlSE1H7RB30SX/1j/YYT7g==}
+  /sift/13.5.2:
+    resolution: {integrity: sha512-+gxdEOMA2J+AI+fVsCqeNn7Tgx3M9ZN9jdi95939l1IJ8cZsqS8sqpJyOkic2SJk+1+98Uwryt/gL6XDaV+UZA==}
     dev: false
 
   /signal-exit/3.0.3:

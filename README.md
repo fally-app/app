@@ -1,8 +1,6 @@
-### Sabbath school software
+### Peiece of stoftware to help with organizing church members
 
-### Reason
 
-> To move all of church activities online
 
 ## Change log
 
@@ -12,9 +10,4 @@
 ### v1.0.1
 
 -   [ ] Add blog section for the application
-
-### What's I'm working on right now
-
--   [x] Make auth routes work with next-connect middleware
--   [x] Make all api routes with with next-connect
--   [ ] Fix the mutate on admin
+-   [ ] use something else to manage our backend

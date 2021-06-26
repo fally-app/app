@@ -38,7 +38,7 @@ export const admin: React.FC<AdminProps> = ({
     const { loggedOut } = useUser()
     const classes = useStyles()
 
-    const { data, mutate } = useSWR('/api/family', fetcher, {
+    const { data, mutate } = useSWR<FamilyType[]>('/api/family', fetcher, {
         initialData: families,
     })
 

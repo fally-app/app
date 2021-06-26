@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
-
 import FamilyReport from '../../../models/FamilyReport'
 import connectDB from '../../../utils/connectDB'
 import { getCurrentWeekInTheYear } from '../../../utils/Helpers'
@@ -73,19 +72,22 @@ export default async function handler(
                     sick: req.body.sick,
                     visitors: req.body.visitors,
                     absent: req.body.absent,
+                    away: req.body.away,
                     sabbath_week: getCurrentWeekInTheYear()[1],
                     year: getCurrentWeekInTheYear()[0],
                     percentage: `${Math.round(
                         ((req.body.presents /
                             (req.body.presents +
                                 req.body.absent +
-                                req.body.sick)) *
+                                req.body.sick -
+                                req.body.away)) *
                             100 +
                             (req.body.studied7times / req.body.presents) * 100 +
                             (req.body.startedSabbath /
                                 (req.body.presents +
                                     req.body.absent +
-                                    req.body.sick)) *
+                                    req.body.sick -
+                                    req.body.away)) *
                                 100) /
                             3
                     )}`,

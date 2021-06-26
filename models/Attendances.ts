@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from 'mongoose'
-
 import { IFamily } from './Family'
 import { IUser } from './User'
 
@@ -14,6 +13,7 @@ export interface IAttendances extends Document {
     helped: boolean
     wasHelped: boolean
     isSick: boolean
+    away: boolean
     broughtOneTenth: boolean
     created_at: string
 }
@@ -58,6 +58,10 @@ const attendanceSchema: Schema = new Schema({
         default: false,
     },
     isSick: {
+        type: Boolean,
+        default: false,
+    },
+    away: {
         type: Boolean,
         default: false,
     },

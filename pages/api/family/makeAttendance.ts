@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
-
 import FamilyReport from '../../../models/FamilyReport'
 import connectDB from '../../../utils/connectDB'
 import { getCurrentWeekInTheYear } from '../../../utils/Helpers'
@@ -63,6 +62,7 @@ export default async function handler(
                     absent: req.body.absent,
                     sabbath_week: getCurrentWeekInTheYear()[1],
                     year: getCurrentWeekInTheYear()[0],
+                    away: req.body.away,
                 })
 
                 await data.save()

@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from 'mongoose'
-
 import { IFamily } from './Family'
 
 export enum Gender {

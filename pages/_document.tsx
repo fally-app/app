@@ -1,7 +1,6 @@
 import { ServerStyleSheets } from '@material-ui/core/styles'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
-
 import theme from '../theme'
 
 const APP_NAME = 'Sabbath School App'
@@ -69,7 +68,7 @@ export default class MyDocument extends Document {
     }
 }
 
-yDocument.getInitialProps = async ctx => {
+MyDocument.getInitialProps = async ctx => {
     const sheets = new ServerStyleSheets()
     const originalRenderPage = ctx.renderPage
 

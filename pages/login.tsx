@@ -1,3 +1,5 @@
+import api from '@/lib/api'
+import useUser from '@/lib/useUser'
 import {
     Button,
     Card,
@@ -17,9 +19,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
 import React, { useEffect, useState } from 'react'
-
-import api from '@/lib/api'
-import useUser from '@/lib/useUser'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -92,6 +91,7 @@ export const login = (): React.ReactElement => {
                 code,
                 password,
             })
+            console.log({ result })
             localStorage.setItem('auth-token', result.data.data)
             mutate()
             setLoading(false)
@@ -101,6 +101,7 @@ export const login = (): React.ReactElement => {
             } else {
                 setErrorMsg('Some thing went wrong')
             }
+            console.log({ error })
             setLoading(false)
             setIsSnackOpen(true)
         }

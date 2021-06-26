@@ -11,13 +11,12 @@ import TextField from '@material-ui/core/TextField/TextField'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
-
 import { Gender, IStatus } from '../models/User'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            maxHeight: 440,
+            maxHeight: 400,
             flexShrink: 0,
             marginLeft: theme.spacing(2.5),
         },
@@ -74,10 +73,12 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
     const [startedSabbath, setStartedSabbath] = React.useState<string[]>([])
     const [error, setError] = React.useState<string>()
     const [saved, setsaved] = React.useState<string>()
+    const [away, setaway] = React.useState<string[]>([])
 
     const isPresent = id => presents.includes(id)
     const hasVisited = id => visit.includes(id)
     const wasvisted = id => visited.includes(id)
+    const isaway = id => away.includes(id)
     const hasHelped = id => helped.includes(id)
     const wasGivenHelp = id => washelped.includes(id)
     const isSick = id => sick.includes(id)
@@ -113,6 +114,14 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setwashelpded([...washelped, id])
         } else {
             setwashelpded(washelped.filter(w => w != id))
+        }
+    }
+
+    const handleaway = id => {
+        if (!away.includes(id)) {
+            setaway([...away, id])
+        } else {
+            setaway(away.filter(w => w != id))
         }
     }
 
@@ -159,7 +168,8 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             sick: sick.length,
             studied7times: studied.length,
             startedSabbath: startedSabbath.length,
-            absent: users.length - presents.length + sick.length,
+            absent: users.length - presents.length - sick.length - away.length,
+            away: away.length,
         }
 
         try {
@@ -177,6 +187,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setVisit([])
             setVisited([])
             setHelped([])
+            setaway([])
             setwashelpded([])
             setsick([])
             setstudied([])
@@ -186,7 +197,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setError(
                 error.response.data.error
                     ? error.response.data.error
-                    : 'sometihng went wrong'
+                    : 'something went wrong'
             )
         }
     }
@@ -236,6 +247,9 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                 <TableCell>No</TableCell>
                                 <TableCell>Names</TableCell>
                                 <TableCell align="right">Yaje</TableCell>
+                                <TableCell align="right">
+                                    Afite impamvu
+                                </TableCell>
                                 <TableCell align="right">Yarasuye</TableCell>
                                 <TableCell align="right">Yarasuwe</TableCell>
                                 <TableCell align="right">Yarafashije</TableCell>
@@ -264,10 +278,23 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                     <TableCell align="right">
                                         <Checkbox
                                             checked={isPresent(row._id)}
+                                            disabled={isaway(row._id)}
                                             color="primary"
                                             onChange={() =>
                                                 handlePresence(row._id)
                                             }
+                                            inputProps={{
+                                                'aria-label':
+                                                    'secondary checkbox',
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Checkbox
+                                            checked={isaway(row._id)}
+                                            disabled={isPresent(row._id)}
+                                            color="primary"
+                                            onChange={() => handleaway(row._id)}
                                             inputProps={{
                                                 'aria-label':
                                                     'secondary checkbox',

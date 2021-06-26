@@ -1,9 +1,7 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import Head from 'next/head'
 import Router from 'next/router'
-import React from 'react'
-import { useEffect } from 'react'
-
+import React, { useEffect } from 'react'
 import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import useRequest from '../lib/useRequest'

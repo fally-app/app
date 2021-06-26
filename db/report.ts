@@ -1,5 +1,4 @@
 import { Db } from 'mongodb'
-
 import { getCurrentWeekInTheYear } from '../utils/Helpers'
 
 export const getCurrentReport = async (db: Db) => {

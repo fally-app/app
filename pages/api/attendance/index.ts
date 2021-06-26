@@ -1,6 +1,5 @@
 import { NextApiResponse } from 'next'
 import nc from 'next-connect'
-
 import { report } from '../../../db'
 import middleware from '../../../middleware/all'
 import onError from '../../../middleware/error'

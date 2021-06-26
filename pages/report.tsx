@@ -9,7 +9,6 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import { GetServerSideProps } from 'next'
 import React from 'react'
-
 import NavBar from '../components/NavBar'
 import { connectToDB, report } from '../db'
 
@@ -62,6 +61,8 @@ export const Report: React.FC<ReportProps> = ({
     if (!report) {
         return <h1>SOmething went wrong</h1>
     }
+
+    console.log({ report })
 
     return (
         <>

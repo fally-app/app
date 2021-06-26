@@ -73,12 +73,12 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
     const [startedSabbath, setStartedSabbath] = React.useState<string[]>([])
     const [error, setError] = React.useState<string>()
     const [saved, setsaved] = React.useState<string>()
-    const [schoolAbsence, setSchoolAbsence] = React.useState<string[]>([])
+    const [away, setaway] = React.useState<string[]>([])
 
     const isPresent = id => presents.includes(id)
     const hasVisited = id => visit.includes(id)
     const wasvisted = id => visited.includes(id)
-    const isSchoolAbsence = id => schoolAbsence.includes(id)
+    const isaway = id => away.includes(id)
     const hasHelped = id => helped.includes(id)
     const wasGivenHelp = id => washelped.includes(id)
     const isSick = id => sick.includes(id)
@@ -117,11 +117,11 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
         }
     }
 
-    const handleSchoolAbsence = id => {
-        if (!schoolAbsence.includes(id)) {
-            setSchoolAbsence([...schoolAbsence, id])
+    const handleaway = id => {
+        if (!away.includes(id)) {
+            setaway([...away, id])
         } else {
-            setSchoolAbsence(schoolAbsence.filter(w => w != id))
+            setaway(away.filter(w => w != id))
         }
     }
 
@@ -168,12 +168,8 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             sick: sick.length,
             studied7times: studied.length,
             startedSabbath: startedSabbath.length,
-            absent:
-                users.length -
-                presents.length -
-                sick.length -
-                schoolAbsence.length,
-            away: schoolAbsence.length,
+            absent: users.length - presents.length - sick.length - away.length,
+            away: away.length,
         }
 
         try {
@@ -191,13 +187,12 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
             setVisit([])
             setVisited([])
             setHelped([])
-            setSchoolAbsence([])
+            setaway([])
             setwashelpded([])
             setsick([])
             setstudied([])
             setStartedSabbath([])
             setsaved('Saved successfully')
-
         } catch (error) {
             setError(
                 error.response.data.error
@@ -283,6 +278,7 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                     <TableCell align="right">
                                         <Checkbox
                                             checked={isPresent(row._id)}
+                                            disabled={isaway(row._id)}
                                             color="primary"
                                             onChange={() =>
                                                 handlePresence(row._id)
@@ -295,11 +291,10 @@ export const MakeAttendance: React.FC<MakeAttendanceProps> = ({
                                     </TableCell>
                                     <TableCell align="right">
                                         <Checkbox
-                                            checked={isSchoolAbsence(row._id)}
+                                            checked={isaway(row._id)}
+                                            disabled={isPresent(row._id)}
                                             color="primary"
-                                            onChange={() =>
-                                                handleSchoolAbsence(row._id)
-                                            }
+                                            onChange={() => handleaway(row._id)}
                                             inputProps={{
                                                 'aria-label':
                                                     'secondary checkbox',

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import React from 'react'
-
 import NavBar from '../../components/NavBar'
 
 const Profile: React.FC = (): React.ReactElement => {

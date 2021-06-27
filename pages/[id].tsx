@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
 import NavBar from '../components/NavBar'
 
 interface Family {
@@ -16,7 +15,7 @@ interface FamilyMembers {
     ]
 }
 
-export const profile: React.FC = (): React.ReactElement => {
+export const Profile = (): React.ReactElement => {
     const router = useRouter()
     const { id } = router.query
     const [family, setFamily] = useState<Family>()
@@ -59,4 +58,4 @@ export const profile: React.FC = (): React.ReactElement => {
         </>
     )
 }
-export default profile
+export default Profile

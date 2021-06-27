@@ -1,18 +1,77 @@
+import { makeStyles } from '@material-ui/core'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
+const useStyles = makeStyles({
+    root: {
+        width: '100vw',
+        height: '100vh',
+        fontFamily: 'Poppins',
+        backgroundImage: "url('/bg.jpg')",
+        backgroundSize: 'cover',
+    },
+    nav: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        paddingTop: '2rem',
+    },
+    header: {
+        color: '#fff',
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
+    },
+    links: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: '4rem',
+        color: '#fff',
+    },
+    main: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: '80%',
+    },
+    para: {
+        color: '#fff',
+        paddingTop: '2rem',
+        fontSize: '1rem',
+        fontFamily: 'Poppins',
+    },
+    readMore: {
+        backgroundColor: 'rgba(37, 99, 235, 1)',
+        color: 'white',
+        padding: '1rem 3rem',
+        borderRadius: '30px',
+        fontFamily: 'Poppins',
+        fontWeight: 'bold',
+    },
+    heading: {
+        fontWeight: 'bold',
+        color: '#fff',
+        fontSize: '2rem',
+        width: '24rem',
+        lineHeight: '1.625',
+        textTransform: 'capitalize',
+        marginBottom: '2rem',
+        fontFamily: 'Poppins',
+    },
+})
+
 const App: React.FC = (): React.ReactElement => {
+    const classes = useStyles()
+
     return (
         <>
             <Head>
                 <title>RCA - Adventist Church</title>
             </Head>
 
-            <div className=" w-screen h-screen bg-hero-image bg-no-repeat bg-cover font-poppins">
-                <nav className=" flex justify-around pt-4">
-                    <h3 className="text-white text-3xl font-bold">SDA</h3>
-                    <div className=" flex justify-between gap-8 text-white">
+            <div className={classes.root}>
+                <nav className={classes.nav}>
+                    <h3 className={classes.header}>SDA</h3>
+                    <div className={classes.links}>
                         <Link href="/schedule">
                             <a>Schedule</a>
                         </Link>
@@ -50,16 +109,13 @@ const App: React.FC = (): React.ReactElement => {
                         </Link>
                     </div>
                 </nav>
-                <main className="flex justify-around items-center h-4/5">
+                <main className={classes.main}>
                     <section>
-                        <h1 className="font-bold text-white text-4xl w-96 leading-relaxed capitalize mb-8 font-poppins">
+                        <h1 className={classes.heading}>
                             The holy spirit Inside Gods People
                         </h1>
-                        {/* #0074ff */}
                         <Link href="/blog">
-                            <a className=" bg-blue-600 text-white py-4 px-12 rounded-full font-poppins font-bold">
-                                Read More
-                            </a>
+                            <a className={classes.readMore}>Read More</a>
                         </Link>
                     </section>
                     <section>
@@ -72,7 +128,8 @@ const App: React.FC = (): React.ReactElement => {
                             alt="current post"
                             className=" rounded-md"
                         />
-                        <p className=" text-white pt-4 text-lg font-poppins">
+                        <p className={classes.para}>
+                            {' '}
                             God is Good all the time
                         </p>
                     </section>

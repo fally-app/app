@@ -17,7 +17,6 @@ import EditIcon from '@material-ui/icons/Edit'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
-
 import { IFamilyTypes } from '../models/Family'
 import { UserType } from '../utils/types'
 
@@ -31,7 +30,6 @@ interface UpdateUserProps {
         }
     ]
     user_family: string
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any
 }
 

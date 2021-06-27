@@ -32,7 +32,7 @@ interface AdminProps {
     families: FamilyType[]
 }
 
-export const admin: React.FC<AdminProps> = ({
+export const Admin: React.FC<AdminProps> = ({
     families,
 }): React.ReactElement => {
     const { loggedOut } = useUser()
@@ -61,7 +61,7 @@ export const admin: React.FC<AdminProps> = ({
     )
 }
 
-export default admin
+export default Admin
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const { db } = await connectToDB()

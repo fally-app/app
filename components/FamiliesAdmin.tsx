@@ -1,3 +1,4 @@
+import { FamilyType } from '@/utils/types'
 import { TableRow } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
@@ -21,9 +22,6 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
 import axios from 'axios'
 import React from 'react'
-
-import { FamilyType } from '@/utils/types'
-
 import UpdateFam from './UpdateFam'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -138,7 +136,6 @@ const useStyles2 = makeStyles({
 })
 
 interface FamilyProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any
     families: FamilyType[]
 }

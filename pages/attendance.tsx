@@ -19,7 +19,7 @@ const MakeAttendance = dynamic(() => import('../components/MakeAttendance'), {
     ssr: false,
 })
 
-export const attendance: React.FC = (): React.ReactElement => {
+export const Attendance: React.FC = (): React.ReactElement => {
     const classes = useStyles()
 
     let token
@@ -43,4 +43,4 @@ export const attendance: React.FC = (): React.ReactElement => {
         </>
     )
 }
-export default attendance
+export default Attendance

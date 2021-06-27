@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export const home = (): React.ReactElement => {
+export const Home = (): React.ReactElement => {
     let token
     if (typeof window !== 'undefined') {
         token = localStorage.getItem('auth-token')
@@ -91,4 +91,4 @@ export const home = (): React.ReactElement => {
         </>
     )
 }
-export default home
+export default Home

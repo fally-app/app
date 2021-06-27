@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export const login = (): React.ReactElement => {
+export const Login = (): React.ReactElement => {
     const classes = useStyles()
 
     const [code, setCode] = useState<string>('')
@@ -134,7 +134,7 @@ export const login = (): React.ReactElement => {
                 className={classes.root}
                 alignItems="center">
                 <Card>
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <Typography
                             variant="h4"
                             component="h2"
@@ -191,4 +191,4 @@ export const login = (): React.ReactElement => {
         </>
     )
 }
-export default login
+export default Login

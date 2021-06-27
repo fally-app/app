@@ -27,10 +27,8 @@ import ReportIcon from '@material-ui/icons/Report'
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle'
 import clsx from 'clsx'
 import Link from 'next/link'
-import Router from 'next/router'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-
 import useUser from '../lib/useUser'
 
 const drawerWidth = 240
@@ -117,7 +115,7 @@ export default function NavBar(): React.ReactElement {
         if (loggedOut) {
             router.push('/login')
         }
-    }, [loggedOut])
+    }, [loggedOut, router])
 
     return user ? (
         <div className={classes.root}>

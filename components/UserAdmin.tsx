@@ -22,7 +22,6 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
 import axios from 'axios'
 import React from 'react'
-
 import { UserType } from '../utils/types'
 import UpdateUser from './UpdateUser'
 
@@ -139,7 +138,6 @@ const useStyles2 = makeStyles({
 
 interface UsersProps {
     users: UserType[]
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any
     families
 }

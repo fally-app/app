@@ -1,3 +1,4 @@
+import { FamilyType } from '@/utils/types'
 import {
     createStyles,
     InputLabel,
@@ -18,12 +19,8 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
 
-import { FamilyType } from '@/utils/types'
-
 interface UpdateUserProps {
     family: FamilyType
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any
 }
 

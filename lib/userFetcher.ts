@@ -1,6 +1,6 @@
 import Axios from 'axios'
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default async () => {
+
+const useFetcher = async () => {
     const token = localStorage.getItem('aut-token')
     if (token) {
         try {
@@ -18,3 +18,5 @@ export default async () => {
         throw error
     }
 }
+
+export default useFetcher

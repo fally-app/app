@@ -16,7 +16,6 @@ import TextField from '@material-ui/core/TextField'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import axios from 'axios'
 import React from 'react'
-
 import { IFamilyTypes } from '../models/Family'
 
 interface AddNewUserProps {
@@ -27,7 +26,6 @@ interface AddNewUserProps {
             name: string
         }
     ]
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mutate: () => any
 }
 

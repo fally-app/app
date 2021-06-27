@@ -6,7 +6,6 @@ import React from 'react'
 import '../styles/tailwind.css'
 import theme from '../theme'
 
-
 export default function MyApp(props: AppProps): React.ReactElement {
     const { Component, pageProps } = props
     React.useEffect(() => {

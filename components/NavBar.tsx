@@ -11,7 +11,7 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    useTheme,
+    useTheme
 } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Tooltip from '@material-ui/core/Tooltip'

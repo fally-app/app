@@ -73,13 +73,13 @@ const App: React.FC = (): React.ReactElement => {
                     <h3 className={classes.header}>SDA</h3>
                     <div className={classes.links}>
                         <Link href="/schedule">
-                            <a>Schedule</a>
+                            <a className="text-white no-underline">Schedule</a>
                         </Link>
                         <Link href="/blog">
-                            <a>Blog</a>
+                            <a className="text-white no-underline">Blog</a>
                         </Link>
                         <Link href="/login">
-                            <a>Signin</a>
+                            <a className="text-white no-underline">Signin</a>
                         </Link>
                         <Link href="/search">
                             <a>

@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@material-ui/core': 4.11.4
   '@material-ui/icons': 4.11.2
-  '@material-ui/lab': 4.0.0-alpha.58
+  '@material-ui/lab': 4.0.0-alpha.60
   '@types/jsonwebtoken': 8.5.3
   '@types/mongodb': 3.6.18
   '@types/mongoose': 5.11.96
@@ -43,7 +43,7 @@ specifiers:
 dependencies:
   '@material-ui/core': 4.11.4_7a759d72fcbc11ce03c9de110c21df82
   '@material-ui/icons': 4.11.2_5e14cec25e1ceef8d08e6ab1e0c4cb05
-  '@material-ui/lab': 4.0.0-alpha.58_5e14cec25e1ceef8d08e6ab1e0c4cb05
+  '@material-ui/lab': 4.0.0-alpha.60_5e14cec25e1ceef8d08e6ab1e0c4cb05
   '@types/jsonwebtoken': 8.5.3
   '@types/mongoose': 5.11.96
   '@typescript-eslint/eslint-plugin': 4.28.0_df986da156466a6bb61a3b69836ca203
@@ -1350,11 +1350,11 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /@material-ui/lab/4.0.0-alpha.58_5e14cec25e1ceef8d08e6ab1e0c4cb05:
-    resolution: {integrity: sha512-GKHlJqLxUeHH3L3dGQ48ZavYrqGOTXkFkiEiuYMAnAvXAZP4rhMIqeHOPXSUQan4Bd8QnafDcpovOSLnadDmKw==}
+  /@material-ui/lab/4.0.0-alpha.60_5e14cec25e1ceef8d08e6ab1e0c4cb05:
+    resolution: {integrity: sha512-fadlYsPJF+0fx2lRuyqAuJj7hAS1tLDdIEEdov5jlrpb5pp4b+mRDUqQTUxi4inRZHS1bEXpU8QWUhO6xX88aA==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
-      '@material-ui/core': ^4.9.10
+      '@material-ui/core': ^4.12.1
       '@types/react': ^16.8.6 || ^17.0.0
       react: ^16.8.0 || ^17.0.0
       react-dom: ^16.8.0 || ^17.0.0

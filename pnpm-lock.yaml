@@ -28,7 +28,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.12.15
+  mongoose: 5.13.5
   next: 11.0.1
   next-auth: 3.27.3
   next-connect: 0.10.1
@@ -57,7 +57,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.12.15
+  mongoose: 5.13.5
   next: 11.0.1_f31b35bdaa3b7c2fce82404f09d2dac4
   next-auth: 3.27.3_3449d8c7d9ae66356177c5ac15ee0ed0
   next-connect: 0.10.1
@@ -1642,7 +1642,7 @@ packages:
   /@types/bson/4.0.3:
     resolution: {integrity: sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==}
     dependencies:
-      '@types/node': 15.12.2
+      '@types/node': 16.4.10
     dev: false
 
   /@types/estree/0.0.39:
@@ -1678,7 +1678,7 @@ packages:
     resolution: {integrity: sha512-JSVFt9p0rTfZ4EgzXmVHUB3ue00xe3CRbQho8nXfImzEDDM4O7I3po1bwbWl/EIbLENxUreZxqLOc8lvcnLVPA==}
     dependencies:
       '@types/bson': 4.0.3
-      '@types/node': 15.12.2
+      '@types/node': 16.4.10
     dev: false
 
   /@types/mongodb/4.0.6:
@@ -1698,10 +1698,6 @@ packages:
       - mongodb-client-encryption
       - mongodb-extjson
       - snappy
-    dev: false
-
-  /@types/node/15.12.2:
-    resolution: {integrity: sha512-zjQ69G564OCIWIOHSXyQEEDpdpGl+G348RAKY0XXy9Z5kU9Vzv1GMNnkar/ZJ8dzXB3COzD9Mo9NtRZ4xfgUww==}
     dev: false
 
   /@types/node/15.12.4:
@@ -4465,6 +4461,39 @@ packages:
       '@types/whatwg-url': 8.2.1
       whatwg-url: 8.7.0
 
+  /mongodb/3.6.10:
+    resolution: {integrity: sha512-fvIBQBF7KwCJnDZUnFFy4WqEFP8ibdXeFANnylW19+vOwdjOAvqIzPdsNCEMT6VKTHnYu4K64AWRih0mkFms6Q==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      aws4: '*'
+      bson-ext: '*'
+      kerberos: '*'
+      mongodb-client-encryption: '*'
+      mongodb-extjson: '*'
+      snappy: '*'
+    peerDependenciesMeta:
+      aws4:
+        optional: true
+      bson-ext:
+        optional: true
+      kerberos:
+        optional: true
+      mongodb-client-encryption:
+        optional: true
+      mongodb-extjson:
+        optional: true
+      snappy:
+        optional: true
+    dependencies:
+      bl: 2.2.1
+      bson: 1.1.6
+      denque: 1.5.0
+      optional-require: 1.0.3
+      safe-buffer: 5.2.1
+    optionalDependencies:
+      saslprep: 1.0.3
+    dev: false
+
   /mongodb/3.6.8:
     resolution: {integrity: sha512-sDjJvI73WjON1vapcbyBD3Ao9/VN3TKYY8/QX9EPbs22KaCSrQ5rXo5ZZd44tWJ3wl3FlnrFZ+KyUtNH6+1ZPQ==}
     engines: {node: '>=4'}
@@ -4516,12 +4545,12 @@ packages:
       mongoose: 5.12.14
     dev: false
 
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.12.15:
+  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.5:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
       mongoose: '*'
     dependencies:
-      mongoose: 5.12.15
+      mongoose: 5.13.5
     dev: false
 
   /mongoose/5.12.14:
@@ -4549,18 +4578,19 @@ packages:
       - snappy
     dev: false
 
-  /mongoose/5.12.15:
-    resolution: {integrity: sha512-GVvxE2/mbUsxAbTtleFlehCNMFlzcgKue/olukIpoN6iw1MYXKodf+ZIRndO+2jzlgbZgiHkAZZJbcFNt1DgHA==}
+  /mongoose/5.13.5:
+    resolution: {integrity: sha512-sSUAk9GWgA8r3w3nVNrNjBaDem86aevwXO8ltDMKzCf+rjnteMMQkXHQdn1ePkt7alROEPZYCAjiRjptWRSPiQ==}
     engines: {node: '>=4.0.0'}
     dependencies:
       '@types/mongodb': 3.6.18
       bson: 1.1.6
       kareem: 2.3.2
-      mongodb: 3.6.8
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.12.15
+      mongodb: 3.6.10
+      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.5
       mpath: 0.8.3
       mquery: 3.2.5
       ms: 2.1.2
+      optional-require: 1.0.3
       regexp-clone: 1.0.0
       safe-buffer: 5.2.1
       sift: 13.5.2

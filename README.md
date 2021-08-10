@@ -1,13 +1,3 @@
-### Peiece of stoftware to help with organizing church members
+### Fally
 
-
-
-## Change log
-
-#### v1.0.0
-
-
-### v1.0.1
-
--   [ ] Add blog section for the application
--   [ ] use something else to manage our backend
+Open-source software to help with organizing church members in houses of worship

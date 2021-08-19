@@ -28,7 +28,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.13.5
+  mongoose: 5.13.7
   next: 11.1.0
   next-auth: 3.28.0
   next-connect: 0.10.1
@@ -57,7 +57,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.13.5
+  mongoose: 5.13.7
   next: 11.1.0_f31b35bdaa3b7c2fce82404f09d2dac4
   next-auth: 3.28.0_3449d8c7d9ae66356177c5ac15ee0ed0
   next-connect: 0.10.1
@@ -4461,8 +4461,8 @@ packages:
       '@types/whatwg-url': 8.2.1
       whatwg-url: 8.7.0
 
-  /mongodb/3.6.10:
-    resolution: {integrity: sha512-fvIBQBF7KwCJnDZUnFFy4WqEFP8ibdXeFANnylW19+vOwdjOAvqIzPdsNCEMT6VKTHnYu4K64AWRih0mkFms6Q==}
+  /mongodb/3.6.11:
+    resolution: {integrity: sha512-4Y4lTFHDHZZdgMaHmojtNAlqkvddX2QQBEN0K//GzxhGwlI9tZ9R0vhbjr1Decw+TF7qK0ZLjQT292XgHRRQgw==}
     engines: {node: '>=4'}
     peerDependencies:
       aws4: '*'
@@ -4545,12 +4545,12 @@ packages:
       mongoose: 5.12.14
     dev: false
 
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.5:
+  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.7:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
       mongoose: '*'
     dependencies:
-      mongoose: 5.13.5
+      mongoose: 5.13.7
     dev: false
 
   /mongoose/5.12.14:
@@ -4578,15 +4578,15 @@ packages:
       - snappy
     dev: false
 
-  /mongoose/5.13.5:
-    resolution: {integrity: sha512-sSUAk9GWgA8r3w3nVNrNjBaDem86aevwXO8ltDMKzCf+rjnteMMQkXHQdn1ePkt7alROEPZYCAjiRjptWRSPiQ==}
+  /mongoose/5.13.7:
+    resolution: {integrity: sha512-ADIvftZ+KfoTALMZ0n8HvBlezFhcUd73hQaHQDwQ+3X+JZlqE47fUy9yhFZ2SjT+qzmuaCcIXCfhewIc38t2fQ==}
     engines: {node: '>=4.0.0'}
     dependencies:
       '@types/mongodb': 3.6.18
       bson: 1.1.6
       kareem: 2.3.2
-      mongodb: 3.6.10
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.5
+      mongodb: 3.6.11
+      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.7
       mpath: 0.8.3
       mquery: 3.2.5
       ms: 2.1.2

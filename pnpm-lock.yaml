@@ -12,7 +12,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 4.28.0
   '@typescript-eslint/parser': 4.28.0
   autoprefixer: 10.2.6
-  axios: 0.21.1
+  axios: 0.21.4
   bcrypt: 5.0.1
   clsx: 1.1.1
   eslint: 7.32.0
@@ -48,7 +48,7 @@ dependencies:
   '@types/mongoose': 5.11.96
   '@typescript-eslint/eslint-plugin': 4.28.0_6a13f39febb46105e29985adce92c0f6
   '@typescript-eslint/parser': 4.28.0_eslint@7.32.0+typescript@4.4.2
-  axios: 0.21.1
+  axios: 0.21.4
   bcrypt: 5.0.1
   clsx: 1.1.1
   eslint-plugin-simple-import-sort: 7.0.0_eslint@7.32.0
@@ -2207,8 +2207,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios/0.21.1:
-    resolution: {integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==}
+  /axios/0.21.4:
+    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
       follow-redirects: 1.14.1
     transitivePeerDependencies:

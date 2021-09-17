@@ -12,7 +12,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 4.28.0
   '@typescript-eslint/parser': 4.28.0
   autoprefixer: 10.2.6
-  axios: 0.21.1
+  axios: 0.21.2
   bcrypt: 5.0.1
   clsx: 1.1.1
   eslint: 7.32.0
@@ -48,7 +48,7 @@ dependencies:
   '@types/mongoose': 5.11.96
   '@typescript-eslint/eslint-plugin': 4.28.0_6a13f39febb46105e29985adce92c0f6
   '@typescript-eslint/parser': 4.28.0_eslint@7.32.0+typescript@4.4.2
-  axios: 0.21.1
+  axios: 0.21.2
   bcrypt: 5.0.1
   clsx: 1.1.1
   eslint-plugin-simple-import-sort: 7.0.0_eslint@7.32.0
@@ -2207,8 +2207,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios/0.21.1:
-    resolution: {integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==}
+  /axios/0.21.2:
+    resolution: {integrity: sha512-87otirqUw3e8CzHTMO+/9kh/FSgXt/eVDvipijwDtEuwbkySWZ9SBm6VEubmJ/kLKEoLQV/POhxXFb66bfekfg==}
     dependencies:
       follow-redirects: 1.14.1
     transitivePeerDependencies:
@@ -3469,6 +3469,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -5648,6 +5649,7 @@ packages:
   /saslprep/1.0.3:
     resolution: {integrity: sha512-/MY/PEMbk2SuY5sScONwhUDsV2p77Znkb/q3nSVstq/yQzYJOH/Azh29p9oJLsl3LnQwSvZDKagDGBsBwSooag==}
     engines: {node: '>=6'}
+    requiresBuild: true
     dependencies:
       sparse-bitfield: 3.0.3
     optional: true

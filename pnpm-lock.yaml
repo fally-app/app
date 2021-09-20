@@ -33,7 +33,7 @@ specifiers:
   next-auth: 3.28.0
   next-connect: 0.10.2
   next-pwa: 5.3.1
-  prettier: 2.3.1
+  prettier: 2.4.1
   react: 17.0.2
   react-dom: 17.0.2
   slugify: 1.5.3
@@ -76,10 +76,10 @@ devDependencies:
   eslint-config-next: 11.0.0_938b2072f5d2b522e167c3cc47068ce4
   eslint-config-prettier: 8.3.0_eslint@7.32.0
   eslint-plugin-jsx-a11y: 6.4.1_eslint@7.32.0
-  eslint-plugin-prettier: 4.0.0_9431cd5af5c6bd50b6ebd049418c16f8
+  eslint-plugin-prettier: 4.0.0_6e975bd57c7acf028c1a9ddbbf60c898
   eslint-plugin-react: 7.24.0_eslint@7.32.0
   eslint-plugin-react-hooks: 4.2.0_eslint@7.32.0
-  prettier: 2.3.1
+  prettier: 2.4.1
   typescript: 4.4.2
 
 packages:
@@ -3063,7 +3063,7 @@ packages:
       language-tags: 1.0.5
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_9431cd5af5c6bd50b6ebd049418c16f8:
+  /eslint-plugin-prettier/4.0.0_6e975bd57c7acf028c1a9ddbbf60c898:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -3076,7 +3076,7 @@ packages:
     dependencies:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
-      prettier: 2.3.1
+      prettier: 2.4.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -5199,8 +5199,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.3.1:
-    resolution: {integrity: sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==}
+  /prettier/2.4.1:
+    resolution: {integrity: sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true

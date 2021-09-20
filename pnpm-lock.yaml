@@ -28,7 +28,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.13.7
+  mongoose: 5.13.9
   next: 11.1.0
   next-auth: 3.28.0
   next-connect: 0.10.2
@@ -57,7 +57,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.13.7
+  mongoose: 5.13.9
   next: 11.1.0_01b6e46c81e6fda6a6d233df547d9171
   next-auth: 3.28.0_3449d8c7d9ae66356177c5ac15ee0ed0
   next-connect: 0.10.2
@@ -1627,7 +1627,7 @@ packages:
   /@types/bson/4.0.3:
     resolution: {integrity: sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==}
     dependencies:
-      '@types/node': 16.4.10
+      '@types/node': 16.7.1
     dev: false
 
   /@types/estree/0.0.39:
@@ -1663,7 +1663,7 @@ packages:
     resolution: {integrity: sha512-JSVFt9p0rTfZ4EgzXmVHUB3ue00xe3CRbQho8nXfImzEDDM4O7I3po1bwbWl/EIbLENxUreZxqLOc8lvcnLVPA==}
     dependencies:
       '@types/bson': 4.0.3
-      '@types/node': 16.4.10
+      '@types/node': 16.7.1
     dev: false
 
   /@types/mongodb/4.0.6:
@@ -1690,7 +1690,6 @@ packages:
 
   /@types/node/16.7.1:
     resolution: {integrity: sha512-ncRdc45SoYJ2H4eWU9ReDfp3vtFqDYhjOsKlFFUDEn8V1Bgr2RjYal8YT5byfadWIRluhPFU6JiDOl0H6Sl87A==}
-    dev: true
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -4483,12 +4482,12 @@ packages:
       mongoose: 5.12.14
     dev: false
 
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.7:
+  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.9:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
       mongoose: '*'
     dependencies:
-      mongoose: 5.13.7
+      mongoose: 5.13.9
     dev: false
 
   /mongoose/5.12.14:
@@ -4516,16 +4515,17 @@ packages:
       - snappy
     dev: false
 
-  /mongoose/5.13.7:
-    resolution: {integrity: sha512-ADIvftZ+KfoTALMZ0n8HvBlezFhcUd73hQaHQDwQ+3X+JZlqE47fUy9yhFZ2SjT+qzmuaCcIXCfhewIc38t2fQ==}
+  /mongoose/5.13.9:
+    resolution: {integrity: sha512-JbLw5ie0LJxm7V9LoNxRY//6cyFJf0cOpON2TWUWvF9pabil6ArfECL3xHV2N+mwwO4gXiIa+c0pwTzDUVTgqw==}
     engines: {node: '>=4.0.0'}
     dependencies:
+      '@types/bson': 4.0.3
       '@types/mongodb': 3.6.18
       bson: 1.1.6
       kareem: 2.3.2
       mongodb: 3.6.11
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.7
-      mpath: 0.8.3
+      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.9
+      mpath: 0.8.4
       mquery: 3.2.5
       ms: 2.1.2
       optional-require: 1.0.3
@@ -4544,6 +4544,11 @@ packages:
 
   /mpath/0.8.3:
     resolution: {integrity: sha512-eb9rRvhDltXVNL6Fxd2zM9D4vKBxjVVQNLNijlj7uoXUy19zNDsIif5zR+pWmPCWNKwAtqyo4JveQm4nfD5+eA==}
+    engines: {node: '>=4.0.0'}
+    dev: false
+
+  /mpath/0.8.4:
+    resolution: {integrity: sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g==}
     engines: {node: '>=4.0.0'}
     dev: false
 

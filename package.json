@@ -35,7 +35,7 @@
         "isomorphic-unfetch": "3.1.0",
         "jsonwebtoken": "8.5.1",
         "lint-staged": "11.0.0",
-        "mongodb": "4.1.0",
+        "mongodb": "4.1.2",
         "mongoose": "5.13.7",
         "next": "11.1.0",
         "next-auth": "3.28.0",

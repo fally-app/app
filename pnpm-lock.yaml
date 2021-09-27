@@ -28,7 +28,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.13.7
+  mongoose: 6.0.8
   next: 11.1.0
   next-auth: 3.28.0
   next-connect: 0.10.2
@@ -57,7 +57,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   lint-staged: 11.0.0
   mongodb: 4.1.0
-  mongoose: 5.13.7
+  mongoose: 6.0.8
   next: 11.1.0_01b6e46c81e6fda6a6d233df547d9171
   next-auth: 3.28.0_3449d8c7d9ae66356177c5ac15ee0ed0
   next-connect: 0.10.2
@@ -1687,10 +1687,10 @@ packages:
 
   /@types/node/16.4.10:
     resolution: {integrity: sha512-TmVHsm43br64js9BqHWqiDZA+xMtbUpI1MBIA0EyiBmoV9pcEYFOSdj5fr6enZNfh4fChh+AGOLIzGwJnkshyQ==}
+    dev: false
 
   /@types/node/16.7.1:
     resolution: {integrity: sha512-ncRdc45SoYJ2H4eWU9ReDfp3vtFqDYhjOsKlFFUDEn8V1Bgr2RjYal8YT5byfadWIRluhPFU6JiDOl0H6Sl87A==}
-    dev: true
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -1773,7 +1773,7 @@ packages:
   /@types/whatwg-url/8.2.1:
     resolution: {integrity: sha512-2YubE1sjj5ifxievI5Ge1sckb9k/Er66HyR2c+3+I6VDUUg1TLPdYYTEbQ+DjRkS4nTxMJhgWfSfMRD2sl2EYQ==}
     dependencies:
-      '@types/node': 16.4.10
+      '@types/node': 16.7.1
       '@types/webidl-conversions': 6.1.1
 
   /@types/zen-observable/0.8.2:
@@ -2344,6 +2344,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       buffer: 5.6.0
+
+  /bson/4.5.2:
+    resolution: {integrity: sha512-8CEMJpwc7qlQtrn2rney38jQSEeMar847lz0LyitwRmVknAW8iHXrzW4fTjHfyWm0E3sukyD/zppdH+QU1QefA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      buffer: 5.6.0
+    dev: false
 
   /buffer-equal-constant-time/1.0.1:
     resolution: {integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=}
@@ -4399,37 +4406,11 @@ packages:
       '@types/whatwg-url': 8.2.1
       whatwg-url: 8.7.0
 
-  /mongodb/3.6.11:
-    resolution: {integrity: sha512-4Y4lTFHDHZZdgMaHmojtNAlqkvddX2QQBEN0K//GzxhGwlI9tZ9R0vhbjr1Decw+TF7qK0ZLjQT292XgHRRQgw==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      aws4: '*'
-      bson-ext: '*'
-      kerberos: '*'
-      mongodb-client-encryption: '*'
-      mongodb-extjson: '*'
-      snappy: '*'
-    peerDependenciesMeta:
-      aws4:
-        optional: true
-      bson-ext:
-        optional: true
-      kerberos:
-        optional: true
-      mongodb-client-encryption:
-        optional: true
-      mongodb-extjson:
-        optional: true
-      snappy:
-        optional: true
+  /mongodb-connection-string-url/2.1.0:
+    resolution: {integrity: sha512-Qf9Zw7KGiRljWvMrrUFDdVqo46KIEiDuCzvEN97rh/PcKzk2bd6n9KuzEwBwW9xo5glwx69y1mI6s+jFUD/aIQ==}
     dependencies:
-      bl: 2.2.1
-      bson: 1.1.6
-      denque: 1.5.0
-      optional-require: 1.0.3
-      safe-buffer: 5.2.1
-    optionalDependencies:
-      saslprep: 1.0.3
+      '@types/whatwg-url': 8.2.1
+      whatwg-url: 9.1.0
     dev: false
 
   /mongodb/3.6.8:
@@ -4475,20 +4456,23 @@ packages:
     optionalDependencies:
       saslprep: 1.0.3
 
+  /mongodb/4.1.1:
+    resolution: {integrity: sha512-fbACrWEyvr6yl0sSiCGV0sqEiBwTtDJ8iSojmkDjAfw9JnOZSAkUyv9seFSPYhPPKwxp1PDtyjvBNfMDz0WBLQ==}
+    engines: {node: '>=12.9.0'}
+    dependencies:
+      bson: 4.5.2
+      denque: 1.5.0
+      mongodb-connection-string-url: 2.1.0
+    optionalDependencies:
+      saslprep: 1.0.3
+    dev: false
+
   /mongoose-legacy-pluralize/1.0.2_mongoose@5.12.14:
     resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
     peerDependencies:
       mongoose: '*'
     dependencies:
       mongoose: 5.12.14
-    dev: false
-
-  /mongoose-legacy-pluralize/1.0.2_mongoose@5.13.7:
-    resolution: {integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==}
-    peerDependencies:
-      mongoose: '*'
-    dependencies:
-      mongoose: 5.13.7
     dev: false
 
   /mongoose/5.12.14:
@@ -4516,34 +4500,30 @@ packages:
       - snappy
     dev: false
 
-  /mongoose/5.13.7:
-    resolution: {integrity: sha512-ADIvftZ+KfoTALMZ0n8HvBlezFhcUd73hQaHQDwQ+3X+JZlqE47fUy9yhFZ2SjT+qzmuaCcIXCfhewIc38t2fQ==}
-    engines: {node: '>=4.0.0'}
+  /mongoose/6.0.8:
+    resolution: {integrity: sha512-7XZ5TUoDtF8af7+mKfL58s8dN2BKmldQPTlmkb41PaRAleBVGeAck7Mj6JlIh9SOCi+64GT+afebiJaeyXe1Lw==}
+    engines: {node: '>=12.0.0'}
     dependencies:
-      '@types/mongodb': 3.6.18
-      bson: 1.1.6
+      bson: 4.4.1
       kareem: 2.3.2
-      mongodb: 3.6.11
-      mongoose-legacy-pluralize: 1.0.2_mongoose@5.13.7
-      mpath: 0.8.3
-      mquery: 3.2.5
+      mongodb: 4.1.1
+      mpath: 0.8.4
+      mquery: 4.0.0
       ms: 2.1.2
-      optional-require: 1.0.3
       regexp-clone: 1.0.0
-      safe-buffer: 5.2.1
       sift: 13.5.2
       sliced: 1.0.1
     transitivePeerDependencies:
-      - aws4
-      - bson-ext
-      - kerberos
-      - mongodb-client-encryption
-      - mongodb-extjson
-      - snappy
+      - supports-color
     dev: false
 
   /mpath/0.8.3:
     resolution: {integrity: sha512-eb9rRvhDltXVNL6Fxd2zM9D4vKBxjVVQNLNijlj7uoXUy19zNDsIif5zR+pWmPCWNKwAtqyo4JveQm4nfD5+eA==}
+    engines: {node: '>=4.0.0'}
+    dev: false
+
+  /mpath/0.8.4:
+    resolution: {integrity: sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g==}
     engines: {node: '>=4.0.0'}
     dev: false
 
@@ -4556,6 +4536,17 @@ packages:
       regexp-clone: 1.0.0
       safe-buffer: 5.1.2
       sliced: 1.0.1
+    dev: false
+
+  /mquery/4.0.0:
+    resolution: {integrity: sha512-nGjm89lHja+T/b8cybAby6H0YgA4qYC/lx6UlwvHGqvTq8bDaNeCwl1sY8uRELrNbVWJzIihxVd+vphGGn1vBw==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      debug: 4.3.1
+      regexp-clone: 1.0.0
+      sliced: 1.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /ms/2.0.0:
@@ -6425,6 +6416,14 @@ packages:
       lodash: 4.17.21
       tr46: 2.1.0
       webidl-conversions: 6.1.0
+
+  /whatwg-url/9.1.0:
+    resolution: {integrity: sha512-CQ0UcrPHyomtlOCot1TL77WyMIm/bCwrJ2D6AOKGwEczU9EpyoqAokfqrf/MioU9kHcMsmJZcg1egXix2KYEsA==}
+    engines: {node: '>=12'}
+    dependencies:
+      tr46: 2.1.0
+      webidl-conversions: 6.1.0
+    dev: false
 
   /which-boxed-primitive/1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}

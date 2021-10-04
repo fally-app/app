@@ -1,8 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import useSWR, { ConfigInterface, responseInterface } from 'swr'
-
 export type GetRequest = AxiosRequestConfig | null
-
 interface Return<Data, Error>
     extends Pick<
         responseInterface<AxiosResponse<Data>, AxiosError<Error>>,

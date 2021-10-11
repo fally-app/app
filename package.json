@@ -50,7 +50,7 @@
         "@types/mongodb": "4.0.6",
         "@types/node": "16.7.1",
         "@types/react": "17.0.22",
-        "autoprefixer": "10.2.6",
+        "autoprefixer": "10.3.7",
         "eslint": "7.32.0",
         "eslint-config-next": "11.0.0",
         "eslint-config-prettier": "8.3.0",

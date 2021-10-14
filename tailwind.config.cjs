@@ -4,8 +4,12 @@ const config = {
 
 	theme: {
 		fontFamily: {
-			display: ['Poppins', 'sans-serif']
+			display: ['Open Sans', 'sans-serif']
 		},
+		backgroundColor: (theme) => ({
+			...theme('colors'),
+			primary: '#FFA92D'
+		}),
 		extend: {}
 	},
 

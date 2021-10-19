@@ -31,7 +31,7 @@ specifiers:
   mongoose: 5.13.7
   next: 11.1.2
   next-auth: 3.28.0
-  next-connect: 0.10.2
+  next-connect: 0.11.0
   next-pwa: 5.3.1
   prettier: 2.3.1
   react: 17.0.2
@@ -60,7 +60,7 @@ dependencies:
   mongoose: 5.13.7
   next: 11.1.2_01b6e46c81e6fda6a6d233df547d9171
   next-auth: 3.28.0_fe0b3e6195d0fe8a8efe0ee649abbf24
-  next-connect: 0.10.2
+  next-connect: 0.11.0
   next-pwa: 5.3.1_next@11.1.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -4787,8 +4787,8 @@ packages:
       - supports-color
     dev: false
 
-  /next-connect/0.10.2:
-    resolution: {integrity: sha512-Tp9PA5YSg6aStF9TP+VmaQwvPH0tlO8VxzFP/oizD60aZwyqfK302J12V0VMlWnWJEQW5IPrblynI4bG193zwA==}
+  /next-connect/0.11.0:
+    resolution: {integrity: sha512-7VW5z9MWOpd8wnbST9dXgVd0c0V76LLLk5mBDYLSMtEC2dj3v3YF/Bl3t58cJrzm4SZ0e/s3yeD361F888u0yg==}
     dependencies:
       trouter: 3.2.0
     dev: false

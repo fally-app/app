@@ -8,50 +8,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model families {
-  id         String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v          Int      @map("__v")
-  code       String
-  created_at DateTime @db.Date
-  name       String   @unique(map: "name_1")
-  password   String
-  slug       String
-  status     String
-  user_type  String
-}
-
-model familyreports {
-  id             String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v              Int      @map("__v")
-  absent         Int
-  created_at     DateTime @db.Date
-  family         String   @db.ObjectId
-  helped         Int
-  percentage     Int
-  presents       Int
-  sabbath_week   Int
-  sick           Int
-  startedSabbath Int
-  studied7times  Int
-  visited        Int
-  visitors       Int?
-  vistors        Int?
-  wereHelped     Int
-  wereVisited    Int?
-  wereVisted     Int?
-  year           Int
-}
-
 model users {
-  id          String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  v           Int?      @map("__v")
+  id          String    @id @default(dbgenerated())
   class_level String
   code        String?
   /// String: 5.3%, ObjectId: 94.7%
-  family_id   String    @db.ObjectId
   firstName   String
   gender      String
-  joined_at   DateTime? @db.Date
+  joined_at   DateTime? 
   lastName    String
   status      String
 }
